@@ -86,6 +86,16 @@ In all three cases, the next step is a new **Plan** phase — informed by the Re
 Plan → Build → Ship → [Review] → Plan → ...
 ```
 
+### The continuation loop
+
+Shipping something is the moment when the work becomes real — and the moment when you gain access to information you couldn't have before shipping. Real users. Real behavior. Real feedback. Real failures.
+
+That information is the most valuable input for the next cycle. It tells you what to build next, what to fix, what to stop doing, and what assumption you were wrong about.
+
+The continuation loop is not optional for teams that want to improve. It is the mechanism that compounds. Each cycle informed by a thorough Review is better than a cycle started from scratch. Over time, teams that run the loop build faster, make fewer expensive mistakes, and stay more aligned with what their audience actually needs.
+
+**Ship → Review → Plan is not a phase you complete. It is a rhythm you develop.**
+
 ---
 
 ## Using AI in the Ship phase

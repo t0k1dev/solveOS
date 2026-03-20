@@ -231,4 +231,60 @@ The Review gate — in both modes — is what makes solveOS a cycle, not a line.
 
 ---
 
+## Shipping is the beginning of building, not the end
+
+Most frameworks treat shipping as the finish line. solveOS treats it as a transition point.
+
+When something ships, two things become true simultaneously:
+1. This cycle is complete.
+2. The next cycle has new material to start from.
+
+The post-ship Review is the mechanism that turns the outcome of one cycle into the inputs for the next. Without it, cycles are disconnected — each one starting from scratch, repeating the same assumptions, making the same mistakes.
+
+**The loop after Ship is what makes you a better builder over time, not just someone who ships things.**
+
+### What "continue building" means
+
+Continuing to build does not mean adding more features indefinitely. It means using what you learned to make the next cycle more targeted, more effective, and more aligned with what actually matters.
+
+After shipping, three things are usually true:
+
+1. **Some of what you built worked.** Double down on it. The next cycle should build on the approaches that produced real results.
+2. **Some of what you built didn't work.** Fix it. The next cycle should address the gaps revealed by real-world use — not hypothetical improvements, but actual failures.
+3. **You discovered something you didn't know when you planned.** Act on it. Shipping always reveals what planning couldn't — user behaviors, edge cases, assumptions that were wrong. That knowledge is the most valuable input for the next plan.
+
+The post-ship Review captures all three. The next Plan Brief is written from what was captured.
+
+### The perpetual cycle
+
+```
+    Plan → Build → Ship
+                    │
+                 [Review]
+                    │
+                    ↓
+    Plan → Build → Ship
+                    │
+                 [Review]
+                    │
+                    ↓
+                  ...
+```
+
+There is no final state. Every cycle produces a result and a set of learnings. The learnings become the next plan. The cycle continues as long as the problem is worth solving.
+
+This is not a bug — it is the point. A framework that ends at shipping assumes the world is static. It isn't. Products evolve. Audiences change. Assumptions get invalidated. The loop after Ship is what keeps the work alive and responsive to reality.
+
+### When to stop the loop
+
+The loop stops when one of these is true:
+
+- **The problem is solved.** The success criteria are fully met and the need no longer exists. This is rarer than most people think.
+- **The problem is no longer worth solving.** The context changed — the audience moved on, the opportunity closed, the goal became irrelevant. Recognize this early and redirect.
+- **You're building from habit, not signal.** If each Review cycle shows diminishing returns and the Feed Forward section is empty, the problem space may be exhausted. A new Plan on a new problem is better than incremental additions with no real impact.
+
+The default is to continue. Stop only when the signal says to.
+
+---
+
 *Back to [solveOS →](../README.md) | Start the next cycle: [Plan →](../phases/plan.md)*

@@ -20,6 +20,8 @@ The core loop is simple:
 
 Between phases, you can insert optional **gates** — lightweight checkpoints that reduce risk and sharpen focus. But the spine is always the same: Plan, Build, Ship, and Review back into the next Plan.
 
+solveOS has two built-in feedback loops — one that tightens the plan before you build, and one that keeps you building after you ship.
+
 ---
 
 ## Why solveOS?
@@ -50,6 +52,133 @@ After shipping, the [Review](./gates/review.md) gate closes the loop: measure wh
 
 ---
 
+## Divergence and Convergence
+
+Every phase and gate in solveOS alternates between two modes of thinking: **diverging** and **converging**.
+
+- **Diverging** means opening up — exploring possibilities, surfacing options, expanding your understanding of the problem space. This is generative, exploratory thinking.
+- **Converging** means narrowing down — making decisions, eliminating options, committing to a specific direction. This is evaluative, decisive thinking.
+
+The two modes cannot happen at the same time. Trying to evaluate while you're still exploring kills ideas before they're formed. Trying to explore while you're supposed to be deciding stalls progress indefinitely. solveOS makes the distinction explicit.
+
+```
+                diverge          converge
+                   │                │
+  Research ────────┤                │
+                   ↓                │
+  Plan ────────────────────────────→┤
+                                    │
+                            Plan Validation
+                                    │
+                   diverge          │         converge
+                      │             ↓            │
+  Build ──────────────┤─────────────────────────→┤
+                                                  │
+                                        Build Validation
+                                                  │
+                                    converge      │
+                                       │          ↓
+                                    Review ───────┤ (pre-ship: is this ready?)
+                                                  │
+                                               Ship
+                                                  │
+                   diverge                        │         converge
+                      │                           ↓            │
+  Review (post-ship)──┤──────────────────────────────────────→ Plan
+```
+
+### Where each mode appears
+
+| Phase / Gate | Mode | What it looks like |
+|---|---|---|
+| Research | Diverge | Explore the problem space widely before committing to a direction |
+| Plan | Diverge → Converge | Start by exploring the problem; end by committing to one specific goal and brief |
+| Plan Validation | Converge | Eliminate ambiguity. Force specific answers. One clear plan exits the loop. |
+| Build | Diverge | Discover constraints, adapt approach, explore what works — within the bounds of the brief |
+| Build Validation | Converge | Check what was built against the criteria. Cut what doesn't fit. |
+| Review (pre-ship) | Converge | One decision: ready to ship, or not. |
+| Ship | Converge | The act of committing — putting one specific thing in front of the world |
+| Review (post-ship) | Diverge → Converge | Open up to what the data and feedback reveals; then converge on what to carry into the next Plan |
+
+### Why this matters
+
+The most common failure modes in building map directly to misaligned modes:
+
+- **Diverging when you should be converging** — endless planning, scope creep, "one more thing" before shipping. The work never resolves because you keep opening new options instead of closing them.
+- **Converging when you should be diverging** — locking in a solution before understanding the problem, skipping research, writing a plan for the first idea instead of the best one. The work moves fast toward the wrong destination.
+
+Recognizing which mode you are in — and which mode you *should* be in — is one of the most practical thinking skills solveOS develops.
+
+The gates exist partly to mark these transitions. Plan Validation is not just a quality check — it is a signal that the diverging phase of planning is over and it is time to converge. The post-ship Review is not just a retrospective — it is an invitation to diverge again, before the next convergence of Plan locks in a new direction.
+
+---
+
+## The Two Feedback Loops
+
+solveOS is not a straight line. It contains two distinct feedback loops that make the framework a cycle — not a one-time process.
+
+### Loop 1: Plan → Validate Plan → Plan (refine)
+
+```
+      ┌──────────────────────────────┐
+      ↓                              │
+    Plan ──→ [Plan Validation] ──────┘
+                    │
+                    ↓ (when plan is ready)
+                  Build
+```
+
+Before you build anything, the plan must be good enough to build from. The [Plan Validation gate](./gates/validate-plan.md) runs a structured check and, if gaps are found, sends you back to Plan to sharpen it. This loop runs until the plan can be executed without guesswork — typically 1–3 passes.
+
+**Why this loop exists:** Vague plans produce vague builds. Fixing ambiguity before execution is 10x cheaper than fixing it after. Every pass through this loop produces a more specific, more executable plan.
+
+**The loop exits when:** The plan answers all validation questions without hesitation — the problem is correctly stated, the audience is specific, the goal is feasible, and the plan is clear enough that someone else could execute it and produce the same result.
+
+---
+
+### Loop 2: Ship → Review → Plan (continue building)
+
+```
+    Plan → Build → Ship
+                    │
+                    ↓
+                 [Review]
+                    │
+                    ↓
+    Plan → Build → Ship
+                    │
+                    ↓
+                  ...
+```
+
+Shipping something is not the end of the work — it is the beginning of knowing. The [Review gate](./gates/review.md) measures what happened after shipping, reflects on the cycle, and produces the inputs for the next Plan. This is what makes solveOS a continuous building process, not a one-time delivery.
+
+**Why this loop exists:** The real world tells you things your plan couldn't predict. User behavior, unexpected failures, assumptions that turned out wrong, scope items that turned out to matter more than expected — all of this surfaces only after shipping. Without a review loop, the same mistakes repeat. With it, every cycle starts smarter than the last.
+
+**The loop is perpetual:** After reviewing, you always start a new Plan — informed by what the previous cycle taught. Whether the last cycle worked well, partially worked, or failed, the next step is the same: Plan again, with better information.
+
+---
+
+### The full picture
+
+```
+   ┌──────────────────────────────────────────────────────────────┐
+   ↓                                                              │
+ Plan ←──── refine ←── [Plan Validation] ←── Plan (loop 1)       │
+   │                           │                                  │
+   │                      (ready to build)                        │
+   ↓                           ↓                                  │
+ Plan ──→ Build ──→ [Build Validation] ──→ Ship ──→ [Review] ─────┘
+                                                      (loop 2)
+```
+
+Loop 1 runs **before execution begins** — it protects the build.
+Loop 2 runs **after the result is live** — it informs the next cycle.
+
+Both loops exist to do one thing: reduce the cost of being wrong.
+
+---
+
 ## Optional Gates
 
 Gates are lightweight checkpoints that live **between** phases. They are not mandatory, but skipping them has a cost. Use them when the stakes are high, the problem is ambiguous, or the build is complex.
@@ -63,7 +192,7 @@ Gates are lightweight checkpoints that live **between** phases. They are not man
 
 ---
 
-## The Five Principles
+## The Six Principles
 
 These principles govern how solveOS should be applied. They are not rules — they are lenses. When you feel stuck or off-track, return to them.
 
@@ -81,6 +210,9 @@ Optional gates exist to catch expensive mistakes early, not to create bureaucrac
 
 ### 5. The brief is your compass
 The clarity established in Plan doesn't maintain itself. Every decision made during Build is an opportunity to drift from the original goal. The Plan Brief is not a starting artifact — it is an active reference. When what you're building no longer matches the brief, you either update the brief in writing or course correct. Silent drift is how projects fail.
+
+### 6. Context must be carried forward
+Every phase and gate produces learning. That learning only has value if it travels into the next step — explicitly, in writing. This matters everywhere, but it is critical when working with AI. AI has no memory between sessions. If you do not carry the context forward — decisions made, directions cut, constraints discovered, things that didn't work — the next session starts from zero. The cycle degrades. Each handoff between phases is an opportunity to capture what was learned and inject it into what comes next. A Plan Brief updated after Build Validation. A Review output that feeds directly into the next Plan. A note on why a direction was cut. Context is not a byproduct of the process — it is the material the next step is built from.
 
 ---
 

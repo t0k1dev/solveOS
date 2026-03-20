@@ -10,6 +10,8 @@ Build is where the work happens. Code gets written. Designs get made. Articles g
 
 But Build is not just execution — it is **structured discovery**. You will learn things during the build that planning couldn't reveal. The goal is not to follow the plan blindly; it is to stay anchored to the **goal and success criteria** from the plan, while adapting tactically as you learn.
 
+The Build phase is a **diverging phase**. You start with the plan and expand outward — discovering what works, what doesn't, what was missed, what needs to change. This divergence is healthy and expected. The gates that follow Build (Build Validation, pre-ship Review) are where you converge: cutting what doesn't fit, verifying against the criteria, making the call to ship. Don't try to converge during Build — that is what the gates are for.
+
 The Build phase ends when you have something that meets the success criteria from your Plan Brief — not when the work feels complete, not when it feels perfect.
 
 ---

@@ -8,6 +8,8 @@
 
 Planning is not about producing a perfect roadmap. It is about achieving **clarity** — enough clarity to start building with confidence and to recognize when you are drifting.
 
+The Plan phase follows the diverge → converge pattern. It starts by opening up: exploring the problem, questioning assumptions, considering who is affected and why. It ends by closing down: committing to one specific goal, one audience, one set of success criteria. Both halves matter. Starting with convergence produces plans that solve the wrong problem. Never converging produces analysis without action.
+
 A good plan answers these questions:
 
 1. **What is the problem?** — What is actually broken, missing, or needed?
