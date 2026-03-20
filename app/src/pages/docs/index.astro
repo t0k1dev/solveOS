@@ -3,80 +3,162 @@ import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Introduction" currentPath="/docs/">
 
-  <div class="page-header">
-    <span class="page-eyebrow">Documentation</span>
-    <h1>Introduction</h1>
-    <p class="page-desc">A mental framework for solving anything — with or without AI, alone or in teams.</p>
-  </div>
+  <!-- ── English ── -->
+  <div class="lang-en">
+    <div class="page-header">
+      <span class="page-eyebrow">Documentation</span>
+      <h1>Introduction</h1>
+      <p class="page-desc">A mental framework for solving anything — with or without AI, alone or in teams.</p>
+    </div>
 
-  <h2>What is solveOS?</h2>
-  <p>solveOS is a problem-solving framework built for builders and makers. It gives you a repeatable structure to go from a problem to a shipped solution — whether you're building a product, writing an article, designing a feature, or making a strategic decision.</p>
-  <p>It works with or without AI. It works alone or in teams. It works for any type of problem.</p>
-  <p>The core loop is simple:</p>
+    <h2>What is solveOS?</h2>
+    <p>solveOS is a problem-solving framework built for builders and makers. It gives you a repeatable structure to go from a problem to a shipped solution — whether you're building a product, writing an article, designing a feature, or making a strategic decision.</p>
+    <p>It works with or without AI. It works alone or in teams. It works for any type of problem.</p>
+    <p>The core loop is simple:</p>
 
-  <div class="code-wrap">
-    <pre><code>   ┌─────────────────────────────────────────────┐
+    <div class="code-wrap">
+      <pre><code>   ┌─────────────────────────────────────────────┐
    ↓                                             │
  Plan → Build → Ship → [Review] ────────────────┘</code></pre>
+    </div>
+
+    <p>Between phases, you can insert optional <strong>gates</strong> — lightweight checkpoints that reduce risk and sharpen focus. But the spine is always the same: Plan, Build, Ship, and Review back into the next Plan.</p>
+    <p>solveOS has two built-in feedback loops — one that tightens the plan before you build, and one that keeps you building after you ship.</p>
+
+    <h2>Why solveOS?</h2>
+    <p>Most people fail at solving things for one of four reasons:</p>
+    <div class="two-col" style="grid-template-columns: 1fr 1fr;">
+      <div class="two-col-card">
+        <h4>Skip planning</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">They jump into execution without a clear goal or constraints, and end up building the wrong thing.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>Over-plan</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">They get stuck refining the plan and never ship anything real.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>Lose context</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">The goal defined at the start gets distorted by the time execution ends.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>Never measure</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">They ship something, move on, and never find out if it actually worked. The same mistakes repeat.</p>
+      </div>
+    </div>
+    <p>solveOS is designed to prevent all four failure modes through structure, optional validation, a bias toward shipping, and a Review gate that closes the loop.</p>
+
+    <h2>The Three Phases</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Phase</th><th>Purpose</th><th>Output</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><a href="/docs/phases/plan/">Plan</a></td><td>Define the problem, audience, goal, constraints, and success criteria</td><td>A clear brief</td></tr>
+          <tr><td><a href="/docs/phases/build/">Build</a></td><td>Execute against the plan</td><td>A working result</td></tr>
+          <tr><td><a href="/docs/phases/ship/">Ship</a></td><td>Put it in the world, in front of real people or systems</td><td>Something live</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Phases are <strong>linear by default</strong>. You complete one before moving to the next. This is intentional — it forces clarity at each stage.</p>
+    <p>After shipping, the <a href="/docs/gates/review/">Review</a> gate closes the loop: measure what happened, reflect on the cycle, and feed what you learned into the next Plan.</p>
+
+    <h2>How to use this framework</h2>
+    <ol>
+      <li><strong>Read the guide.</strong> Understand the structure and the principles.</li>
+      <li><strong>See it in action.</strong> Read a worked example to see a full cycle end to end.</li>
+      <li><strong>Start at Plan.</strong> Open the Plan phase and follow the process.</li>
+      <li><strong>Use gates when needed.</strong> If you're unsure, default to using them — you can always skip them next time once you understand the cost.</li>
+      <li><strong>Ship something real.</strong> The framework isn't complete until something is live.</li>
+    </ol>
+
+    <div class="callout" style="margin-top:2rem;">
+      <p><strong>New to solveOS?</strong> Start with the guide — it explains why the framework exists and how to apply it to your first cycle.</p>
+    </div>
+
+    <div class="nav-card-group" style="margin-top:2rem;">
+      <a href="/docs/guide/" class="nav-card">Why solveOS <span>→</span></a>
+      <a href="/docs/guide/how-to-start/" class="nav-card">How to start your first cycle <span>→</span></a>
+    </div>
   </div>
 
-  <p>Between phases, you can insert optional <strong>gates</strong> — lightweight checkpoints that reduce risk and sharpen focus. But the spine is always the same: Plan, Build, Ship, and Review back into the next Plan.</p>
-  <p>solveOS has two built-in feedback loops — one that tightens the plan before you build, and one that keeps you building after you ship.</p>
-
-  <h2>Why solveOS?</h2>
-  <p>Most people fail at solving things for one of four reasons:</p>
-  <div class="two-col" style="grid-template-columns: 1fr 1fr;">
-    <div class="two-col-card">
-      <h4>Skip planning</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0;">They jump into execution without a clear goal or constraints, and end up building the wrong thing.</p>
+  <!-- ── Español ── -->
+  <div class="lang-es">
+    <div class="page-header">
+      <span class="page-eyebrow">Documentación</span>
+      <h1>Introducción</h1>
+      <p class="page-desc">Un marco mental para resolver cualquier problema — con o sin IA, solo o en equipo.</p>
     </div>
-    <div class="two-col-card">
-      <h4>Over-plan</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0;">They get stuck refining the plan and never ship anything real.</p>
+
+    <h2>¿Qué es solveOS?</h2>
+    <p>solveOS es un framework de resolución de problemas diseñado para constructores y creadores. Te da una estructura repetible para ir de un problema a una solución lanzada — ya sea que estés construyendo un producto, escribiendo un artículo, diseñando una función o tomando una decisión estratégica.</p>
+    <p>Funciona con o sin IA. Funciona solo o en equipo. Funciona para cualquier tipo de problema.</p>
+    <p>El ciclo central es simple:</p>
+
+    <div class="code-wrap">
+      <pre><code>   ┌─────────────────────────────────────────────┐
+   ↓                                             │
+ Plan → Build → Ship → [Review] ────────────────┘</code></pre>
     </div>
-    <div class="two-col-card">
-      <h4>Lose context</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0;">The goal defined at the start gets distorted by the time execution ends.</p>
+
+    <p>Entre fases, puedes insertar <strong>compuertas</strong> opcionales — puntos de control ligeros que reducen el riesgo y agudizan el enfoque. Pero la columna vertebral siempre es la misma: Plan, Build, Ship y Review de vuelta al siguiente Plan.</p>
+    <p>solveOS tiene dos ciclos de feedback integrados — uno que ajusta el plan antes de construir, y otro que te mantiene construyendo después de lanzar.</p>
+
+    <h2>¿Por qué solveOS?</h2>
+    <p>La mayoría de las personas falla al resolver problemas por una de cuatro razones:</p>
+    <div class="two-col" style="grid-template-columns: 1fr 1fr;">
+      <div class="two-col-card">
+        <h4>Saltarse la planificación</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">Se lanzan a ejecutar sin un objetivo claro ni restricciones, y terminan construyendo lo incorrecto.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>Planificar en exceso</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">Se quedan refinando el plan y nunca lanzan nada real.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>Perder el contexto</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">El objetivo definido al inicio se distorsiona para cuando termina la ejecución.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>Nunca medir</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0;">Lanzan algo, siguen adelante y nunca saben si realmente funcionó. Los mismos errores se repiten.</p>
+      </div>
     </div>
-    <div class="two-col-card">
-      <h4>Never measure</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0;">They ship something, move on, and never find out if it actually worked. The same mistakes repeat.</p>
+    <p>solveOS está diseñado para prevenir los cuatro modos de fallo mediante estructura, validación opcional, un sesgo hacia el lanzamiento y una compuerta de Revisión que cierra el ciclo.</p>
+
+    <h2>Las tres fases</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Fase</th><th>Propósito</th><th>Resultado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><a href="/docs/phases/plan/">Plan</a></td><td>Definir el problema, la audiencia, el objetivo, las restricciones y los criterios de éxito</td><td>Un brief claro</td></tr>
+          <tr><td><a href="/docs/phases/build/">Build</a></td><td>Ejecutar según el plan</td><td>Un resultado funcional</td></tr>
+          <tr><td><a href="/docs/phases/ship/">Ship</a></td><td>Ponerlo en el mundo, frente a personas o sistemas reales</td><td>Algo en vivo</td></tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-  <p>solveOS is designed to prevent all four failure modes through structure, optional validation, a bias toward shipping, and a Review gate that closes the loop.</p>
+    <p>Las fases son <strong>lineales por defecto</strong>. Completas una antes de pasar a la siguiente. Esto es intencional — obliga a tener claridad en cada etapa.</p>
+    <p>Después de lanzar, la compuerta de <a href="/docs/gates/review/">Revisión</a> cierra el ciclo: mide lo que ocurrió, reflexiona sobre el ciclo y alimenta lo aprendido al siguiente Plan.</p>
 
-  <h2>The Three Phases</h2>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Phase</th><th>Purpose</th><th>Output</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><a href="/docs/phases/plan/">Plan</a></td><td>Define the problem, audience, goal, constraints, and success criteria</td><td>A clear brief</td></tr>
-        <tr><td><a href="/docs/phases/build/">Build</a></td><td>Execute against the plan</td><td>A working result</td></tr>
-        <tr><td><a href="/docs/phases/ship/">Ship</a></td><td>Put it in the world, in front of real people or systems</td><td>Something live</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p>Phases are <strong>linear by default</strong>. You complete one before moving to the next. This is intentional — it forces clarity at each stage.</p>
-  <p>After shipping, the <a href="/docs/gates/review/">Review</a> gate closes the loop: measure what happened, reflect on the cycle, and feed what you learned into the next Plan.</p>
+    <h2>Cómo usar este framework</h2>
+    <ol>
+      <li><strong>Lee la guía.</strong> Entiende la estructura y los principios.</li>
+      <li><strong>Véelo en acción.</strong> Lee un ejemplo trabajado para ver un ciclo completo de principio a fin.</li>
+      <li><strong>Empieza en Plan.</strong> Abre la fase Plan y sigue el proceso.</li>
+      <li><strong>Usa compuertas cuando las necesites.</strong> Si no estás seguro, úsalas por defecto — siempre puedes saltártelas la próxima vez cuando entiendas el coste.</li>
+      <li><strong>Lanza algo real.</strong> El framework no está completo hasta que algo esté en vivo.</li>
+    </ol>
 
-  <h2>How to use this framework</h2>
-  <ol>
-    <li><strong>Read the guide.</strong> Understand the structure and the principles.</li>
-    <li><strong>See it in action.</strong> Read a worked example to see a full cycle end to end.</li>
-    <li><strong>Start at Plan.</strong> Open the Plan phase and follow the process.</li>
-    <li><strong>Use gates when needed.</strong> If you're unsure, default to using them — you can always skip them next time once you understand the cost.</li>
-    <li><strong>Ship something real.</strong> The framework isn't complete until something is live.</li>
-  </ol>
+    <div class="callout" style="margin-top:2rem;">
+      <p><strong>¿Nuevo en solveOS?</strong> Empieza con la guía — explica por qué existe el framework y cómo aplicarlo en tu primer ciclo.</p>
+    </div>
 
-  <div class="callout" style="margin-top:2rem;">
-    <p><strong>New to solveOS?</strong> Start with the guide — it explains why the framework exists and how to apply it to your first cycle.</p>
-  </div>
-
-  <div class="nav-card-group" style="margin-top:2rem;">
-    <a href="/docs/guide/" class="nav-card">Why solveOS <span>→</span></a>
-    <a href="/docs/guide/how-to-start/" class="nav-card">How to start your first cycle <span>→</span></a>
+    <div class="nav-card-group" style="margin-top:2rem;">
+      <a href="/docs/guide/" class="nav-card">Por qué solveOS <span>→</span></a>
+      <a href="/docs/guide/how-to-start/" class="nav-card">Cómo empezar tu primer ciclo <span>→</span></a>
+    </div>
   </div>
 
 </DocsLayout>

@@ -3,109 +3,222 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Why solveOS" currentPath="/docs/guide/">
 
-  <div class="page-header">
-    <span class="page-eyebrow">Guide</span>
-    <h1>Why solveOS</h1>
-    <p class="page-desc">What problem it solves, what its principles are, and how AI fits into the structure.</p>
-  </div>
+  <div class="lang-en">
 
-  <h2>The four failure modes</h2>
-  <p>Most people fail at solving things for one of four reasons. solveOS is designed to prevent each one.</p>
-
-  <div class="two-col" style="margin-top:1.5rem;">
-    <div class="two-col-card">
-      <h4>1. Skip planning</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">They jump into execution without a clear goal or constraints, and end up building the wrong thing.</p>
-      <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> The Plan phase requires a written brief before any execution begins.</p>
+    <div class="page-header">
+      <span class="page-eyebrow">Guide</span>
+      <h1>Why solveOS</h1>
+      <p class="page-desc">What problem it solves, what its principles are, and how AI fits into the structure.</p>
     </div>
-    <div class="two-col-card">
-      <h4>2. Over-plan</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">They get stuck refining the plan and never ship anything real.</p>
-      <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> Appetite is a core field in the Plan Brief. Scope fits the time — not the other way around.</p>
+
+    <h2>The four failure modes</h2>
+    <p>Most people fail at solving things for one of four reasons. solveOS is designed to prevent each one.</p>
+
+    <div class="two-col" style="margin-top:1.5rem;">
+      <div class="two-col-card">
+        <h4>1. Skip planning</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">They jump into execution without a clear goal or constraints, and end up building the wrong thing.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> The Plan phase requires a written brief before any execution begins.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>2. Over-plan</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">They get stuck refining the plan and never ship anything real.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> Appetite is a core field in the Plan Brief. Scope fits the time — not the other way around.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>3. Lose context</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">The goal defined at the start gets distorted by the time execution ends.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> The Plan Brief is an active reference throughout Build — not a starting artifact.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>4. Never measure</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">They ship something, move on, and never find out if it worked. The same mistakes repeat.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> The Review gate closes the loop — measuring what happened and feeding it into the next Plan.</p>
+      </div>
     </div>
-    <div class="two-col-card">
-      <h4>3. Lose context</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">The goal defined at the start gets distorted by the time execution ends.</p>
-      <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> The Plan Brief is an active reference throughout Build — not a starting artifact.</p>
+
+    <h2>The Six Principles</h2>
+    <p>These principles govern how solveOS should be applied. They are not rules — they are lenses. When you feel stuck or off-track, return to them.</p>
+
+    <div class="principle-block">
+      <p class="principle-num">Principle 1</p>
+      <h3>Clarity before action</h3>
+      <p>Before execution begins, you must be able to state the problem, who it is for, and what success looks like — in writing. Not perfect clarity. Enough clarity to make the first decision without guessing. The Plan phase creates this foundation. Without it, every subsequent decision is unanchored.</p>
     </div>
-    <div class="two-col-card">
-      <h4>4. Never measure</h4>
-      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">They ship something, move on, and never find out if it worked. The same mistakes repeat.</p>
-      <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>solveOS response:</strong> The Review gate closes the loop — measuring what happened and feeding it into the next Plan.</p>
+
+    <div class="principle-block">
+      <p class="principle-num">Principle 2</p>
+      <h3>Build to learn</h3>
+      <p>Planning can only take you so far. The act of building reveals constraints, edge cases, and insights that no amount of thinking can surface. Don't treat the build phase as pure execution — treat it as structured discovery.</p>
     </div>
+
+    <div class="principle-block">
+      <p class="principle-num">Principle 3</p>
+      <h3>Reality is the only validator</h3>
+      <p>No plan, build, or opinion tells you if something works. Only putting it in the world does. Shipping is not the end of the process — it is the beginning of knowing. An imperfect thing that is live produces more real information than a perfect thing that isn't.</p>
+    </div>
+
+    <div class="principle-block">
+      <p class="principle-num">Principle 4</p>
+      <h3>Gates reduce cost, not momentum</h3>
+      <p>Optional gates exist to catch expensive mistakes early, not to create bureaucracy. If a gate is slowing you down more than it's protecting you, skip it. Gates should serve the work, not the other way around.</p>
+    </div>
+
+    <div class="principle-block">
+      <p class="principle-num">Principle 5</p>
+      <h3>The brief is your compass</h3>
+      <p>The clarity established in Plan doesn't maintain itself. Every decision made during Build is an opportunity to drift from the original goal. The Plan Brief is not a starting artifact — it is an active reference. When what you're building no longer matches the brief, you either update the brief in writing or course correct. Silent drift is how projects fail.</p>
+    </div>
+
+    <div class="principle-block">
+      <p class="principle-num">Principle 6</p>
+      <h3>Context must be carried forward</h3>
+      <p>Every phase and gate produces learning. That learning only has value if it travels into the next step — explicitly, in writing. This matters everywhere, but it is critical when working with AI. AI has no memory between sessions. If you do not carry the context forward — decisions made, directions cut, constraints discovered, things that didn't work — the next session starts from zero. The cycle degrades. Each handoff between phases is an opportunity to capture what was learned and inject it into what comes next.</p>
+    </div>
+
+    <h2>solveOS and AI</h2>
+    <p>solveOS is the first problem-solving framework designed around AI as a primary executor — not a tool, not an assistant, but a participant that can own the Build phase from a brief.</p>
+    <p>Most frameworks were designed before AI could do meaningful work. They treat AI as an accelerator at best. solveOS is built from the ground up assuming AI can be the builder — and structures the collaboration to make that safe and effective.</p>
+    <p><strong>AI can take any role in solveOS.</strong> It can be a thinking partner in Plan, an executor in Build, or a fully autonomous agent running an entire phase from a brief. The framework does not prescribe who (or what) does the work — it prescribes the structure that makes the work sound.</p>
+
+    <h3>What AI does. What the human decides.</h3>
+    <p>The division is not about capability — it is about accountability. <strong>AI executes. The human decides.</strong></p>
+    <p>Every phase and gate in solveOS produces an output. The human reads that output and makes a decision: accept it, reject it, revise it, or iterate. This decision loop is not optional — it is the mechanism that keeps the work aligned with intent.</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Phase / Gate</th><th>AI can...</th><th>Human must...</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Plan</td><td>Challenge the problem statement, sharpen constraints, rewrite vague goals</td><td>Own the goal, decide what success means, commit to the plan</td></tr>
+          <tr><td>Research</td><td>Surface findings, synthesize information, identify gaps</td><td>Decide what question to answer, judge whether findings are sufficient</td></tr>
+          <tr><td>Build</td><td>Produce the output — code, text, designs — given the Plan Brief</td><td>Decide which approach to take, recognize when output doesn't match the goal, update the brief</td></tr>
+          <tr><td>Validate</td><td>Check output against criteria, flag gaps</td><td>Decide whether to ship, iterate, or cut scope</td></tr>
+          <tr><td>Ship</td><td>None</td><td>Decide that this goes in front of real people — and that it is the right thing to ship</td></tr>
+          <tr><td>Review</td><td>Measure, summarize, surface patterns</td><td>Decide what to learn and what to change in the next cycle</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:1.5rem;">
+      <p>At any gate, if the output is not right, <strong>iterate</strong>. Gates are checkpoints where the human reads the output and decides whether to proceed or go back. Skipping the decision is the most common way a cycle fails — not because AI produced bad output, but because no one checked.</p>
+    </div>
+
+    <div class="nav-card-group" style="margin-top:2.5rem;">
+      <a href="/docs/guide/how-to-start/" class="nav-card">Ready to start? How to start your first cycle <span>→</span></a>
+      <a href="/docs/concepts/diverge-converge/" class="nav-card">Concept: Diverge and converge <span>→</span></a>
+    </div>
+
   </div>
 
-  <h2>The Six Principles</h2>
-  <p>These principles govern how solveOS should be applied. They are not rules — they are lenses. When you feel stuck or off-track, return to them.</p>
+  <div class="lang-es">
 
-  <div class="principle-block">
-    <p class="principle-num">Principle 1</p>
-    <h3>Clarity before action</h3>
-    <p>Before execution begins, you must be able to state the problem, who it is for, and what success looks like — in writing. Not perfect clarity. Enough clarity to make the first decision without guessing. The Plan phase creates this foundation. Without it, every subsequent decision is unanchored.</p>
-  </div>
+    <div class="page-header">
+      <span class="page-eyebrow">Guía</span>
+      <h1>Por qué solveOS</h1>
+      <p class="page-desc">Qué problema resuelve, cuáles son sus principios y cómo encaja la IA en la estructura.</p>
+    </div>
 
-  <div class="principle-block">
-    <p class="principle-num">Principle 2</p>
-    <h3>Build to learn</h3>
-    <p>Planning can only take you so far. The act of building reveals constraints, edge cases, and insights that no amount of thinking can surface. Don't treat the build phase as pure execution — treat it as structured discovery.</p>
-  </div>
+    <h2>Los cuatro modos de fracaso</h2>
+    <p>La mayoría de las personas fracasan al resolver problemas por una de cuatro razones. solveOS está diseñado para prevenir cada una.</p>
 
-  <div class="principle-block">
-    <p class="principle-num">Principle 3</p>
-    <h3>Reality is the only validator</h3>
-    <p>No plan, build, or opinion tells you if something works. Only putting it in the world does. Shipping is not the end of the process — it is the beginning of knowing. An imperfect thing that is live produces more real information than a perfect thing that isn't.</p>
-  </div>
+    <div class="two-col" style="margin-top:1.5rem;">
+      <div class="two-col-card">
+        <h4>1. Saltarse la planificación</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">Se lanzan a ejecutar sin un objetivo claro ni restricciones, y terminan construyendo lo incorrecto.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>Respuesta de solveOS:</strong> La fase Plan exige un brief escrito antes de comenzar cualquier ejecución.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>2. Sobreplanificar</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">Se quedan refinando el plan indefinidamente y nunca llegan a entregar nada real.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>Respuesta de solveOS:</strong> El apetito es un campo central en el Plan Brief. El alcance se ajusta al tiempo disponible, no al revés.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>3. Perder el contexto</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">El objetivo definido al inicio se distorsiona para cuando termina la ejecución.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>Respuesta de solveOS:</strong> El Plan Brief es una referencia activa durante todo el Build, no un artefacto de inicio.</p>
+      </div>
+      <div class="two-col-card">
+        <h4>4. No medir nunca</h4>
+        <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.5rem;">Entregan algo, siguen adelante y nunca averiguan si funcionó. Los mismos errores se repiten.</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0;"><strong>Respuesta de solveOS:</strong> El gate Review cierra el ciclo: mide lo ocurrido y lo alimenta al siguiente Plan.</p>
+      </div>
+    </div>
 
-  <div class="principle-block">
-    <p class="principle-num">Principle 4</p>
-    <h3>Gates reduce cost, not momentum</h3>
-    <p>Optional gates exist to catch expensive mistakes early, not to create bureaucracy. If a gate is slowing you down more than it's protecting you, skip it. Gates should serve the work, not the other way around.</p>
-  </div>
+    <h2>Los Seis Principios</h2>
+    <p>Estos principios rigen cómo debe aplicarse solveOS. No son reglas — son lentes. Cuando te sientas atascado o fuera de rumbo, regresa a ellos.</p>
 
-  <div class="principle-block">
-    <p class="principle-num">Principle 5</p>
-    <h3>The brief is your compass</h3>
-    <p>The clarity established in Plan doesn't maintain itself. Every decision made during Build is an opportunity to drift from the original goal. The Plan Brief is not a starting artifact — it is an active reference. When what you're building no longer matches the brief, you either update the brief in writing or course correct. Silent drift is how projects fail.</p>
-  </div>
+    <div class="principle-block">
+      <p class="principle-num">Principio 1</p>
+      <h3>Claridad antes de la acción</h3>
+      <p>Antes de comenzar la ejecución, debes poder enunciar el problema, para quién es y cómo se ve el éxito — por escrito. No claridad perfecta. Suficiente claridad para tomar la primera decisión sin adivinar. La fase Plan crea esta base. Sin ella, cada decisión posterior carece de ancla.</p>
+    </div>
 
-  <div class="principle-block">
-    <p class="principle-num">Principle 6</p>
-    <h3>Context must be carried forward</h3>
-    <p>Every phase and gate produces learning. That learning only has value if it travels into the next step — explicitly, in writing. This matters everywhere, but it is critical when working with AI. AI has no memory between sessions. If you do not carry the context forward — decisions made, directions cut, constraints discovered, things that didn't work — the next session starts from zero. The cycle degrades. Each handoff between phases is an opportunity to capture what was learned and inject it into what comes next.</p>
-  </div>
+    <div class="principle-block">
+      <p class="principle-num">Principio 2</p>
+      <h3>Construir para aprender</h3>
+      <p>La planificación solo llega hasta cierto punto. El acto de construir revela restricciones, casos límite e insights que ninguna cantidad de pensamiento puede descubrir. No trates la fase Build como pura ejecución — trátala como descubrimiento estructurado.</p>
+    </div>
 
-  <h2>solveOS and AI</h2>
-  <p>solveOS is the first problem-solving framework designed around AI as a primary executor — not a tool, not an assistant, but a participant that can own the Build phase from a brief.</p>
-  <p>Most frameworks were designed before AI could do meaningful work. They treat AI as an accelerator at best. solveOS is built from the ground up assuming AI can be the builder — and structures the collaboration to make that safe and effective.</p>
-  <p><strong>AI can take any role in solveOS.</strong> It can be a thinking partner in Plan, an executor in Build, or a fully autonomous agent running an entire phase from a brief. The framework does not prescribe who (or what) does the work — it prescribes the structure that makes the work sound.</p>
+    <div class="principle-block">
+      <p class="principle-num">Principio 3</p>
+      <h3>La realidad es el único validador</h3>
+      <p>Ningún plan, construcción u opinión te dice si algo funciona. Solo ponerlo en el mundo lo hace. Entregar no es el fin del proceso — es el comienzo del conocimiento. Una cosa imperfecta que está en vivo produce más información real que una cosa perfecta que no lo está.</p>
+    </div>
 
-  <h3>What AI does. What the human decides.</h3>
-  <p>The division is not about capability — it is about accountability. <strong>AI executes. The human decides.</strong></p>
-  <p>Every phase and gate in solveOS produces an output. The human reads that output and makes a decision: accept it, reject it, revise it, or iterate. This decision loop is not optional — it is the mechanism that keeps the work aligned with intent.</p>
+    <div class="principle-block">
+      <p class="principle-num">Principio 4</p>
+      <h3>Los gates reducen el costo, no el impulso</h3>
+      <p>Los gates opcionales existen para detectar errores costosos a tiempo, no para crear burocracia. Si un gate te frena más de lo que te protege, omítelo. Los gates deben servir al trabajo, no al revés.</p>
+    </div>
 
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Phase / Gate</th><th>AI can...</th><th>Human must...</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Plan</td><td>Challenge the problem statement, sharpen constraints, rewrite vague goals</td><td>Own the goal, decide what success means, commit to the plan</td></tr>
-        <tr><td>Research</td><td>Surface findings, synthesize information, identify gaps</td><td>Decide what question to answer, judge whether findings are sufficient</td></tr>
-        <tr><td>Build</td><td>Produce the output — code, text, designs — given the Plan Brief</td><td>Decide which approach to take, recognize when output doesn't match the goal, update the brief</td></tr>
-        <tr><td>Validate</td><td>Check output against criteria, flag gaps</td><td>Decide whether to ship, iterate, or cut scope</td></tr>
-        <tr><td>Ship</td><td>None</td><td>Decide that this goes in front of real people — and that it is the right thing to ship</td></tr>
-        <tr><td>Review</td><td>Measure, summarize, surface patterns</td><td>Decide what to learn and what to change in the next cycle</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="principle-block">
+      <p class="principle-num">Principio 5</p>
+      <h3>El brief es tu brújula</h3>
+      <p>La claridad establecida en Plan no se mantiene sola. Cada decisión durante Build es una oportunidad de desviarse del objetivo original. El Plan Brief no es un artefacto de inicio — es una referencia activa. Cuando lo que estás construyendo ya no coincide con el brief, o actualizas el brief por escrito o corriges el rumbo. La deriva silenciosa es como fracasan los proyectos.</p>
+    </div>
 
-  <div class="callout" style="margin-top:1.5rem;">
-    <p>At any gate, if the output is not right, <strong>iterate</strong>. Gates are checkpoints where the human reads the output and decides whether to proceed or go back. Skipping the decision is the most common way a cycle fails — not because AI produced bad output, but because no one checked.</p>
-  </div>
+    <div class="principle-block">
+      <p class="principle-num">Principio 6</p>
+      <h3>El contexto debe trasladarse hacia adelante</h3>
+      <p>Cada fase y gate produce aprendizaje. Ese aprendizaje solo tiene valor si se traslada al siguiente paso — de forma explícita, por escrito. Esto importa en todas partes, pero es crítico al trabajar con IA. La IA no tiene memoria entre sesiones. Si no trasladas el contexto hacia adelante — decisiones tomadas, direcciones descartadas, restricciones descubiertas, cosas que no funcionaron — la siguiente sesión comienza desde cero. El ciclo se degrada. Cada traspaso entre fases es una oportunidad para capturar lo aprendido e inyectarlo en lo que viene.</p>
+    </div>
 
-  <div class="nav-card-group" style="margin-top:2.5rem;">
-    <a href="/docs/guide/how-to-start/" class="nav-card">Ready to start? How to start your first cycle <span>→</span></a>
-    <a href="/docs/concepts/diverge-converge/" class="nav-card">Concept: Diverge and converge <span>→</span></a>
+    <h2>solveOS y la IA</h2>
+    <p>solveOS es el primer framework de resolución de problemas diseñado con la IA como ejecutor principal — no como herramienta, no como asistente, sino como participante que puede tomar el control de la fase Build a partir de un brief.</p>
+    <p>La mayoría de los frameworks fueron diseñados antes de que la IA pudiera hacer trabajo significativo. La tratan como un acelerador, en el mejor de los casos. solveOS está construido desde cero asumiendo que la IA puede ser el constructor — y estructura la colaboración para que eso sea seguro y efectivo.</p>
+    <p><strong>La IA puede tomar cualquier rol en solveOS.</strong> Puede ser compañera de pensamiento en Plan, ejecutora en Build, o un agente completamente autónomo que ejecuta una fase entera a partir de un brief. El framework no prescribe quién (o qué) hace el trabajo — prescribe la estructura que hace que el trabajo sea sólido.</p>
+
+    <h3>Lo que hace la IA. Lo que decide el humano.</h3>
+    <p>La división no es sobre capacidad — es sobre responsabilidad. <strong>La IA ejecuta. El humano decide.</strong></p>
+    <p>Cada fase y gate en solveOS produce un resultado. El humano lee ese resultado y toma una decisión: aceptarlo, rechazarlo, revisarlo o iterar. Este ciclo de decisión no es opcional — es el mecanismo que mantiene el trabajo alineado con la intención.</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Fase / Gate</th><th>La IA puede...</th><th>El humano debe...</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Plan</td><td>Cuestionar el enunciado del problema, afinar restricciones, reescribir objetivos vagos</td><td>Ser dueño del objetivo, decidir qué significa el éxito, comprometerse con el plan</td></tr>
+          <tr><td>Research</td><td>Descubrir hallazgos, sintetizar información, identificar vacíos</td><td>Decidir qué pregunta responder, juzgar si los hallazgos son suficientes</td></tr>
+          <tr><td>Build</td><td>Producir el resultado — código, texto, diseños — dado el Plan Brief</td><td>Decidir qué enfoque tomar, reconocer cuando el resultado no coincide con el objetivo, actualizar el brief</td></tr>
+          <tr><td>Validate</td><td>Verificar el resultado contra los criterios, señalar vacíos</td><td>Decidir si entregar, iterar o reducir el alcance</td></tr>
+          <tr><td>Ship</td><td>Nada</td><td>Decidir que esto llega a personas reales — y que es lo correcto para entregar</td></tr>
+          <tr><td>Review</td><td>Medir, resumir, detectar patrones</td><td>Decidir qué aprender y qué cambiar en el siguiente ciclo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:1.5rem;">
+      <p>En cualquier gate, si el resultado no es correcto, <strong>itera</strong>. Los gates son puntos de control donde el humano lee el resultado y decide si continuar o volver atrás. Saltarse la decisión es la forma más común de que un ciclo fracase — no porque la IA produjo mal resultado, sino porque nadie lo verificó.</p>
+    </div>
+
+    <div class="nav-card-group" style="margin-top:2.5rem;">
+      <a href="/docs/guide/how-to-start/" class="nav-card">¿Listo para empezar? Cómo iniciar tu primer ciclo <span>→</span></a>
+      <a href="/docs/concepts/diverge-converge/" class="nav-card">Concepto: Divergir y converger <span>→</span></a>
+    </div>
+
   </div>
 
 </DocsLayout>

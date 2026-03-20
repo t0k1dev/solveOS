@@ -7,45 +7,45 @@ interface Props {
 const { title, description = 'solveOS documentation — phases, gates, concepts, and worked examples.', currentPath } = Astro.props;
 
 const nav = [
-  { label: 'Introduction', href: '/docs/' },
+  { labelEn: 'Introduction', labelEs: 'Introducción', href: '/docs/' },
   {
-    group: 'Guide',
+    groupEn: 'Guide', groupEs: 'Guía',
     items: [
-      { label: 'Why solveOS', href: '/docs/guide/' },
-      { label: 'How to start', href: '/docs/guide/how-to-start/' },
+      { labelEn: 'Why solveOS',  labelEs: 'Por qué solveOS',    href: '/docs/guide/' },
+      { labelEn: 'How to start', labelEs: 'Cómo empezar',       href: '/docs/guide/how-to-start/' },
     ],
   },
   {
-    group: 'Concepts',
+    groupEn: 'Concepts', groupEs: 'Conceptos',
     items: [
-      { label: 'Diverge and converge', href: '/docs/concepts/diverge-converge/' },
-      { label: 'Feedback loops', href: '/docs/concepts/feedback-loops/' },
-      { label: 'Keeping context', href: '/docs/concepts/context/' },
+      { labelEn: 'Diverge and converge', labelEs: 'Divergir y converger', href: '/docs/concepts/diverge-converge/' },
+      { labelEn: 'Feedback loops',       labelEs: 'Ciclos de feedback',   href: '/docs/concepts/feedback-loops/' },
+      { labelEn: 'Keeping context',      labelEs: 'Mantener el contexto', href: '/docs/concepts/context/' },
     ],
   },
   {
-    group: 'Phases',
+    groupEn: 'Phases', groupEs: 'Fases',
     items: [
-      { label: 'Plan', href: '/docs/phases/plan/' },
-      { label: 'Build', href: '/docs/phases/build/' },
-      { label: 'Ship', href: '/docs/phases/ship/' },
+      { labelEn: 'Plan',  labelEs: 'Plan',       href: '/docs/phases/plan/' },
+      { labelEn: 'Build', labelEs: 'Construir',  href: '/docs/phases/build/' },
+      { labelEn: 'Ship',  labelEs: 'Lanzar',     href: '/docs/phases/ship/' },
     ],
   },
   {
-    group: 'Gates',
+    groupEn: 'Gates', groupEs: 'Compuertas',
     items: [
-      { label: 'Research', href: '/docs/gates/research/' },
-      { label: 'Plan Validation', href: '/docs/gates/plan-validation/' },
-      { label: 'Build Validation', href: '/docs/gates/build-validation/' },
-      { label: 'Review', href: '/docs/gates/review/' },
+      { labelEn: 'Research',         labelEs: 'Investigación',          href: '/docs/gates/research/' },
+      { labelEn: 'Plan Validation',  labelEs: 'Validación del plan',    href: '/docs/gates/plan-validation/' },
+      { labelEn: 'Build Validation', labelEs: 'Validación del build',   href: '/docs/gates/build-validation/' },
+      { labelEn: 'Review',           labelEs: 'Revisión',               href: '/docs/gates/review/' },
     ],
   },
   {
-    group: 'Examples',
+    groupEn: 'Examples', groupEs: 'Ejemplos',
     items: [
-      { label: 'Examples overview', href: '/docs/examples/' },
-      { label: 'Write an article', href: '/docs/examples/article/' },
-      { label: 'Build a feature', href: '/docs/examples/feature/' },
+      { labelEn: 'Examples overview', labelEs: 'Vista general',      href: '/docs/examples/' },
+      { labelEn: 'Write an article',  labelEs: 'Escribir un artículo', href: '/docs/examples/article/' },
+      { labelEn: 'Build a feature',   labelEs: 'Construir una función', href: '/docs/examples/feature/' },
     ],
   },
 ];
@@ -69,23 +69,23 @@ const readingOrder = [
   '/docs/examples/feature/',
 ];
 
-const pageLabels: Record<string, string> = {
-  '/docs/': 'Introduction',
-  '/docs/guide/': 'Why solveOS',
-  '/docs/guide/how-to-start/': 'How to start',
-  '/docs/concepts/diverge-converge/': 'Diverge and converge',
-  '/docs/concepts/feedback-loops/': 'Feedback loops',
-  '/docs/concepts/context/': 'Keeping context',
-  '/docs/phases/plan/': 'Plan',
-  '/docs/phases/build/': 'Build',
-  '/docs/phases/ship/': 'Ship',
-  '/docs/gates/research/': 'Research',
-  '/docs/gates/plan-validation/': 'Plan Validation',
-  '/docs/gates/build-validation/': 'Build Validation',
-  '/docs/gates/review/': 'Review',
-  '/docs/examples/': 'Examples',
-  '/docs/examples/article/': 'Write an article',
-  '/docs/examples/feature/': 'Build a feature',
+const pageLabels: Record<string, { en: string; es: string }> = {
+  '/docs/':                           { en: 'Introduction',       es: 'Introducción' },
+  '/docs/guide/':                     { en: 'Why solveOS',        es: 'Por qué solveOS' },
+  '/docs/guide/how-to-start/':        { en: 'How to start',       es: 'Cómo empezar' },
+  '/docs/concepts/diverge-converge/': { en: 'Diverge and converge', es: 'Divergir y converger' },
+  '/docs/concepts/feedback-loops/':   { en: 'Feedback loops',     es: 'Ciclos de feedback' },
+  '/docs/concepts/context/':          { en: 'Keeping context',    es: 'Mantener el contexto' },
+  '/docs/phases/plan/':               { en: 'Plan',               es: 'Plan' },
+  '/docs/phases/build/':              { en: 'Build',              es: 'Construir' },
+  '/docs/phases/ship/':               { en: 'Ship',               es: 'Lanzar' },
+  '/docs/gates/research/':            { en: 'Research',           es: 'Investigación' },
+  '/docs/gates/plan-validation/':     { en: 'Plan Validation',    es: 'Validación del plan' },
+  '/docs/gates/build-validation/':    { en: 'Build Validation',   es: 'Validación del build' },
+  '/docs/gates/review/':              { en: 'Review',             es: 'Revisión' },
+  '/docs/examples/':                  { en: 'Examples',           es: 'Ejemplos' },
+  '/docs/examples/article/':          { en: 'Write an article',   es: 'Escribir un artículo' },
+  '/docs/examples/feature/':          { en: 'Build a feature',    es: 'Construir una función' },
 };
 
 const idx = readingOrder.indexOf(currentPath);
@@ -118,6 +118,19 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
         }
       })();
     </script>
+    <script is:inline>
+      // Apply language before paint to avoid flash
+      (function() {
+        const stored = localStorage.getItem('docs-lang');
+        if (stored) {
+          document.documentElement.setAttribute('data-lang', stored);
+        } else if (navigator.language && navigator.language.startsWith('es')) {
+          document.documentElement.setAttribute('data-lang', 'es');
+        } else {
+          document.documentElement.setAttribute('data-lang', 'en');
+        }
+      })();
+    </script>
   </head>
   <body>
 
@@ -130,7 +143,8 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
           </button>
           <a href="/" class="docs-logo">solveOS</a>
           <span class="docs-header-divider">/</span>
-          <span class="docs-header-section">Docs</span>
+          <span class="docs-header-section lang-en">Docs</span>
+          <span class="docs-header-section lang-es">Documentación</span>
         </div>
         <div class="docs-header-right">
           <div class="search-wrap">
@@ -140,6 +154,10 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
             <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language" title="Toggle language">
+            <span class="lang-label-en">ES</span>
+            <span class="lang-label-es">EN</span>
           </button>
           <a href="/" class="back-link">← solveOS</a>
         </div>
@@ -153,22 +171,34 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
       <!-- Left nav -->
       <nav class="docs-nav" id="docs-nav">
         <div class="docs-nav-inner">
-          {nav.map(item => 'group' in item ? (
+          {nav.map(item => 'groupEn' in item ? (
             <div class="nav-group">
-              <p class="nav-group-label">{item.group}</p>
+              <p class="nav-group-label">
+                <span class="lang-en">{item.groupEn}</span>
+                <span class="lang-es">{item.groupEs}</span>
+              </p>
               <ul>
                 {item.items.map(link => (
                   <li>
-                    <a href={link.href} class={`nav-link${currentPath === link.href ? ' active' : ''}`}>{link.label}</a>
+                    <a href={link.href} class={`nav-link${currentPath === link.href ? ' active' : ''}`}>
+                      <span class="lang-en">{link.labelEn}</span>
+                      <span class="lang-es">{link.labelEs}</span>
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
           ) : (
-            <a href={item.href} class={`nav-link nav-link-top${currentPath === item.href ? ' active' : ''}`}>{item.label}</a>
+            <a href={item.href} class={`nav-link nav-link-top${currentPath === item.href ? ' active' : ''}`}>
+              <span class="lang-en">{item.labelEn}</span>
+              <span class="lang-es">{item.labelEs}</span>
+            </a>
           ))}
           <div class="nav-footer">
-            <a href="/" class="nav-back">← Back to solveOS</a>
+            <a href="/" class="nav-back">
+              <span class="lang-en">← Back to solveOS</span>
+              <span class="lang-es">← Volver a solveOS</span>
+            </a>
           </div>
         </div>
       </nav>
@@ -185,14 +215,26 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
             <div class="prevnext-inner">
               {prevPath ? (
                 <a href={prevPath} class="prevnext-link prevnext-prev">
-                  <span class="prevnext-dir">← Previous</span>
-                  <span class="prevnext-title">{pageLabels[prevPath]}</span>
+                  <span class="prevnext-dir">
+                    <span class="lang-en">← Previous</span>
+                    <span class="lang-es">← Anterior</span>
+                  </span>
+                  <span class="prevnext-title">
+                    <span class="lang-en">{pageLabels[prevPath].en}</span>
+                    <span class="lang-es">{pageLabels[prevPath].es}</span>
+                  </span>
                 </a>
               ) : <div />}
               {nextPath ? (
                 <a href={nextPath} class="prevnext-link prevnext-next">
-                  <span class="prevnext-dir">Next →</span>
-                  <span class="prevnext-title">{pageLabels[nextPath]}</span>
+                  <span class="prevnext-dir">
+                    <span class="lang-en">Next →</span>
+                    <span class="lang-es">Siguiente →</span>
+                  </span>
+                  <span class="prevnext-title">
+                    <span class="lang-en">{pageLabels[nextPath].en}</span>
+                    <span class="lang-es">{pageLabels[nextPath].es}</span>
+                  </span>
                 </a>
               ) : <div />}
             </div>
@@ -218,6 +260,14 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
         const next = current === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('docs-theme', next);
+      });
+
+      // Language toggle
+      document.getElementById('lang-toggle')?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-lang');
+        const next = current === 'es' ? 'en' : 'es';
+        document.documentElement.setAttribute('data-lang', next);
+        localStorage.setItem('docs-lang', next);
       });
 
       // Copy buttons — read plain text before colorizer mutates innerHTML
@@ -420,6 +470,22 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
   [data-theme="light"] .icon-moon { display: block; }
   [data-theme="dark"]  .icon-sun  { display: block; }
   [data-theme="dark"]  .icon-moon { display: none;  }
+
+  /* ── Language toggle ─────────────── */
+  .lang-toggle {
+    background: none; border: 1px solid var(--border); border-radius: var(--radius);
+    cursor: pointer; padding: 0.3rem 0.55rem; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--text-muted); transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .lang-toggle:hover { color: var(--text); border-color: var(--text-muted); }
+
+  /* Language visibility */
+  [data-lang="en"] .lang-es { display: none; }
+  [data-lang="es"] .lang-en { display: none; }
+  /* In lang toggle button: show target language (what you'll switch TO) */
+  [data-lang="en"] .lang-label-es { display: none; }
+  [data-lang="es"] .lang-label-en { display: none; }
 
   /* ── Layout ─────────────────────── */
   .docs-layout {

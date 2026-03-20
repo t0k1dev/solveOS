@@ -3,6 +3,8 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Gate: Plan Validation" currentPath="/docs/gates/plan-validation/">
 
+  <div class="lang-en">
+
   <div class="page-header">
     <span class="page-eyebrow">Gate</span>
     <h1>Plan Validation</h1>
@@ -157,5 +159,166 @@ Act as a critical reviewer. Answer these questions honestly:
     <li>Plan Brief is more specific after this pass than before it</li>
     <li>Decision to proceed to Build (or run another pass) is explicit</li>
   </ul>
+
+  </div>
+
+  <div class="lang-es">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Compuerta</span>
+    <h1>Validación del Plan</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Posición</p>
+      <p class="gate-meta-value">Después de Planificar, de forma iterativa antes de Construir</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Propósito</p>
+      <p class="gate-meta-value">Verificar que el plan es sólido — y refinarlo hasta que lo sea</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Cuándo usar</p>
+      <p class="gate-meta-value">Construcciones costosas, trabajo con varias personas, espacios de problemas desconocidos, cualquier momento en que el plan se sienta vago</p>
+    </div>
+  </div>
+
+  <h2>¿Qué es la Validación del Plan?</h2>
+  <p>La Validación del Plan no es un punto de control unidireccional. Es un <strong>ciclo de refinamiento</strong> entre la fase de Planificar y la ejecución.</p>
+
+  <div class="code-wrap">
+    <pre><code>Plan ←──── refine based on findings
+  │                         ↑
+  └──→ Plan Validation ─────┘
+              │
+              ↓ (when plan is validated)
+           Build</code></pre>
+  </div>
+
+  <p>Validas el plan, encuentras brechas o ambigüedades, vuelves a Planificar para afinarlo, y vuelves a validar. Cada iteración hace el plan más específico. <strong>Un plan más específico produce mejores resultados</strong> — menos sorpresas durante Construir, menos desvío del alcance, decisiones más claras bajo presión.</p>
+  <p>El ciclo se detiene cuando el plan puede responder las tres preguntas de validación sin dudas.</p>
+
+  <h2>Por qué existe este ciclo</h2>
+  <p>La mayoría de los planes se sienten completos cuando se escriben. No lo están. El acto de escribir un plan hace que el autor sienta una claridad que a menudo no existe — porque el autor llena los vacíos automáticamente, desde el contexto que lleva en su cabeza pero que no está en el documento.</p>
+  <p>El ciclo de Validación del Plan existe para sacar a la superficie esas brechas antes de que se vuelvan costosas.</p>
+  <p><strong>Una brecha en el plan es barata de corregir en la etapa de Planificar.</strong> La misma brecha descubierta a mitad de Construir significa rehacer trabajo. Descubierta después de Lanzar, significa un ciclo fallido.</p>
+  <p>Cada pasada por el ciclo responde una versión de la misma pregunta: <em>¿podría alguien sin contexto previo sobre este problema tomar este plan y producir el resultado correcto?</em></p>
+
+  <h2>Las tres preguntas de validación</h2>
+  <ol>
+    <li style="margin-bottom:0.75rem;"><strong>¿El problema está correctamente planteado?</strong> ¿Es este el problema real, o un síntoma de algo más profundo? ¿Se nombra específicamente a la audiencia?</li>
+    <li style="margin-bottom:0.75rem;"><strong>¿El plan es factible?</strong> ¿Puede lograrse el objetivo dentro de las restricciones establecidas?</li>
+    <li style="margin-bottom:0.75rem;"><strong>¿El plan es lo suficientemente específico para construir a partir de él?</strong> ¿Podría alguien que no escribió este plan ejecutarlo y producir el mismo resultado?</li>
+  </ol>
+  <p>La tercera pregunta es la que la mayoría de los planes falla. Los planes vagos producen construcciones inconsistentes.</p>
+
+  <h2>Cómo ejecutar la Validación del Plan</h2>
+
+  <h3>Solo</h3>
+  <ul>
+    <li>Tómate un descanso del plan (mínimo unas pocas horas — los ojos frescos importan)</li>
+    <li>Responde las tres preguntas de validación por escrito, no solo en tu cabeza</li>
+    <li>Para cada respuesta "sí pero...", vuelve a Planificar y afina esa sección</li>
+    <li>Repite hasta que las tres sean un "sí" limpio</li>
+  </ul>
+
+  <h3>Con otra persona</h3>
+  <ul>
+    <li>Comparte el Plan Brief sin explicarlo verbalmente</li>
+    <li>Pídele que responda: ¿Qué problema se está resolviendo y para quién? ¿Cómo se ve el resultado? ¿Qué cortarían si el alcance tuviera que reducirse un 50%?</li>
+    <li>Donde sus respuestas difieran de las tuyas, el plan es ambiguo — vuelve y corrígelo</li>
+    <li>Esto no es una revisión de su opinión. Es una prueba de la claridad del plan.</li>
+  </ul>
+
+  <h3>Con IA</h3>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>Here is my Plan Brief: [paste brief]
+
+Act as a critical reviewer. Answer these questions honestly:
+1. Is the problem correctly stated, or is this a symptom of a deeper issue?
+2. Is the audience specific enough to make design decisions from?
+3. Is this plan feasible given the stated constraints?
+4. Which success criteria are ambiguous or unmeasurable?
+5. What would you cut if scope had to be reduced by 50%?
+6. What is the single biggest risk to this plan that is not currently acknowledged?</code></pre>
+  </div>
+
+  <h2>El ciclo de refinamiento en la práctica</h2>
+  <p>El ciclo generalmente se ejecuta 1–3 veces:</p>
+  <ul>
+    <li><strong>Primera pasada</strong> — detecta brechas obvias: objetivos vagos, restricciones faltantes, audiencia no nombrada, criterios de éxito no medibles.</li>
+    <li><strong>Segunda pasada</strong> — detecta problemas estructurales: el objetivo está planteado pero no es el correcto; las restricciones entran en conflicto; los criterios de éxito son medibles pero no prueban realmente el objetivo.</li>
+    <li><strong>Tercera pasada (si es necesario)</strong> — detecta brechas de alineación en trabajo con varias personas: dos personas leyendo el mismo plan tomarían decisiones diferentes. Fuerza elecciones explícitas.</li>
+  </ul>
+  <p>Después de tres pasadas, si el plan aún tiene brechas importantes, considera si el problema se entiende lo suficiente para planificar — y usa la <a href="/docs/gates/research/">compuerta de Investigación</a> antes de continuar.</p>
+
+  <h3>Cómo saber cuándo el ciclo ha terminado</h3>
+  <p>El ciclo sale cuando tres cosas son verdad:</p>
+  <ol>
+    <li><strong>El plan es ejecutable sin preguntas de aclaración.</strong> Si una IA o una persona que recibe este brief pudiera empezar a construir de inmediato — sin preguntar "¿qué quieres decir con X?" — el plan está listo.</li>
+    <li><strong>Los criterios de éxito son falsificables.</strong> Cada criterio tiene una prueba clara de pasa/falla. "Funciona bien" no es falsificable. "La página carga en menos de 2 segundos en una conexión 4G" sí lo es.</li>
+    <li><strong>La audiencia está nombrada, no implícita.</strong> No "usuarios" o "desarrolladores" — el tipo específico de persona para quien se construye, con el contexto específico que hace que esto importe para ellos.</li>
+  </ol>
+
+  <h3>Qué significa realmente "refinar"</h3>
+  <p>Volver a Planificar no es un fracaso. Es el ciclo funcionando como se diseñó. Refinamientos típicos:</p>
+  <ul>
+    <li>Reemplazar objetivos vagos por objetivos específicos y medibles</li>
+    <li>Nombrar la audiencia con más precisión</li>
+    <li>Agregar una restricción que se asumía pero no estaba escrita</li>
+    <li>Dividir un criterio de éxito que hacía demasiado trabajo en dos criterios separados y más claros</li>
+    <li>Eliminar alcance que la validación reveló como especulativo</li>
+  </ul>
+  <p>Cada refinamiento es una decisión tomada explícitamente — por escrito — en lugar de implícitamente durante Construir. Ese es el punto.</p>
+
+  <h2>Resultado de la Validación del Plan</h2>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Plan Validation Log
+
+**Pass:** [1 / 2 / 3]
+**Reviewed by:** [Name, "Self", or "AI-assisted"]
+**Date:** [Date]
+
+**Is the problem correctly stated?**
+[Yes / No / Partial — with explanation]
+
+**Is the audience specific?**
+[Yes / No / Partial — with explanation]
+
+**Is the plan feasible?**
+[Yes / No / Partial — with explanation]
+
+**Is the plan specific enough to build from?**
+[Yes / No / Partial — with explanation]
+
+**Gaps found:**
+- [Gap 1]
+- [Gap 2]
+
+**Changes made to Plan Brief:**
+- [Change 1]
+- [Change 2]
+
+**Decision:**
+- [ ] Ready to Build
+- [ ] Needs another validation pass</code></pre>
+  </div>
+
+  <h2>Lista de verificación de Validación del Plan</h2>
+  <ul class="checklist">
+    <li>Plan Brief revisado después de un descanso, no inmediatamente después de escribirlo</li>
+    <li>Las tres preguntas de validación respondidas por escrito</li>
+    <li>La audiencia es específica — no "usuarios" o "todos"</li>
+    <li>Los criterios de éxito son medibles y falsificables</li>
+    <li>El plan fue entregado a otra persona (o IA) para probar su claridad</li>
+    <li>Todas las brechas encontradas han sido abordadas en el Plan Brief</li>
+    <li>El Plan Brief es más específico después de esta pasada que antes</li>
+    <li>La decisión de proceder a Construir (o hacer otra pasada) es explícita</li>
+  </ul>
+
+  </div>
 
 </DocsLayout>

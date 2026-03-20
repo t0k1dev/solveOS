@@ -3,6 +3,8 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Gate: Review" currentPath="/docs/gates/review/">
 
+  <div class="lang-en">
+
   <div class="page-header">
     <span class="page-eyebrow">Gate</span>
     <h1>Review</h1>
@@ -298,5 +300,307 @@ What should I carry into the next cycle's Plan?</code></pre>
     <li><strong>You're building from habit, not signal.</strong> If each Review cycle shows diminishing returns and the Feed Forward section is empty, the problem space may be exhausted. A new Plan on a new problem is better than incremental additions with no real impact.</li>
   </ul>
   <p>The default is to continue. Stop only when the signal says to.</p>
+
+  </div>
+
+  <div class="lang-es">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Compuerta</span>
+    <h1>Revisión</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Posición</p>
+      <p class="gate-meta-value">Antes de Lanzar (pre-lanzamiento) y Después de Lanzar (post-lanzamiento)</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Propósito</p>
+      <p class="gate-meta-value">Antes de lanzar — verificar que el resultado sirve al objetivo original y está listo para la audiencia. Después de lanzar — medir si realmente funcionó y alimentar los aprendizajes en el próximo ciclo.</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Cuándo usar</p>
+      <p class="gate-meta-value">Revisión pre-lanzamiento antes de cualquier lanzamiento significativo. Revisión post-lanzamiento después de cada Lanzar.</p>
+    </div>
+  </div>
+
+  <h2>Dos modos, una compuerta</h2>
+  <p>La Revisión aparece en dos puntos del ciclo:</p>
+
+  <div class="code-wrap">
+    <pre><code>Build → [Build Validation] → [Review (pre-ship)] → Ship → [Review (post-ship)] → Plan</code></pre>
+  </div>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Revisión pre-lanzamiento</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">Una verificación de juicio integral antes de que el resultado salga en vivo. Diferente de la Validación de la Construcción, que verifica la corrección técnica. La Revisión pre-lanzamiento verifica la intención: <em>¿es esto realmente lo que nos propusimos construir? ¿Sirve a la audiencia?</em></p>
+    </div>
+    <div class="two-col-card">
+      <h4>Revisión post-lanzamiento</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">Medición de resultados después de que el resultado está en vivo. ¿Funcionó en el mundo real? ¿Qué nos dice eso sobre el próximo ciclo?</p>
+    </div>
+  </div>
+
+  <p>Tienen propósitos diferentes y ocurren en momentos diferentes, pero comparten la misma pregunta subyacente: <strong>¿está esto haciendo lo que se supone que debe hacer?</strong></p>
+
+  <h2>Revisión pre-lanzamiento</h2>
+  <div class="callout">
+    <p><em>"¿Sirve esto al objetivo original y a la audiencia? ¿Estamos listos para poner esto frente a personas reales?"</em></p>
+  </div>
+
+  <p>La Revisión pre-lanzamiento no es una verificación técnica. La Validación de la Construcción se encarga de eso. La Revisión pre-lanzamiento es un juicio: ¿el resultado completo — como un todo — cumple la intención declarada en el Plan Brief?</p>
+  <p>Este es el momento de hacer las preguntas que las listas de verificación no capturan.</p>
+
+  <h3>Qué verifica la Revisión pre-lanzamiento</h3>
+  <ul>
+    <li>¿El resultado realmente resuelve el problema planteado en el Plan Brief?</li>
+    <li>¿La audiencia nombrada en el brief encontraría esto útil, legible o usable?</li>
+    <li>¿Hay algo sobre este resultado que te avergonzaría o engañaría a su audiencia?</li>
+    <li>¿Estás lanzando esto porque está listo, o porque estás cansado de trabajar en ello?</li>
+  </ul>
+  <p>La última pregunta es la más difícil y la más importante.</p>
+
+  <h3>Cómo ejecutar una Revisión pre-lanzamiento</h3>
+  <p><strong>Lee el Plan Brief. Luego experimenta el resultado como si fueras la audiencia.</strong></p>
+  <ul>
+    <li>Si construiste software: úsalo como lo usaría el usuario objetivo, no como el desarrollador que lo construyó.</li>
+    <li>Si escribiste un artículo: léelo como alguien que no conoce el contexto.</li>
+    <li>Si construiste un diseño: evalúalo contra el objetivo del usuario, no tus preferencias estéticas.</li>
+  </ul>
+  <p>Luego responde:</p>
+  <ul>
+    <li>¿Cuál es la única parte más débil de este resultado?</li>
+    <li>¿Esa debilidad bloquea el lanzamiento, o es aceptable para este ciclo?</li>
+    <li>¿Hay algo que, si fueras la audiencia, te haría confiar menos en esto?</li>
+  </ul>
+
+  <h3>Resultado de la Revisión pre-lanzamiento</h3>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Pre-ship Review
+
+**Reviewed by:** [Name or "Self"]
+**Date:** [Date]
+
+**Does this solve the problem stated in the Plan Brief?**
+[Yes / Partially / No — with explanation]
+
+**Would the named audience find this useful/usable/readable?**
+[Yes / Partially / No — with explanation]
+
+**Weakest part of this result:**
+[Be specific. One thing.]
+
+**Decision on that weakness:**
+- [ ] Fix before shipping
+- [ ] Accept for this cycle — defer to next
+- [ ] It's not actually a problem
+
+**Ship readiness:**
+- [ ] Ready to Ship
+- [ ] Not ready — return to Build</code></pre>
+  </div>
+
+  <h2>Revisión post-lanzamiento</h2>
+  <div class="callout">
+    <p><em>"¿Realmente funcionó? ¿Qué le enseña eso al próximo ciclo?"</em></p>
+  </div>
+
+  <p>Lanzar algo en vivo no es lo mismo que saber que funcionó. Necesitas señal del mundo real — no la señal que predijiste en el Plan Brief, sino la señal que el mundo devolvió.</p>
+  <p>La Revisión post-lanzamiento recopila esa señal, la interpreta y la convierte en el punto de partida del próximo Plan.</p>
+
+  <h3>Las tres preguntas de la Revisión post-lanzamiento</h3>
+  <ol>
+    <li style="margin-bottom:0.75rem;"><strong>¿Funcionó?</strong> ¿Cómo se compara el resultado del mundo real con los criterios de éxito?</li>
+    <li style="margin-bottom:0.75rem;"><strong>¿Por qué fue como fue?</strong> ¿Qué decisiones, suposiciones o eventos moldearon el resultado?</li>
+    <li style="margin-bottom:0.75rem;"><strong>¿Qué debería hacer diferente el próximo ciclo?</strong> ¿Qué enseñó este ciclo?</li>
+  </ol>
+
+  <h3>Cuándo ejecutar una Revisión post-lanzamiento</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Lo que lanzaste</th><th>Cuándo revisar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Funcionalidad de software</td><td>Después de 1–2 semanas de uso real</td></tr>
+        <tr><td>Artículo o publicación</td><td>Después de 3–7 días en vivo</td></tr>
+        <tr><td>Estrategia o decisión</td><td>Después de los primeros resultados observables</td></tr>
+        <tr><td>Herramienta interna</td><td>Después del primer uso real por sus usuarios previstos</td></tr>
+        <tr><td>Experimento rápido</td><td>Dentro de las 24–48 horas</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>No revises inmediatamente después de lanzar — necesitas señal real, no ruido inicial. No esperes indefinidamente — en algún momento la señal se estabiliza y el próximo ciclo ya está esperando.</p>
+
+  <h3>Cómo ejecutar una Revisión post-lanzamiento</h3>
+
+  <div class="step-block">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Mide contra los criterios de éxito</h3>
+      <p>Para cada criterio de éxito del Plan Brief, responde: ¿se cumplió, y cómo lo sabes?</p>
+      <p>La evidencia debe venir de fuera de ti mismo: datos de uso, retroalimentación de usuarios reales, cambio observable de comportamiento, resultados que ocurrieron o no. Si un criterio no puede medirse con evidencia real, anótalo — significa que el criterio era demasiado vago o que el método de medición no estaba configurado.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Reflexiona sobre el ciclo</h3>
+      <p>Mira el ciclo completo — Plan, Construir y Lanzar — y pregunta:</p>
+      <ul>
+        <li>¿Qué funcionó como se esperaba?</li>
+        <li>¿Qué no funcionó como se esperaba?</li>
+        <li>¿Qué decisión única, tomada de otra manera, habría cambiado más el resultado?</li>
+        <li>¿Era el Plan Brief preciso cuando lanzaste? ¿Qué cambió?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Alimenta hacia adelante</h3>
+      <p>Identifica entradas para el próximo ciclo:</p>
+      <ul>
+        <li>¿Qué nuevo problema u oportunidad reveló este ciclo?</li>
+        <li>¿Qué se aplazó como "fuera de alcance" que ahora debe abordarse?</li>
+        <li>¿Qué suposición resultó ser incorrecta y debería informar el próximo Plan?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Resultado de la Revisión post-lanzamiento</h3>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Post-ship Review
+
+**What was shipped:** [Brief description]
+**Shipped on:** [Date]
+**Reviewed on:** [Date]
+
+**Measurement**
+| Success Criterion | Result | Evidence |
+|------------------|--------|---------|
+| [Criterion 1] | Met / Partial / Not met | [How you know] |
+| [Criterion 2] | Met / Partial / Not met | [How you know] |
+| [Criterion 3] | Met / Partial / Not met | [How you know] |
+
+**Overall: did it work?**
+[One or two sentences. Was the goal achieved? What does the real-world outcome say?]
+
+**What worked**
+- [Observation 1]
+- [Observation 2]
+
+**What didn't work**
+- [Observation 1]
+- [Observation 2]
+
+**The decision that mattered most**
+[What single decision during this cycle had the biggest impact — good or bad?]
+
+**Feed forward: inputs for the next cycle**
+- [New problem or opportunity]
+- [Deferred scope item to address]
+- [Wrong assumption to correct]</code></pre>
+  </div>
+
+  <h2>¿Qué pasa si el resultado aún no puede medirse?</h2>
+  <p>Algunos resultados tardan en aparecer. Establece una <strong>fecha de revisión</strong> al momento de lanzar, anota qué señal estás esperando, y ejecuta una <strong>Revisión parcial</strong> ahora (reflexiona sobre el ciclo) con una <strong>Revisión completa</strong> más tarde cuando la señal esté disponible.</p>
+  <p>Las partes de reflexión y medición son independientes — no omitas la reflexión porque la medición no está lista.</p>
+
+  <h2>Usar IA en la compuerta de Revisión</h2>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Donde la IA ayuda</h4>
+      <ul>
+        <li>Resumir retroalimentación o datos en patrones</li>
+        <li>Cuestionar tu interpretación ("¿Es esto señal o ruido?")</li>
+        <li>Identificar qué debería abordar el Plan Brief del próximo ciclo</li>
+        <li>Detectar suposiciones que se repitieron a lo largo del ciclo</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Donde el juicio humano debe liderar</h4>
+      <ul>
+        <li>Decidir si el resultado fue realmente suficientemente bueno</li>
+        <li>Interpretar señal ambigua</li>
+        <li>Elegir en qué enfocarse en el próximo ciclo</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>Here is my Plan Brief: [paste brief]
+Here is what I shipped: [describe output]
+Here is what happened after shipping: [describe outcomes, feedback, metrics]
+
+Did the outcome match the goal and the audience's needs?
+What does the gap between expected and actual tell me?
+What should I carry into the next cycle's Plan?</code></pre>
+  </div>
+
+  <h2>Lista de verificación de la compuerta de Revisión</h2>
+  <p><strong>Pre-lanzamiento:</strong></p>
+  <ul class="checklist">
+    <li>Resultado experimentado desde la perspectiva de la audiencia, no del constructor</li>
+    <li>Parte más débil identificada y una decisión tomada al respecto</li>
+    <li>Lanzando por la razón correcta — está listo, no porque estés cansado de ello</li>
+    <li>La decisión de preparación para lanzar es explícita</li>
+  </ul>
+  <p><strong>Post-lanzamiento:</strong></p>
+  <ul class="checklist">
+    <li>Esperaste señal del mundo real antes de revisar</li>
+    <li>Cada criterio de éxito evaluado contra evidencia real</li>
+    <li>Resultado general escrito en una o dos oraciones</li>
+    <li>Lo que funcionó y lo que no documentado por separado</li>
+    <li>La decisión más impactante del ciclo identificada</li>
+    <li>Entradas de retroalimentación hacia adelante para el próximo Plan escritas</li>
+  </ul>
+
+  <h2>El ciclo se cierra aquí</h2>
+  <div class="code-wrap">
+    <pre><code>Plan ←──── [Review (post-ship)] ←── Ship ←── [Review (pre-ship)] ←── [Build Validation] ←── Build
+  │
+  └──→ [Plan Validation] ──→ Plan (refined) ──→ Build ...</code></pre>
+  </div>
+  <p>La compuerta de Revisión — en ambos modos — es lo que hace de solveOS un ciclo, no una línea. Cada ciclo comienza más inteligente que el anterior.</p>
+
+  <h2>Lanzar es el comienzo de construir, no el final</h2>
+  <p>La mayoría de los marcos tratan el lanzamiento como la línea de meta. solveOS lo trata como un punto de transición.</p>
+  <p>Cuando algo se lanza, dos cosas se vuelven verdad simultáneamente:</p>
+  <ol>
+    <li>Este ciclo está completo.</li>
+    <li>El próximo ciclo tiene nuevo material del que partir.</li>
+  </ol>
+  <p>La Revisión post-lanzamiento es el mecanismo que convierte el resultado de un ciclo en las entradas del próximo. Sin ella, los ciclos están desconectados — cada uno comenzando desde cero, repitiendo las mismas suposiciones, cometiendo los mismos errores.</p>
+  <p><strong>El ciclo después de Lanzar es lo que te hace un mejor constructor con el tiempo, no solo alguien que lanza cosas.</strong></p>
+
+  <h3>Qué significa "continuar construyendo"</h3>
+  <p>Continuar construyendo no significa agregar más funcionalidades indefinidamente. Significa usar lo que aprendiste para hacer el próximo ciclo más dirigido, más efectivo y más alineado con lo que realmente importa.</p>
+  <p>Después de lanzar, tres cosas suelen ser ciertas:</p>
+  <ol>
+    <li><strong>Parte de lo que construiste funcionó.</strong> Apuesta por ello. El próximo ciclo debe basarse en los enfoques que produjeron resultados reales.</li>
+    <li><strong>Parte de lo que construiste no funcionó.</strong> Corrígelo. El próximo ciclo debe abordar las brechas reveladas por el uso en el mundo real — no mejoras hipotéticas, sino fallas reales.</li>
+    <li><strong>Descubriste algo que no sabías cuando planificaste.</strong> Actúa en consecuencia. Lanzar siempre revela lo que la planificación no podía — comportamientos de usuarios, casos extremos, suposiciones que eran incorrectas. Ese conocimiento es la entrada más valiosa para el próximo plan.</li>
+  </ol>
+  <p>La Revisión post-lanzamiento captura los tres. El próximo Plan Brief se escribe desde lo que se capturó.</p>
+
+  <h3>Cuándo detener el ciclo</h3>
+  <p>El ciclo se detiene cuando una de estas cosas es verdad:</p>
+  <ul>
+    <li><strong>El problema está resuelto.</strong> Los criterios de éxito están completamente cumplidos y la necesidad ya no existe. Esto es más raro de lo que la mayoría piensa.</li>
+    <li><strong>El problema ya no vale la pena resolver.</strong> El contexto cambió — la audiencia se movió, la oportunidad se cerró, el objetivo se volvió irrelevante. Reconoce esto temprano y redirige.</li>
+    <li><strong>Estás construyendo por hábito, no por señal.</strong> Si cada ciclo de Revisión muestra rendimientos decrecientes y la sección de Retroalimentación hacia Adelante está vacía, el espacio del problema puede estar agotado. Un nuevo Plan sobre un nuevo problema es mejor que adiciones incrementales sin impacto real.</li>
+  </ul>
+  <p>El valor predeterminado es continuar. Detente solo cuando la señal lo indique.</p>
+
+  </div>
 
 </DocsLayout>

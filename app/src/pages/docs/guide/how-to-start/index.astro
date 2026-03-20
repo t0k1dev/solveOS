@@ -3,58 +3,60 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="How to start your first cycle" currentPath="/docs/guide/how-to-start/">
 
-  <div class="page-header">
-    <span class="page-eyebrow">Guide</span>
-    <h1>How to start your first cycle</h1>
-    <p class="page-desc">A concrete, sequential walkthrough. Follow this page and complete a real cycle.</p>
-  </div>
+  <div class="lang-en">
 
-  <div class="step-block">
-    <div class="step-num">0</div>
-    <div class="step-body">
-      <h3>Before you start</h3>
-      <p>You need a real problem worth solving — not a practice exercise. The framework produces better results when the stakes are real, even if they're small.</p>
-      <p>If you haven't already, read the <a href="/docs/">Introduction</a> to understand the core loop, and the <a href="/docs/guide/">Why solveOS</a> guide to understand the principles.</p>
+    <div class="page-header">
+      <span class="page-eyebrow">Guide</span>
+      <h1>How to start your first cycle</h1>
+      <p class="page-desc">A concrete, sequential walkthrough. Follow this page and complete a real cycle.</p>
     </div>
-  </div>
 
-  <div class="step-block">
-    <div class="step-num">1</div>
-    <div class="step-body">
-      <h3>Research (optional, recommended for your first cycle)</h3>
-      <p>Use Research when you don't yet understand the problem space well enough to write a reliable Plan Brief.</p>
-      <p>If you already know the problem well, skip to Step 2.</p>
-      <div class="callout">
-        <p><strong>When to use it:</strong> You're working in a domain you haven't worked in before. Your problem statement is based on assumptions you haven't validated. The constraints are unknown.</p>
+    <div class="step-block">
+      <div class="step-num">0</div>
+      <div class="step-body">
+        <h3>Before you start</h3>
+        <p>You need a real problem worth solving — not a practice exercise. The framework produces better results when the stakes are real, even if they're small.</p>
+        <p>If you haven't already, read the <a href="/docs/">Introduction</a> to understand the core loop, and the <a href="/docs/guide/">Why solveOS</a> guide to understand the principles.</p>
       </div>
-      <p><strong>How to run it:</strong> Define one specific research question — not "learn more about X" but "what are the existing solutions to this problem and their limitations?" Set a time limit (30–60 minutes for small decisions). Document what you find and write conclusions.</p>
-      <p><a href="/docs/gates/research/">See full Research gate documentation →</a></p>
     </div>
-  </div>
 
-  <div class="step-block">
-    <div class="step-num">2</div>
-    <div class="step-body">
-      <h3>Plan: write your Plan Brief</h3>
-      <p>The Plan Brief is the single most important artifact in the framework. Write it. Don't keep it in your head.</p>
-      <div class="callout callout-warn">
-        <p><strong>The Plan Brief is not a starting artifact — it is a compass.</strong> You will refer back to it throughout Build. Every ambiguity in it becomes a guess in the output.</p>
+    <div class="step-block">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Research (optional, recommended for your first cycle)</h3>
+        <p>Use Research when you don't yet understand the problem space well enough to write a reliable Plan Brief.</p>
+        <p>If you already know the problem well, skip to Step 2.</p>
+        <div class="callout">
+          <p><strong>When to use it:</strong> You're working in a domain you haven't worked in before. Your problem statement is based on assumptions you haven't validated. The constraints are unknown.</p>
+        </div>
+        <p><strong>How to run it:</strong> Define one specific research question — not "learn more about X" but "what are the existing solutions to this problem and their limitations?" Set a time limit (30–60 minutes for small decisions). Document what you find and write conclusions.</p>
+        <p><a href="/docs/gates/research/">See full Research gate documentation →</a></p>
       </div>
-      <p>Answer these eight questions:</p>
-      <ol>
-        <li><strong>What is the problem?</strong> What is actually broken, missing, or needed? State the problem, not the solution.</li>
-        <li><strong>Who is this for?</strong> Who experiences this problem? Who will use or read what you build?</li>
-        <li><strong>What is the goal?</strong> What does a successful outcome look like, specifically? Start with a verb.</li>
-        <li><strong>What is the appetite?</strong> How much are you willing to invest? This is a conscious bet, not an estimate. Scope is variable within it.</li>
-        <li><strong>What are the constraints?</strong> Skills, dependencies, non-negotiables beyond the appetite.</li>
-        <li><strong>What is the success criteria?</strong> How will you know, objectively, that this is done?</li>
-        <li><strong>What is the core assumption?</strong> What must be true for this plan to work?</li>
-        <li><strong>What are the rabbit holes?</strong> What unknowns could drag the build into territory you don't want to explore in this cycle?</li>
-      </ol>
-      <p>Use this template:</p>
-      <div class="code-wrap">
-        <button class="copy-btn">Copy</button>
-        <pre><code>## Plan Brief
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Plan: write your Plan Brief</h3>
+        <p>The Plan Brief is the single most important artifact in the framework. Write it. Don't keep it in your head.</p>
+        <div class="callout callout-warn">
+          <p><strong>The Plan Brief is not a starting artifact — it is a compass.</strong> You will refer back to it throughout Build. Every ambiguity in it becomes a guess in the output.</p>
+        </div>
+        <p>Answer these eight questions:</p>
+        <ol>
+          <li><strong>What is the problem?</strong> What is actually broken, missing, or needed? State the problem, not the solution.</li>
+          <li><strong>Who is this for?</strong> Who experiences this problem? Who will use or read what you build?</li>
+          <li><strong>What is the goal?</strong> What does a successful outcome look like, specifically? Start with a verb.</li>
+          <li><strong>What is the appetite?</strong> How much are you willing to invest? This is a conscious bet, not an estimate. Scope is variable within it.</li>
+          <li><strong>What are the constraints?</strong> Skills, dependencies, non-negotiables beyond the appetite.</li>
+          <li><strong>What is the success criteria?</strong> How will you know, objectively, that this is done?</li>
+          <li><strong>What is the core assumption?</strong> What must be true for this plan to work?</li>
+          <li><strong>What are the rabbit holes?</strong> What unknowns could drag the build into territory you don't want to explore in this cycle?</li>
+        </ol>
+        <p>Use this template:</p>
+        <div class="code-wrap">
+          <button class="copy-btn">Copy</button>
+          <pre><code>## Plan Brief
 
 **Problem**
 [One or two sentences. What is broken, missing, or needed? Be specific.]
@@ -85,83 +87,250 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 
 **Out of scope**
 [Explicitly list what you are NOT solving.]</code></pre>
+        </div>
+        <p><a href="/docs/phases/plan/">See full Plan phase documentation →</a></p>
       </div>
-      <p><a href="/docs/phases/plan/">See full Plan phase documentation →</a></p>
     </div>
-  </div>
 
-  <div class="step-block">
-    <div class="step-num">3</div>
-    <div class="step-body">
-      <h3>Validate the plan</h3>
-      <p>Run this on your first cycle. Run it on any cycle where the stakes are high or the plan feels vague.</p>
-      <p>Hand the Plan Brief to someone else (or an AI) and ask:</p>
-      <ol>
-        <li>Is the problem correctly stated?</li>
-        <li>Is the plan feasible?</li>
-        <li>Is it specific enough to build from without asking clarifying questions?</li>
-      </ol>
-      <p>If gaps are found — go back to Plan and sharpen the brief. If all three are a clean yes — proceed to Build.</p>
-      <p><a href="/docs/gates/plan-validation/">See full Plan Validation gate documentation →</a></p>
-    </div>
-  </div>
-
-  <div class="step-block">
-    <div class="step-num">4</div>
-    <div class="step-body">
-      <h3>Build</h3>
-      <p>Start from the success criteria, not from the full brief. The success criteria are your anchors.</p>
-      <p>After each unit of work, ask: does this still connect to the goal? If yes, continue. If no, stop and decide — either the goal evolved (update the Plan Brief) or you drifted (course correct).</p>
-      <div class="callout">
-        <p><strong>If the plan needs updating during Build:</strong> Update it in writing before continuing. Never let the plan become a fiction you are quietly ignoring.</p>
+    <div class="step-block">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Validate the plan</h3>
+        <p>Run this on your first cycle. Run it on any cycle where the stakes are high or the plan feels vague.</p>
+        <p>Hand the Plan Brief to someone else (or an AI) and ask:</p>
+        <ol>
+          <li>Is the problem correctly stated?</li>
+          <li>Is the plan feasible?</li>
+          <li>Is it specific enough to build from without asking clarifying questions?</li>
+        </ol>
+        <p>If gaps are found — go back to Plan and sharpen the brief. If all three are a clean yes — proceed to Build.</p>
+        <p><a href="/docs/gates/plan-validation/">See full Plan Validation gate documentation →</a></p>
       </div>
-      <p><a href="/docs/phases/build/">See full Build phase documentation →</a></p>
     </div>
-  </div>
 
-  <div class="step-block">
-    <div class="step-num">5</div>
-    <div class="step-body">
-      <h3>Validate the build (optional)</h3>
-      <p>Run this before any public-facing release, or when the output is complex.</p>
-      <p>Test each success criterion as pass or fail. A fail means fix before shipping, or explicitly descope it. Document any accepted limitations.</p>
-      <p><a href="/docs/gates/build-validation/">See full Build Validation gate documentation →</a></p>
-    </div>
-  </div>
-
-  <div class="step-block">
-    <div class="step-num">6</div>
-    <div class="step-body">
-      <h3>Ship</h3>
-      <p>Do the actual shipping action. Deploy, publish, send, release, present, hand off.</p>
-      <div class="callout callout-warn">
-        <p><strong>Do not stop at "ready to ship."</strong> Ship. Then confirm it is live — check it from the perspective of your intended audience.</p>
+    <div class="step-block">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Build</h3>
+        <p>Start from the success criteria, not from the full brief. The success criteria are your anchors.</p>
+        <p>After each unit of work, ask: does this still connect to the goal? If yes, continue. If no, stop and decide — either the goal evolved (update the Plan Brief) or you drifted (course correct).</p>
+        <div class="callout">
+          <p><strong>If the plan needs updating during Build:</strong> Update it in writing before continuing. Never let the plan become a fiction you are quietly ignoring.</p>
+        </div>
+        <p><a href="/docs/phases/build/">See full Build phase documentation →</a></p>
       </div>
-      <p><a href="/docs/phases/ship/">See full Ship phase documentation →</a></p>
     </div>
+
+    <div class="step-block">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Validate the build (optional)</h3>
+        <p>Run this before any public-facing release, or when the output is complex.</p>
+        <p>Test each success criterion as pass or fail. A fail means fix before shipping, or explicitly descope it. Document any accepted limitations.</p>
+        <p><a href="/docs/gates/build-validation/">See full Build Validation gate documentation →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Ship</h3>
+        <p>Do the actual shipping action. Deploy, publish, send, release, present, hand off.</p>
+        <div class="callout callout-warn">
+          <p><strong>Do not stop at "ready to ship."</strong> Ship. Then confirm it is live — check it from the perspective of your intended audience.</p>
+        </div>
+        <p><a href="/docs/phases/ship/">See full Ship phase documentation →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">7</div>
+      <div class="step-body">
+        <h3>Review</h3>
+        <p>Run a post-ship review after real-world signal is available — not immediately after shipping.</p>
+        <p>For each success criterion: was it met, and how do you know? Evidence must come from outside yourself. Then write feed-forward inputs for the next Plan.</p>
+        <p><a href="/docs/gates/review/">See full Review gate documentation →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">8</div>
+      <div class="step-body">
+        <h3>Start the next cycle</h3>
+        <p>The output of the Review is the starting point for the next Plan. Every cycle starts smarter than the last.</p>
+      </div>
+    </div>
+
+    <div class="nav-card-group" style="margin-top:2.5rem;">
+      <a href="/docs/examples/" class="nav-card">See a complete example <span>→</span></a>
+      <a href="/docs/phases/plan/" class="nav-card">Deep dive into Plan <span>→</span></a>
+    </div>
+
   </div>
 
-  <div class="step-block">
-    <div class="step-num">7</div>
-    <div class="step-body">
-      <h3>Review</h3>
-      <p>Run a post-ship review after real-world signal is available — not immediately after shipping.</p>
-      <p>For each success criterion: was it met, and how do you know? Evidence must come from outside yourself. Then write feed-forward inputs for the next Plan.</p>
-      <p><a href="/docs/gates/review/">See full Review gate documentation →</a></p>
-    </div>
-  </div>
+  <div class="lang-es">
 
-  <div class="step-block">
-    <div class="step-num">8</div>
-    <div class="step-body">
-      <h3>Start the next cycle</h3>
-      <p>The output of the Review is the starting point for the next Plan. Every cycle starts smarter than the last.</p>
+    <div class="page-header">
+      <span class="page-eyebrow">Guía</span>
+      <h1>Cómo iniciar tu primer ciclo</h1>
+      <p class="page-desc">Un recorrido concreto y secuencial. Sigue esta página y completa un ciclo real.</p>
     </div>
-  </div>
 
-  <div class="nav-card-group" style="margin-top:2.5rem;">
-    <a href="/docs/examples/" class="nav-card">See a complete example <span>→</span></a>
-    <a href="/docs/phases/plan/" class="nav-card">Deep dive into Plan <span>→</span></a>
+    <div class="step-block">
+      <div class="step-num">0</div>
+      <div class="step-body">
+        <h3>Antes de empezar</h3>
+        <p>Necesitas un problema real que valga la pena resolver — no un ejercicio de práctica. El framework produce mejores resultados cuando las apuestas son reales, aunque sean pequeñas.</p>
+        <p>Si aún no lo has hecho, lee la <a href="/docs/">Introducción</a> para entender el ciclo central, y la guía <a href="/docs/guide/">Por qué solveOS</a> para entender los principios.</p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Research (opcional, recomendado para tu primer ciclo)</h3>
+        <p>Usa Research cuando aún no comprendes el espacio del problema lo suficiente como para escribir un Plan Brief confiable.</p>
+        <p>Si ya conoces bien el problema, ve directamente al Paso 2.</p>
+        <div class="callout">
+          <p><strong>Cuándo usarlo:</strong> Estás trabajando en un dominio en el que no has trabajado antes. Tu enunciado del problema se basa en supuestos que no has validado. Las restricciones son desconocidas.</p>
+        </div>
+        <p><strong>Cómo ejecutarlo:</strong> Define una pregunta de investigación específica — no "aprender más sobre X" sino "¿cuáles son las soluciones existentes a este problema y sus limitaciones?" Establece un límite de tiempo (30–60 minutos para decisiones pequeñas). Documenta lo que encuentres y escribe conclusiones.</p>
+        <p><a href="/docs/gates/research/">Ver documentación completa del gate Research →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Plan: escribe tu Plan Brief</h3>
+        <p>El Plan Brief es el artefacto más importante del framework. Escríbelo. No lo guardes solo en tu cabeza.</p>
+        <div class="callout callout-warn">
+          <p><strong>El Plan Brief no es un artefacto de inicio — es una brújula.</strong> Lo consultarás durante todo el Build. Cada ambigüedad en él se convierte en una suposición en el resultado.</p>
+        </div>
+        <p>Responde estas ocho preguntas:</p>
+        <ol>
+          <li><strong>¿Cuál es el problema?</strong> ¿Qué está roto, qué falta o qué se necesita? Enuncia el problema, no la solución.</li>
+          <li><strong>¿Para quién es?</strong> ¿Quién experimenta este problema? ¿Quién usará o leerá lo que construyas?</li>
+          <li><strong>¿Cuál es el objetivo?</strong> ¿Cómo se ve un resultado exitoso, específicamente? Comienza con un verbo.</li>
+          <li><strong>¿Cuál es el apetito?</strong> ¿Cuánto estás dispuesto a invertir? Es una apuesta consciente, no una estimación. El alcance es variable dentro de ella.</li>
+          <li><strong>¿Cuáles son las restricciones?</strong> Habilidades, dependencias, elementos no negociables más allá del apetito.</li>
+          <li><strong>¿Cuáles son los criterios de éxito?</strong> ¿Cómo sabrás, objetivamente, que esto está terminado?</li>
+          <li><strong>¿Cuál es el supuesto central?</strong> ¿Qué debe ser verdad para que este plan funcione?</li>
+          <li><strong>¿Cuáles son los pozos sin fondo?</strong> ¿Qué incógnitas podrían arrastrar el build hacia territorio que no quieres explorar en este ciclo?</li>
+        </ol>
+        <p>Usa esta plantilla:</p>
+        <div class="code-wrap">
+          <button class="copy-btn">Copy</button>
+          <pre><code>## Plan Brief
+
+**Problema**
+[Una o dos oraciones. ¿Qué está roto, qué falta o qué se necesita? Sé específico.]
+
+**Audiencia**
+[¿Quién experimenta este problema? ¿Quién usará, leerá o interactuará con lo que construyas?]
+
+**Objetivo**
+[Una oración. ¿Cómo se ve el éxito? Comienza con un verbo: "Construir", "Escribir", "Corregir", "Definir".]
+
+**Apetito**
+[¿Cuánto estás dispuesto a invertir en este ciclo? Es una apuesta, no una estimación. El alcance debe caber dentro.]
+
+**Restricciones**
+- [Restricción 1]
+- [Restricción 2]
+
+**Criterios de éxito**
+- [ ] [Criterio medible 1]
+- [ ] [Criterio medible 2]
+- [ ] [Criterio medible 3]
+
+**Supuesto central**
+[¿Qué debe ser verdad para que este plan funcione?]
+
+**Pozos sin fondo**
+[¿Qué incógnitas estás dejando explícitamente de lado en este ciclo?]
+
+**Fuera de alcance**
+[Lista explícitamente lo que NO estás resolviendo.]</code></pre>
+        </div>
+        <p><a href="/docs/phases/plan/">Ver documentación completa de la fase Plan →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Valida el plan</h3>
+        <p>Ejecuta esto en tu primer ciclo. Ejecútalo en cualquier ciclo donde las apuestas sean altas o el plan parezca vago.</p>
+        <p>Entrega el Plan Brief a alguien más (o a una IA) y pregunta:</p>
+        <ol>
+          <li>¿El problema está correctamente enunciado?</li>
+          <li>¿El plan es factible?</li>
+          <li>¿Es lo suficientemente específico para construir sin hacer preguntas aclaratorias?</li>
+        </ol>
+        <p>Si se encuentran vacíos — vuelve al Plan y afina el brief. Si los tres son un sí claro — procede al Build.</p>
+        <p><a href="/docs/gates/plan-validation/">Ver documentación completa del gate Plan Validation →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Build</h3>
+        <p>Comienza desde los criterios de éxito, no desde el brief completo. Los criterios de éxito son tus anclas.</p>
+        <p>Después de cada unidad de trabajo, pregunta: ¿esto todavía conecta con el objetivo? Si sí, continúa. Si no, detente y decide — o el objetivo evolucionó (actualiza el Plan Brief) o te desviaste (corrige el rumbo).</p>
+        <div class="callout">
+          <p><strong>Si el plan necesita actualización durante el Build:</strong> Actualízalo por escrito antes de continuar. Nunca dejes que el plan se convierta en una ficción que estás ignorando en silencio.</p>
+        </div>
+        <p><a href="/docs/phases/build/">Ver documentación completa de la fase Build →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Valida el build (opcional)</h3>
+        <p>Ejecuta esto antes de cualquier lanzamiento público, o cuando el resultado sea complejo.</p>
+        <p>Evalúa cada criterio de éxito como aprobado o reprobado. Un reprobado significa corregir antes de entregar, o descartarlo explícitamente. Documenta cualquier limitación aceptada.</p>
+        <p><a href="/docs/gates/build-validation/">Ver documentación completa del gate Build Validation →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Ship</h3>
+        <p>Realiza la acción real de entrega. Despliega, publica, envía, lanza, presenta, entrega.</p>
+        <div class="callout callout-warn">
+          <p><strong>No te detengas en "listo para entregar".</strong> Entrega. Luego confirma que está en vivo — verifícalo desde la perspectiva de tu audiencia objetivo.</p>
+        </div>
+        <p><a href="/docs/phases/ship/">Ver documentación completa de la fase Ship →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">7</div>
+      <div class="step-body">
+        <h3>Review</h3>
+        <p>Ejecuta una revisión post-entrega cuando haya señal del mundo real — no inmediatamente después de entregar.</p>
+        <p>Para cada criterio de éxito: ¿se cumplió y cómo lo sabes? La evidencia debe provenir de fuera de ti mismo. Luego escribe los aportes futuros para el siguiente Plan.</p>
+        <p><a href="/docs/gates/review/">Ver documentación completa del gate Review →</a></p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-num">8</div>
+      <div class="step-body">
+        <h3>Inicia el siguiente ciclo</h3>
+        <p>El resultado del Review es el punto de partida del siguiente Plan. Cada ciclo comienza con más inteligencia que el anterior.</p>
+      </div>
+    </div>
+
+    <div class="nav-card-group" style="margin-top:2.5rem;">
+      <a href="/docs/examples/" class="nav-card">Ver un ejemplo completo <span>→</span></a>
+      <a href="/docs/phases/plan/" class="nav-card">Profundizar en Plan <span>→</span></a>
+    </div>
+
   </div>
 
 </DocsLayout>

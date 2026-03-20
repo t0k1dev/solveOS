@@ -3,6 +3,8 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Example: Writing a Technical Article" currentPath="/docs/examples/article/">
 
+  <div class="lang-en">
+
   <div class="page-header">
     <span class="page-eyebrow">Example</span>
     <h1>Writing a Technical Article</h1>
@@ -223,5 +225,232 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
     <pre><code>[Research] → Plan → [Plan Validation] → Build → Ship</code></pre>
   </div>
   <p>Each arrow is a human decision: read the output, judge it, decide what comes next.</p>
+
+  </div>
+
+  <div class="lang-es">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Ejemplo</span>
+    <h1>Escribir un Artículo Técnico</h1>
+    <p class="page-desc">Un ciclo completo desde decidir el enfoque hasta publicar.</p>
+  </div>
+
+  <p><strong>Escenario:</strong> Quieres escribir un artículo titulado <em>"Cómo usar IA para escribir mejor código"</em> y publicarlo en tu blog. Tienes opiniones sobre el tema pero no estás seguro de si el enfoque es realmente útil o si el artículo ya existe cien veces.</p>
+
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation] → Build → Ship</code></pre>
+  </div>
+
+  <div class="callout">
+    <p><strong>Cómo leer este ejemplo</strong></p>
+    <p>Cada paso muestra qué se le dio a un agente como instrucción, qué devolvió el agente como resultado, y qué decidió el humano basándose en ese resultado. El agente puede ser tú, un colaborador, o una IA — la estructura es la misma en cualquier caso. Las compuertas son donde el humano lee el resultado y decide si proceder. Esa decisión nunca se omite.</p>
+  </div>
+
+  <h2>Paso 1: Compuerta de Investigación</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>¿Qué ya existe sobre el tema "IA y escribir mejor código"? ¿Hay un ángulo o audiencia específica desatendida? Dedica no más de 45 minutos.</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ul>
+      <li>La mayoría de los artículos existentes caen en dos categorías: (1) piezas de hype de alto nivel ("la IA reemplazará a los desarrolladores"), o (2) tutoriales específicos de herramientas ("cómo usar Copilot")</li>
+      <li>Muy pocos abordan el <em>cambio de mentalidad y flujo de trabajo</em> — no solo las herramientas</li>
+      <li>La audiencia más desatendida: desarrolladores de nivel medio que ya usan herramientas de IA pero sienten que no están obteniendo el beneficio completo</li>
+      <li>Queja común encontrada en foros: "Uso Copilot pero siento que solo estoy aceptando código que no entiendo"</li>
+      <li>Ángulo propuesto: <em>usar IA para escribir mejor código</em>, no <em>herramientas de IA para programar</em> — el enfoque es en que el desarrollador mejore, no en la herramienta que se usa</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>El ángulo es real y desatendido. El lector objetivo ya tiene las herramientas — necesita un modelo mental para usarlas intencionalmente. Proceder a Planificar.</p>
+  </div>
+
+  <h2>Paso 2: Fase de Planificar</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Usando los hallazgos de la investigación, redacta un Plan Brief para este artículo.</p>
+    <p><strong>Archivos de referencia:</strong> Hallazgos de investigación del Paso 1</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+
+    <p><strong>Plan Brief</strong></p>
+
+    <p><strong>Problema</strong><br>
+    Los desarrolladores de nivel medio usan herramientas de IA para programar pero se sienten pasivos y dependientes — aceptan sugerencias sin entenderlas completamente, lo que erosiona sus propias habilidades con el tiempo.</p>
+
+    <p><strong>Audiencia</strong><br>
+    Desarrolladores de nivel medio que ya usan herramientas de IA para programar pero sienten que no están obteniendo el beneficio completo.</p>
+
+    <p><strong>Objetivo</strong><br>
+    Escribir un artículo práctico que dé a los desarrolladores un modelo mental para usar la IA como compañero de pensamiento, no como generador de código.</p>
+
+    <p><strong>Apetito</strong><br>
+    Una sesión de escritura enfocada (medio día). Si el artículo no puede completarse en ese tiempo, reducir el alcance — no extender el tiempo.</p>
+
+    <p><strong>Restricciones</strong></p>
+    <ul>
+      <li>Longitud objetivo: 1,000–1,500 palabras (suficiente para ser útil, corto suficiente para ser leído)</li>
+      <li>Debe ser práctico, no teórico — cada punto necesita un ejemplo concreto</li>
+      <li>Sin contenido de pago, sin promoción de productos</li>
+      <li>Agnóstico en cuanto a herramientas: no se nombra ninguna herramienta de IA específica</li>
+    </ul>
+
+    <p><strong>Criterios de éxito</strong></p>
+    <ul>
+      <li>El artículo tiene un argumento claro y comprobable (no solo consejos)</li>
+      <li>Cada sección incluye un ejemplo concreto y copiable</li>
+      <li>Un desarrollador de nivel medio que lo lea puede aplicar la idea principal el mismo día</li>
+      <li>No se menciona ninguna herramienta de IA específica por nombre</li>
+    </ul>
+
+    <p><strong>Suposición central</strong><br>
+    El desarrollador ya tiene herramientas de IA. El problema no es la adopción — es saber cómo usarlas intencionalmente.</p>
+
+    <p><strong>Trampas a evitar</strong><br>
+    No comparar herramientas de IA ni comparar resultados — ese es un artículo diferente.</p>
+
+    <p><strong>Fuera de alcance</strong></p>
+    <ul>
+      <li>Comparaciones o recomendaciones de herramientas de IA</li>
+      <li>Introducción para principiantes a herramientas de IA para programar</li>
+      <li>Opinión sobre si la IA reemplazará a los desarrolladores</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>El brief es sólido pero la oración del objetivo es vaga ("modelo mental" es abstracto). Proceder a Validación del Plan antes de escribir.</p>
+  </div>
+
+  <h2>Paso 3: Compuerta de Validación del Plan</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Lee este Plan Brief. Dime con tus propias palabras: ¿de qué trata este artículo, qué argumenta, y qué cortarías si tuviera que ser un 20% más corto?</p>
+    <p><strong>Archivos de referencia:</strong> Plan Brief del Paso 2</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ul>
+      <li>"Trata sobre usar la IA activamente, no pasivamente — como tratarla como un programador en pareja en lugar de autocompletar."</li>
+      <li>"El argumento es: la mayoría de las personas están usando la IA de forma reactiva (aceptar/rechazar). Hay una mejor manera: uso proactivo."</li>
+      <li>"Cortaría la restricción de no mencionar herramientas — podría hacer que los ejemplos se sientan vagos."</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>La articulación del argumento por parte del agente ("uso reactivo vs. proactivo de la IA") es más precisa que lo que estaba en el Plan Brief. La restricción agnóstica en cuanto a herramientas se mantiene — pero significa que los ejemplos necesitan ser extra concretos para compensar. Actualizar el brief antes de construir.</p>
+    <p><strong>Cambios realizados al Plan Brief:</strong></p>
+    <ul>
+      <li>Objetivo actualizado: <em>"Escribir un artículo práctico que argumente a favor del uso proactivo de la IA sobre el uso reactivo, y dé a los desarrolladores un marco concreto para el cambio."</em></li>
+      <li>Restricción agregada: <em>"Los ejemplos deben ser a nivel de código y específicos, ya que no se usarán nombres de herramientas."</em></li>
+    </ul>
+    <p>Proceder a Construir.</p>
+  </div>
+
+  <h2>Paso 4: Fase de Construir</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Escribe el artículo según este Plan Brief. El argumento es uso reactivo vs. proactivo de la IA. Cada sección necesita un ejemplo de código concreto. Objetivo 1,000–1,500 palabras. Sin nombres de herramientas.</p>
+    <p><strong>Archivos de referencia:</strong> Plan Brief actualizado del Paso 3, Guía de estilo de escritura personal</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <p>Borrador producido con la siguiente estructura:</p>
+    <ol>
+      <li>Gancho: la trampa de "aceptar/rechazar" — por qué la mayoría de los desarrolladores está usando la IA reactivamente</li>
+      <li>Sección 1: Cómo se ve el uso reactivo de la IA (ejemplo de código: aceptar una función que no entiendes)</li>
+      <li>Sección 2: Cómo se ve el uso proactivo de la IA (ejemplo de código: usar la IA para explicar, luego mejorar, luego apropiarse)</li>
+      <li>Sección 3: Un marco de 3 preguntas para ejecutar antes de aceptar cualquier resultado de IA</li>
+      <li>Cierre: el cambio de la IA como atajo a la IA como compañero de pensamiento</li>
+    </ol>
+    <p>El borrador resultó en 1,650 palabras.</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana — verificación a mitad de construcción</p>
+    <p>El marco de 3 preguntas en la Sección 3 no existía en el Plan Brief — surgió durante la escritura. Sirve directamente al objetivo, así que se mantiene. Plan Brief actualizado para reflejarlo como una adición a los criterios de éxito.</p>
+    <p>Se cortaron 200 palabras de la Sección 2 (el ejemplo "reactivo" estaba sobre-explicado). Recuento final de palabras: 1,440 — dentro del rango.</p>
+    <p><strong>Plan Brief actualizado:</strong> Agregado a criterios de éxito: <em>"El artículo incluye un marco de 3 preguntas que el lector puede usar inmediatamente."</em></p>
+    <p>Proceder a Lanzar.</p>
+  </div>
+
+  <h2>Paso 5: Fase de Lanzar</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Revisa el borrador final contra el Plan Brief. Confirma que todos los criterios de éxito están cumplidos. Lista cualquier cosa que no lo esté.</p>
+    <p><strong>Archivos de referencia:</strong> Borrador final, Plan Brief (actualizado)</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Criterio de éxito</th><th>Estado</th><th>Nota</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Argumento claro y comprobable</td><td>Cumplido</td><td>Uso reactivo vs. proactivo de la IA — declarado en el párrafo 1</td></tr>
+          <tr><td>Cada sección tiene un ejemplo concreto</td><td>Cumplido</td><td>Dos ejemplos de código, ambos copiables</td></tr>
+          <tr><td>Aplicable el mismo día</td><td>Cumplido</td><td>El marco de 3 preguntas es inmediatamente usable</td></tr>
+          <tr><td>Sin herramienta de IA específica nombrada</td><td>Cumplido</td><td>Confirmado — sin nombres de herramientas en el borrador</td></tr>
+          <tr><td>Marco de 3 preguntas incluido</td><td>Cumplido</td><td>Sección 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Recuento de palabras: 1,440. Todas las restricciones cumplidas.</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>Todos los criterios cumplidos. Esto sale en vivo. Publicado en el blog personal, agregado al boletín, compartido en la comunidad de desarrolladores donde el problema original surgió durante la Investigación.</p>
+    <p>Confirmado en vivo: abrió la URL en una ventana de incógnito. El artículo carga. Los ejemplos de código se renderizan correctamente.</p>
+  </div>
+
+  <h2>Aprendizajes (capturados para el próximo ciclo)</h2>
+  <ul>
+    <li>La compuerta de Validación del Plan ahorró tiempo real — la reformulación del argumento por parte del agente ("reactivo vs. proactivo") hizo la apertura más sólida antes de escribir una palabra</li>
+    <li>"Agnóstico en cuanto a herramientas" fue la decisión correcta pero creó una restricción que requirió ejemplos más concretos para compensar — considerarlo antes la próxima vez</li>
+    <li>El marco de 3 preguntas emergió de la Construcción, no del Plan. Esto es normal (Construir para aprender). Actualizar el Plan Brief a mitad de construcción lo mantuvo honesto</li>
+    <li>Idea para el próximo ciclo: un artículo de seguimiento específicamente sobre el marco de 3 preguntas</li>
+  </ul>
+
+  <h2>Qué demuestra este ejemplo</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Principio</th><th>Dónde apareció</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Claridad antes de acción</td><td>La compuerta de Investigación evitó planificar en la dirección equivocada</td></tr>
+        <tr><td>Construir para aprender</td><td>El marco de 3 preguntas surgió durante la escritura, no la planificación</td></tr>
+        <tr><td>La realidad es el único validador</td><td>Lanzado en "suficientemente bueno" — solo publicar mostraría si el argumento aterrizó</td></tr>
+        <tr><td>Las compuertas reducen el costo, no el impulso</td><td>La Validación del Plan detectó un argumento débil antes de horas de escritura</td></tr>
+        <tr><td>El brief es tu brújula</td><td>El Plan Brief se actualizó a mitad de construcción para mantenerse honesto</td></tr>
+        <tr><td>La IA ejecuta. El humano decide.</td><td>En cada compuerta, el humano leyó el resultado y tomó la decisión — proceder, iterar o cortar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>El ciclo completo de un vistazo</h2>
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation] → Build → Ship</code></pre>
+  </div>
+  <p>Cada flecha es una decisión humana: leer el resultado, juzgarlo, decidir qué viene después.</p>
+
+  </div>
 
 </DocsLayout>

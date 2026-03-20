@@ -3,6 +3,8 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Examples" currentPath="/docs/examples/">
 
+  <div class="lang-en">
+
   <div class="page-header">
     <span class="page-eyebrow">Examples</span>
     <h1>Worked Examples</h1>
@@ -55,6 +57,66 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
         <tr><td>AI executes. Human decides.</td><td>Every gate: human read output and made the call</td><td>Every gate: human read output and made the call</td></tr>
       </tbody>
     </table>
+  </div>
+
+  </div>
+
+  <div class="lang-es">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Ejemplos</span>
+    <h1>Ejemplos Trabajados</h1>
+    <p class="page-desc">Ciclos completos de solveOS de principio a fin. Ve el marco aplicado a problemas reales.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>Cómo leer estos ejemplos</strong></p>
+    <p>Cada paso muestra qué se le dio a un agente como instrucción, qué devolvió el agente como resultado, y qué decidió el humano basándose en ese resultado. El agente puede ser tú, un colaborador, o una IA — la estructura es la misma en cualquier caso. Las compuertas son donde el humano lee el resultado y decide si proceder. Esa decisión nunca se omite.</p>
+  </div>
+
+  <h2>Elige un ejemplo</h2>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Escribir un Artículo</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.75rem;">Un ciclo completo de escritura — desde decidir el enfoque hasta publicar un artículo técnico.</p>
+      <div class="code-wrap" style="margin-bottom:0.75rem;">
+        <pre><code>Research → Plan → Plan Validation → Build → Ship</code></pre>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin:0 0 1rem;">Un ciclo de 5 pasos. Muestra cómo la Investigación evita planificar en la dirección equivocada, y cómo la Validación del Plan afina el argumento antes de empezar a escribir.</p>
+      <a href="/docs/examples/article/" class="nav-card" style="margin:0;">Leer el ejemplo <span>→</span></a>
+    </div>
+    <div class="two-col-card">
+      <h4>Construir una Funcionalidad</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.75rem;">Una corrección de rendimiento backend — desde una queja hasta una mejora lanzada y medición post-lanzamiento.</p>
+      <div class="code-wrap" style="margin-bottom:0.75rem;">
+        <pre><code>Research → Plan → Plan Validation ×2
+  → Build → Build Validation
+  → Review (pre-ship) → Ship
+  → Review (post-ship)</code></pre>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin:0 0 1rem;">Un ciclo de 9 pasos. Muestra dos pasadas de Validación del Plan, un bloqueador a mitad de construcción manejado sin descarrilar el ciclo, y una Revisión post-lanzamiento completa.</p>
+      <a href="/docs/examples/feature/" class="nav-card" style="margin:0;">Leer el ejemplo <span>→</span></a>
+    </div>
+  </div>
+
+  <h2>Qué demuestran estos ejemplos</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Principio</th><th>Escribir un Artículo</th><th>Construir una Funcionalidad</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Claridad antes de acción</td><td>La compuerta de Investigación evitó planificar el enfoque equivocado</td><td>La Validación del Plan en dos pasadas hizo los criterios de éxito medibles</td></tr>
+        <tr><td>Construir para aprender</td><td>El marco de 3 preguntas surgió durante la escritura</td><td>La dependencia de consultas solo apareció durante Construir</td></tr>
+        <tr><td>La realidad es el único validador</td><td>Solo publicar mostraría si el argumento aterrizó</td><td>Staging mostró 1.1s; producción mostró 0.9s</td></tr>
+        <tr><td>Las compuertas reducen el costo, no el impulso</td><td>La Validación del Plan detectó un argumento débil antes de escribir</td><td>Dos pasadas de validación evitaron construir contra un objetivo vago</td></tr>
+        <tr><td>El brief es tu brújula</td><td>Plan Brief actualizado a mitad de construcción para mantenerse honesto</td><td>Bloqueador de condición de carrera documentado, no resuelto silenciosamente</td></tr>
+        <tr><td>La IA ejecuta. El humano decide.</td><td>En cada compuerta: el humano leyó el resultado y tomó la decisión</td><td>En cada compuerta: el humano leyó el resultado y tomó la decisión</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   </div>
 
 </DocsLayout>

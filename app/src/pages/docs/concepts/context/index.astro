@@ -3,66 +3,136 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Keeping context" currentPath="/docs/concepts/context/">
 
-  <div class="page-header">
-    <span class="page-eyebrow">Concepts</span>
-    <h1>Keeping context</h1>
-    <p class="page-desc">Why context loss is a primary failure mode in multi-step work — and concrete practices for carrying it forward.</p>
+  <div class="lang-en">
+
+    <div class="page-header">
+      <span class="page-eyebrow">Concepts</span>
+      <h1>Keeping context</h1>
+      <p class="page-desc">Why context loss is a primary failure mode in multi-step work — and concrete practices for carrying it forward.</p>
+    </div>
+
+    <h2>Why context degrades</h2>
+    <p>Every phase and gate in solveOS produces learning. That learning only has value if it travels into the next step — explicitly, in writing.</p>
+    <p>The problem isn't bad intentions or poor execution. It's <strong>silent drift</strong>: how projects fail not from bad execution but from losing the original goal. At some point during Build, the work stopped connecting to the brief — not because anyone decided to change direction, but because the context that held it together was never explicitly carried forward.</p>
+    <p>This matters everywhere in solveOS, but it is <em>critical</em> when working with AI. AI has no memory between sessions. If you do not carry the context forward — decisions made, directions cut, constraints discovered, things that didn't work — the next session starts from zero. The cycle degrades.</p>
+
+    <h2>What context actually means at each transition</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Transition</th><th>What to carry forward</th><th>What happens without it</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plan → Build</td>
+            <td>The Plan Brief (goal, constraints, success criteria, rabbit holes, out of scope)</td>
+            <td class="td-warn">AI makes silent assumptions; the builder drifts from the goal</td>
+          </tr>
+          <tr>
+            <td>Build → Build Validation</td>
+            <td>What was built, what changed from the plan, what was deferred</td>
+            <td class="td-warn">Validation checks the wrong thing; scope drift goes undetected</td>
+          </tr>
+          <tr>
+            <td>Build Validation → Ship</td>
+            <td>Known issues and their decisions (fix now / defer / accept)</td>
+            <td class="td-warn">Deferred items are forgotten, not fed into the next cycle</td>
+          </tr>
+          <tr>
+            <td>Ship → Review → Plan</td>
+            <td>What worked, what didn't, what was discovered, what assumptions were wrong</td>
+            <td class="td-warn">Each cycle starts from scratch; the same mistakes repeat</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Practical practices</h2>
+    <ol>
+      <li><strong>Update the Plan Brief in writing when Build reveals new information.</strong> Don't silently change course. When the goal, constraints, or success criteria change, write it down before continuing.</li>
+      <li><strong>When handing off to AI: include the Plan Brief + reference files + a note on what changed since last session.</strong> Never assume the AI retained context from a previous conversation.</li>
+      <li><strong>After every gate: write a one-paragraph summary of what was decided and why, before proceeding.</strong> This creates a trail that the next phase can follow.</li>
+      <li><strong>At Review: write the Feed Forward section before starting the next Plan.</strong> The Feed Forward section is the context input for the next Plan — it is not optional for teams that want to improve.</li>
+    </ol>
+
+    <h2>The reference files concept</h2>
+    <div class="callout">
+      <p><strong>Reference files are critical for AI-assisted work.</strong> When AI is building, it needs two inputs: the Plan Brief (what to build) and reference files (the space to build within). A strong Plan Brief without reference files produces well-intentioned but uninformed work. Reference files without a clear Plan Brief produce directionless work. Both are needed.</p>
+    </div>
+    <p>Reference files are not the problem description. They are the working environment: existing code, documentation, API specs, style guides, design files — anything that gives AI the information it needs to produce correct output.</p>
+    <p>Each phase document includes specific guidance on where AI adds the most value and where human judgment must lead. Context carrying is the mechanism that makes multi-session AI collaboration work.</p>
+
+    <div class="nav-card-group" style="margin-top:2rem;">
+      <a href="/docs/phases/plan/" class="nav-card">Plan phase — writing the brief <span>→</span></a>
+      <a href="/docs/phases/build/" class="nav-card">Build phase — updating the brief <span>→</span></a>
+    </div>
+
   </div>
 
-  <h2>Why context degrades</h2>
-  <p>Every phase and gate in solveOS produces learning. That learning only has value if it travels into the next step — explicitly, in writing.</p>
-  <p>The problem isn't bad intentions or poor execution. It's <strong>silent drift</strong>: how projects fail not from bad execution but from losing the original goal. At some point during Build, the work stopped connecting to the brief — not because anyone decided to change direction, but because the context that held it together was never explicitly carried forward.</p>
-  <p>This matters everywhere in solveOS, but it is <em>critical</em> when working with AI. AI has no memory between sessions. If you do not carry the context forward — decisions made, directions cut, constraints discovered, things that didn't work — the next session starts from zero. The cycle degrades.</p>
+  <div class="lang-es">
 
-  <h2>What context actually means at each transition</h2>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Transition</th><th>What to carry forward</th><th>What happens without it</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Plan → Build</td>
-          <td>The Plan Brief (goal, constraints, success criteria, rabbit holes, out of scope)</td>
-          <td class="td-warn">AI makes silent assumptions; the builder drifts from the goal</td>
-        </tr>
-        <tr>
-          <td>Build → Build Validation</td>
-          <td>What was built, what changed from the plan, what was deferred</td>
-          <td class="td-warn">Validation checks the wrong thing; scope drift goes undetected</td>
-        </tr>
-        <tr>
-          <td>Build Validation → Ship</td>
-          <td>Known issues and their decisions (fix now / defer / accept)</td>
-          <td class="td-warn">Deferred items are forgotten, not fed into the next cycle</td>
-        </tr>
-        <tr>
-          <td>Ship → Review → Plan</td>
-          <td>What worked, what didn't, what was discovered, what assumptions were wrong</td>
-          <td class="td-warn">Each cycle starts from scratch; the same mistakes repeat</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="page-header">
+      <span class="page-eyebrow">Conceptos</span>
+      <h1>Mantener el contexto</h1>
+      <p class="page-desc">Por qué la pérdida de contexto es un modo de fracaso principal en el trabajo de múltiples pasos — y prácticas concretas para trasladarlo hacia adelante.</p>
+    </div>
 
-  <h2>Practical practices</h2>
-  <ol>
-    <li><strong>Update the Plan Brief in writing when Build reveals new information.</strong> Don't silently change course. When the goal, constraints, or success criteria change, write it down before continuing.</li>
-    <li><strong>When handing off to AI: include the Plan Brief + reference files + a note on what changed since last session.</strong> Never assume the AI retained context from a previous conversation.</li>
-    <li><strong>After every gate: write a one-paragraph summary of what was decided and why, before proceeding.</strong> This creates a trail that the next phase can follow.</li>
-    <li><strong>At Review: write the Feed Forward section before starting the next Plan.</strong> The Feed Forward section is the context input for the next Plan — it is not optional for teams that want to improve.</li>
-  </ol>
+    <h2>Por qué se degrada el contexto</h2>
+    <p>Cada fase y gate en solveOS produce aprendizaje. Ese aprendizaje solo tiene valor si se traslada al siguiente paso — de forma explícita, por escrito.</p>
+    <p>El problema no es la mala intención ni la ejecución deficiente. Es la <strong>deriva silenciosa</strong>: cómo fracasan los proyectos no por mala ejecución sino por perder el objetivo original. En algún punto durante el Build, el trabajo dejó de conectarse con el brief — no porque alguien decidiera cambiar de dirección, sino porque el contexto que lo mantenía unido nunca se trasladó explícitamente hacia adelante.</p>
+    <p>Esto importa en todas partes en solveOS, pero es <em>crítico</em> al trabajar con IA. La IA no tiene memoria entre sesiones. Si no trasladas el contexto hacia adelante — decisiones tomadas, direcciones descartadas, restricciones descubiertas, cosas que no funcionaron — la siguiente sesión comienza desde cero. El ciclo se degrada.</p>
 
-  <h2>The reference files concept</h2>
-  <div class="callout">
-    <p><strong>Reference files are critical for AI-assisted work.</strong> When AI is building, it needs two inputs: the Plan Brief (what to build) and reference files (the space to build within). A strong Plan Brief without reference files produces well-intentioned but uninformed work. Reference files without a clear Plan Brief produce directionless work. Both are needed.</p>
-  </div>
-  <p>Reference files are not the problem description. They are the working environment: existing code, documentation, API specs, style guides, design files — anything that gives AI the information it needs to produce correct output.</p>
-  <p>Each phase document includes specific guidance on where AI adds the most value and where human judgment must lead. Context carrying is the mechanism that makes multi-session AI collaboration work.</p>
+    <h2>Qué significa el contexto en cada transición</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Transición</th><th>Qué trasladar</th><th>Qué ocurre sin ello</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plan → Build</td>
+            <td>El Plan Brief (objetivo, restricciones, criterios de éxito, pozos sin fondo, fuera de alcance)</td>
+            <td class="td-warn">La IA hace suposiciones silenciosas; el constructor se desvía del objetivo</td>
+          </tr>
+          <tr>
+            <td>Build → Build Validation</td>
+            <td>Qué se construyó, qué cambió del plan, qué se difirió</td>
+            <td class="td-warn">La validación verifica lo incorrecto; la deriva de alcance pasa desapercibida</td>
+          </tr>
+          <tr>
+            <td>Build Validation → Ship</td>
+            <td>Problemas conocidos y sus decisiones (corregir ahora / diferir / aceptar)</td>
+            <td class="td-warn">Los elementos diferidos se olvidan, no se incorporan al siguiente ciclo</td>
+          </tr>
+          <tr>
+            <td>Ship → Review → Plan</td>
+            <td>Qué funcionó, qué no, qué se descubrió, qué supuestos estaban equivocados</td>
+            <td class="td-warn">Cada ciclo comienza desde cero; los mismos errores se repiten</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div class="nav-card-group" style="margin-top:2rem;">
-    <a href="/docs/phases/plan/" class="nav-card">Plan phase — writing the brief <span>→</span></a>
-    <a href="/docs/phases/build/" class="nav-card">Build phase — updating the brief <span>→</span></a>
+    <h2>Prácticas concretas</h2>
+    <ol>
+      <li><strong>Actualiza el Plan Brief por escrito cuando el Build revela información nueva.</strong> No cambies de rumbo en silencio. Cuando el objetivo, las restricciones o los criterios de éxito cambien, escríbelo antes de continuar.</li>
+      <li><strong>Al entregar a la IA: incluye el Plan Brief + archivos de referencia + una nota sobre qué cambió desde la última sesión.</strong> Nunca asumas que la IA retuvo el contexto de una conversación anterior.</li>
+      <li><strong>Después de cada gate: escribe un resumen de un párrafo sobre qué se decidió y por qué, antes de proceder.</strong> Esto crea un rastro que la siguiente fase puede seguir.</li>
+      <li><strong>En Review: escribe la sección Feed Forward antes de iniciar el siguiente Plan.</strong> La sección Feed Forward es el insumo de contexto para el siguiente Plan — no es opcional para los equipos que quieren mejorar.</li>
+    </ol>
+
+    <h2>El concepto de archivos de referencia</h2>
+    <div class="callout">
+      <p><strong>Los archivos de referencia son críticos para el trabajo asistido por IA.</strong> Cuando la IA construye, necesita dos insumos: el Plan Brief (qué construir) y los archivos de referencia (el espacio dentro del cual construir). Un Plan Brief sólido sin archivos de referencia produce trabajo bien intencionado pero desinformado. Los archivos de referencia sin un Plan Brief claro producen trabajo sin dirección. Ambos son necesarios.</p>
+    </div>
+    <p>Los archivos de referencia no son la descripción del problema. Son el entorno de trabajo: código existente, documentación, especificaciones de API, guías de estilo, archivos de diseño — cualquier cosa que dé a la IA la información que necesita para producir el resultado correcto.</p>
+    <p>Cada documento de fase incluye orientación específica sobre dónde la IA agrega más valor y dónde el juicio humano debe liderar. El traslado de contexto es el mecanismo que hace funcionar la colaboración con IA en múltiples sesiones.</p>
+
+    <div class="nav-card-group" style="margin-top:2rem;">
+      <a href="/docs/phases/plan/" class="nav-card">Fase Plan — escribir el brief <span>→</span></a>
+      <a href="/docs/phases/build/" class="nav-card">Fase Build — actualizar el brief <span>→</span></a>
+    </div>
+
   </div>
 
 </DocsLayout>

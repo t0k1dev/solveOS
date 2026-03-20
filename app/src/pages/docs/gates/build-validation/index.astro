@@ -3,6 +3,8 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Gate: Build Validation" currentPath="/docs/gates/build-validation/">
 
+  <div class="lang-en">
+
   <div class="page-header">
     <span class="page-eyebrow">Gate</span>
     <h1>Build Validation</h1>
@@ -139,5 +141,148 @@ What edge cases should I test before shipping?</code></pre>
     <li>Plan Brief updated to reflect final scope and known deferred items</li>
     <li>Decision to proceed to Review (or return to Build) is explicit</li>
   </ul>
+
+  </div>
+
+  <div class="lang-es">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Compuerta</span>
+    <h1>Validación de la Construcción</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Posición</p>
+      <p class="gate-meta-value">Durante o después de Construir, antes de Lanzar</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Propósito</p>
+      <p class="gate-meta-value">Verificar que el resultado funciona correctamente y satisface los criterios de éxito antes de salir en vivo</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Cuándo usar</p>
+      <p class="gate-meta-value">Construcciones complejas, resultados de alto riesgo, antes de cualquier lanzamiento público</p>
+    </div>
+  </div>
+
+  <h2>¿Qué es la Validación de la Construcción?</h2>
+  <p>La Validación de la Construcción es una <strong>verificación técnica y funcional</strong>. Responde: ¿lo que construiste realmente funciona, y coincide con lo que el Plan Brief solicitaba?</p>
+  <p>Esto es distinto de la <a href="/docs/gates/plan-validation/">Validación del Plan</a>, que verifica si el plan es sólido. La Validación de la Construcción verifica si la ejecución es sólida.</p>
+  <p>También es distinta de la <a href="/docs/gates/review/">Revisión</a>, que verifica si el resultado sirve al objetivo original de forma integral y si la audiencia realmente lo encontraría valioso. La Validación de la Construcción es sobre corrección. La Revisión es sobre juicio.</p>
+
+  <div class="code-wrap">
+    <pre><code>Build → Build Validation → [Review] → Ship
+             │
+             ↓ if issues found
+           Back to Build</code></pre>
+  </div>
+
+  <h2>Las tres preguntas de validación de la construcción</h2>
+  <ol>
+    <li style="margin-bottom:0.75rem;"><strong>¿Funciona?</strong> ¿El resultado funciona como se pretendía, sin fallas críticas?</li>
+    <li style="margin-bottom:0.75rem;"><strong>¿Coincide con el plan?</strong> ¿El resultado satisface los criterios de éxito del Plan Brief?</li>
+    <li style="margin-bottom:0.75rem;"><strong>¿Es lo suficientemente estable para lanzar?</strong> ¿Los problemas restantes son conocidos, acotados y aceptables?</li>
+  </ol>
+
+  <h2>Cómo ejecutar la Validación de la Construcción</h2>
+
+  <h3>Verificación funcional</h3>
+  <p>Prueba o revisa el resultado contra cada criterio de éxito del Plan Brief:</p>
+  <ul>
+    <li>Para cada criterio: <strong>pasa</strong>, <strong>falla</strong>, o <strong>parcial</strong></li>
+    <li>Una <strong>falla</strong> significa que el criterio no se cumple — corrige antes de lanzar o descártalo explícitamente</li>
+    <li>Un <strong>parcial</strong> significa que el criterio se cumple parcialmente — decide: corregir, descartar, o aceptar con limitaciones conocidas</li>
+    <li>Documenta cualquier limitación aceptada como problemas conocidos para el próximo ciclo</li>
+  </ul>
+
+  <h3>Verificación de alcance</h3>
+  <p>Compara lo que se construyó con lo que se planeó:</p>
+  <ul>
+    <li>Anota cualquier cosa agregada fuera del alcance original (puede estar bien, pero debe ser explícita)</li>
+    <li>Anota cualquier cosa cortada del alcance (debe documentarse para el próximo ciclo, no descartarse silenciosamente)</li>
+  </ul>
+
+  <h3>Verificación de estabilidad</h3>
+  <ul>
+    <li>¿El resultado es lo suficientemente estable para ponerlo frente a su audiencia prevista?</li>
+    <li>¿Hay modos de falla conocidos? ¿Están acotados y tienen bajo impacto?</li>
+    <li>¿Sería difícil revertir una falla crítica aquí? Si es así, valida más rigurosamente.</li>
+  </ul>
+
+  <h2>Resultado de la Validación de la Construcción</h2>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Build Validation
+
+**Reviewed by:** [Name, "Self", or "AI-assisted"]
+**Date:** [Date]
+
+**Functional check**
+| Success Criterion | Status | Notes |
+|------------------|--------|-------|
+| [Criterion 1] | Pass / Fail / Partial | [How tested, what found] |
+| [Criterion 2] | Pass / Fail / Partial | [How tested, what found] |
+| [Criterion 3] | Pass / Fail / Partial | [How tested, what found] |
+
+**Scope drift**
+- Added (outside original scope): [List or "None"]
+- Cut (from original scope, deferred): [List or "None"]
+
+**Known issues**
+- [Issue 1 — severity, decision: fix now / defer / accept]
+- [Issue 2 — severity, decision: fix now / defer / accept]
+
+**Decision:**
+- [ ] Ready to proceed to Review
+- [ ] Needs fixes — return to Build
+- [ ] Needs re-plan — return to Plan</code></pre>
+  </div>
+
+  <h2>Usar IA en la Validación de la Construcción</h2>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Donde la IA ayuda</h4>
+      <ul>
+        <li>Revisar el resultado contra los criterios de éxito de forma sistemática</li>
+        <li>Generar casos de prueba para casos extremos que podrías haber pasado por alto</li>
+        <li>Identificar desvíos de alcance comparando la descripción del resultado con el Plan Brief</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Donde el juicio humano debe liderar</h4>
+      <ul>
+        <li>Decidir si un resultado parcial es aceptable</li>
+        <li>Decidir qué fallas corregir ahora vs. diferir</li>
+        <li>Evaluar si el resultado es lo suficientemente estable para proceder</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>Here is my Plan Brief: [paste brief]
+Here is what I built: [describe or paste output]
+
+For each success criterion in the brief:
+- Does the output satisfy it? (pass / fail / partial)
+- What evidence supports that assessment?
+
+What is missing or inconsistent between the plan and the output?
+What edge cases should I test before shipping?</code></pre>
+  </div>
+
+  <h2>Lista de verificación de Validación de la Construcción</h2>
+  <ul class="checklist">
+    <li>Cada criterio de éxito probado o revisado contra el resultado real</li>
+    <li>Todas las fallas abordadas o explícitamente diferidas con justificación</li>
+    <li>El desvío de alcance (adiciones y cortes) documentado</li>
+    <li>No quedan bloqueadores críticos para lanzar</li>
+    <li>Plan Brief actualizado para reflejar el alcance final y los elementos diferidos conocidos</li>
+    <li>La decisión de proceder a Revisión (o volver a Construir) es explícita</li>
+  </ul>
+
+  </div>
 
 </DocsLayout>

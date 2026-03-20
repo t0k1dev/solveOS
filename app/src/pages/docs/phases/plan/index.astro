@@ -3,35 +3,37 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Phase 1: Plan" currentPath="/docs/phases/plan/">
 
-  <div class="page-header">
-    <span class="page-eyebrow">Phase 1</span>
-    <h1>Plan</h1>
-    <p class="page-desc">Define what you are solving, why it matters, and what success looks like — before writing a single line of code, prose, or design.</p>
-  </div>
+  <div class="lang-en">
 
-  <h2>What is the Plan phase?</h2>
-  <p>Planning is not about producing a perfect roadmap. It is about achieving <strong>clarity</strong> — enough clarity to start building with confidence and to recognize when you are drifting.</p>
-  <p>The Plan phase follows the <a href="/docs/concepts/diverge-converge/">diverge → converge</a> pattern. It starts by opening up: exploring the problem, questioning assumptions, considering who is affected and why. It ends by closing down: committing to one specific goal, one audience, one set of success criteria. Both halves matter. Starting with convergence produces plans that solve the wrong problem. Never converging produces analysis without action.</p>
+    <div class="page-header">
+      <span class="page-eyebrow">Phase 1</span>
+      <h1>Plan</h1>
+      <p class="page-desc">Define what you are solving, why it matters, and what success looks like — before writing a single line of code, prose, or design.</p>
+    </div>
 
-  <p>A good plan answers these questions:</p>
-  <ol>
-    <li><strong>What is the problem?</strong> — What is actually broken, missing, or needed?</li>
-    <li><strong>Who is this for?</strong> — Who experiences this problem? Who will use or read what you build?</li>
-    <li><strong>What is the goal?</strong> — What does a successful outcome look like, specifically?</li>
-    <li><strong>What is the appetite?</strong> — How much are you willing to invest in this? This is a conscious bet, not an estimate. Scope is variable within it.</li>
-    <li><strong>What are the constraints?</strong> — Skills, dependencies, non-negotiables beyond the appetite.</li>
-    <li><strong>What is the success criteria?</strong> — How will you know, objectively, that this is done?</li>
-    <li><strong>What is the core assumption?</strong> — What must be true for this plan to work? If this turns out to be false, the plan fails.</li>
-    <li><strong>What are the rabbit holes?</strong> — What unknowns could drag the build into territory you don't want to explore in this cycle?</li>
-  </ol>
+    <h2>What is the Plan phase?</h2>
+    <p>Planning is not about producing a perfect roadmap. It is about achieving <strong>clarity</strong> — enough clarity to start building with confidence and to recognize when you are drifting.</p>
+    <p>The Plan phase follows the <a href="/docs/concepts/diverge-converge/">diverge → converge</a> pattern. It starts by opening up: exploring the problem, questioning assumptions, considering who is affected and why. It ends by closing down: committing to one specific goal, one audience, one set of success criteria. Both halves matter. Starting with convergence produces plans that solve the wrong problem. Never converging produces analysis without action.</p>
 
-  <h2>The Plan Brief</h2>
-  <p>The output of the Plan phase is a <strong>Plan Brief</strong> — a short, written document that captures the answers above. It doesn't need to be long. It needs to be clear.</p>
-  <p>The Plan Brief is also the instruction set you hand to an AI agent when Build begins. Every ambiguity in it becomes a guess in the output. Write it so that someone (or something) who didn't write it could execute it and produce the same result.</p>
+    <p>A good plan answers these questions:</p>
+    <ol>
+      <li><strong>What is the problem?</strong> — What is actually broken, missing, or needed?</li>
+      <li><strong>Who is this for?</strong> — Who experiences this problem? Who will use or read what you build?</li>
+      <li><strong>What is the goal?</strong> — What does a successful outcome look like, specifically?</li>
+      <li><strong>What is the appetite?</strong> — How much are you willing to invest in this? This is a conscious bet, not an estimate. Scope is variable within it.</li>
+      <li><strong>What are the constraints?</strong> — Skills, dependencies, non-negotiables beyond the appetite.</li>
+      <li><strong>What is the success criteria?</strong> — How will you know, objectively, that this is done?</li>
+      <li><strong>What is the core assumption?</strong> — What must be true for this plan to work? If this turns out to be false, the plan fails.</li>
+      <li><strong>What are the rabbit holes?</strong> — What unknowns could drag the build into territory you don't want to explore in this cycle?</li>
+    </ol>
 
-  <div class="code-wrap">
-    <button class="copy-btn">Copy</button>
-    <pre><code>## Plan Brief
+    <h2>The Plan Brief</h2>
+    <p>The output of the Plan phase is a <strong>Plan Brief</strong> — a short, written document that captures the answers above. It doesn't need to be long. It needs to be clear.</p>
+    <p>The Plan Brief is also the instruction set you hand to an AI agent when Build begins. Every ambiguity in it becomes a guess in the output. Write it so that someone (or something) who didn't write it could execute it and produce the same result.</p>
+
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>## Plan Brief
 
 **Problem**
 [One or two sentences. What is broken, missing, or needed? Be specific.]
@@ -65,95 +67,254 @@ Example: "Do not investigate why the legacy endpoint is slow — that is a separ
 
 **Out of scope**
 [Explicitly list what you are NOT solving. This prevents scope creep.]</code></pre>
-  </div>
+    </div>
 
-  <h2>Common mistakes in the Plan phase</h2>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr><th>Mistake</th><th>Why it fails</th><th>Fix</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="td-warn">Writing a goal that starts with "improve" or "better"</td><td>Not measurable, not falsifiable</td><td>Rewrite with a specific outcome: "Reduce load time from 4s to under 1s"</td></tr>
-        <tr><td class="td-warn">Skipping appetite</td><td>You'll keep expanding scope until you're exhausted or late</td><td>State how much you're willing to invest upfront. Then scope to fit it.</td></tr>
-        <tr><td class="td-warn">Skipping constraints</td><td>You'll discover them mid-build and lose momentum</td><td>List every known constraint upfront, even obvious ones</td></tr>
-        <tr><td class="td-warn">Conflating problem with solution</td><td>"We need a dashboard" is a solution, not a problem</td><td>Dig to the actual need: "Users can't track their usage at a glance"</td></tr>
-        <tr><td class="td-warn">Not defining out of scope</td><td>Every undefined boundary becomes a potential scope expansion</td><td>Be explicit about what this effort does NOT address</td></tr>
-        <tr><td class="td-warn">Skipping the audience</td><td>The solution will be shaped by who it is for — a beginner and an expert need different things</td><td>Name the specific person or group this is built for</td></tr>
-        <tr><td class="td-warn">Not naming the core assumption</td><td>The plan looks solid but rests on an unexamined belief that might be wrong</td><td>Write down what you're betting on. It makes the post-ship review honest.</td></tr>
-        <tr><td class="td-warn">Not naming rabbit holes</td><td>The build goes down a rabbit hole that could have been flagged upfront</td><td>Name the unknowns you're choosing not to explore in this cycle</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <h2>Common mistakes in the Plan phase</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Mistake</th><th>Why it fails</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-warn">Writing a goal that starts with "improve" or "better"</td><td>Not measurable, not falsifiable</td><td>Rewrite with a specific outcome: "Reduce load time from 4s to under 1s"</td></tr>
+          <tr><td class="td-warn">Skipping appetite</td><td>You'll keep expanding scope until you're exhausted or late</td><td>State how much you're willing to invest upfront. Then scope to fit it.</td></tr>
+          <tr><td class="td-warn">Skipping constraints</td><td>You'll discover them mid-build and lose momentum</td><td>List every known constraint upfront, even obvious ones</td></tr>
+          <tr><td class="td-warn">Conflating problem with solution</td><td>"We need a dashboard" is a solution, not a problem</td><td>Dig to the actual need: "Users can't track their usage at a glance"</td></tr>
+          <tr><td class="td-warn">Not defining out of scope</td><td>Every undefined boundary becomes a potential scope expansion</td><td>Be explicit about what this effort does NOT address</td></tr>
+          <tr><td class="td-warn">Skipping the audience</td><td>The solution will be shaped by who it is for — a beginner and an expert need different things</td><td>Name the specific person or group this is built for</td></tr>
+          <tr><td class="td-warn">Not naming the core assumption</td><td>The plan looks solid but rests on an unexamined belief that might be wrong</td><td>Write down what you're betting on. It makes the post-ship review honest.</td></tr>
+          <tr><td class="td-warn">Not naming rabbit holes</td><td>The build goes down a rabbit hole that could have been flagged upfront</td><td>Name the unknowns you're choosing not to explore in this cycle</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-  <h2>When is the Plan phase done?</h2>
-  <p>The Plan phase is done when you can hand your Plan Brief to someone else and they can understand:</p>
-  <ul>
-    <li>What you are solving</li>
-    <li>Who it is for</li>
-    <li>What you are building</li>
-    <li>What done looks like</li>
-  </ul>
-  <p>If they have to ask clarifying questions about any of these, the plan is not ready.</p>
-
-  <h2>Optional gates from Plan</h2>
-  <div class="callout">
-    <p>Before moving to Build, consider using a gate if:</p>
-    <ul style="margin-top:0.5rem;margin-left:1.2rem;">
-      <li>The problem space is <strong>unfamiliar</strong> → use <a href="/docs/gates/research/">Research</a> first</li>
-      <li>The plan has <strong>high cost to change</strong> once started → use <a href="/docs/gates/plan-validation/">Plan Validation</a></li>
-      <li>The plan involves <strong>multiple people</strong> → use Plan Validation to align before execution</li>
+    <h2>When is the Plan phase done?</h2>
+    <p>The Plan phase is done when you can hand your Plan Brief to someone else and they can understand:</p>
+    <ul>
+      <li>What you are solving</li>
+      <li>Who it is for</li>
+      <li>What you are building</li>
+      <li>What done looks like</li>
     </ul>
-  </div>
+    <p>If they have to ask clarifying questions about any of these, the plan is not ready.</p>
 
-  <h2>Using AI in the Plan phase</h2>
-  <p>AI is a useful thinking partner in Plan — but the goal must remain yours. A vague brief produces vague output from a human and from an AI agent. A precise brief makes AI dramatically more effective.</p>
-
-  <div class="two-col">
-    <div class="two-col-card">
-      <h4>Where AI helps</h4>
-      <ul>
-        <li>Challenging your problem statement</li>
-        <li>Helping you define the audience more precisely</li>
-        <li>Surfacing constraints you might have missed</li>
-        <li>Rewriting vague goals into specific, measurable ones</li>
-        <li>Generating alternative framings of the same problem</li>
+    <h2>Optional gates from Plan</h2>
+    <div class="callout">
+      <p>Before moving to Build, consider using a gate if:</p>
+      <ul style="margin-top:0.5rem;margin-left:1.2rem;">
+        <li>The problem space is <strong>unfamiliar</strong> → use <a href="/docs/gates/research/">Research</a> first</li>
+        <li>The plan has <strong>high cost to change</strong> once started → use <a href="/docs/gates/plan-validation/">Plan Validation</a></li>
+        <li>The plan involves <strong>multiple people</strong> → use Plan Validation to align before execution</li>
       </ul>
     </div>
-    <div class="two-col-card">
-      <h4>Where human judgment must lead</h4>
-      <ul>
-        <li>Deciding what problem is worth solving</li>
-        <li>Setting success criteria that reflect real value</li>
-        <li>Determining what is out of scope</li>
-        <li>Owning the plan brief as a commitment</li>
-      </ul>
-    </div>
-  </div>
 
-  <p><strong>Prompt to try:</strong></p>
-  <div class="code-wrap">
-    <button class="copy-btn">Copy</button>
-    <pre><code>Here is my plan brief: [paste brief]
+    <h2>Using AI in the Plan phase</h2>
+    <p>AI is a useful thinking partner in Plan — but the goal must remain yours. A vague brief produces vague output from a human and from an AI agent. A precise brief makes AI dramatically more effective.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <h4>Where AI helps</h4>
+        <ul>
+          <li>Challenging your problem statement</li>
+          <li>Helping you define the audience more precisely</li>
+          <li>Surfacing constraints you might have missed</li>
+          <li>Rewriting vague goals into specific, measurable ones</li>
+          <li>Generating alternative framings of the same problem</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <h4>Where human judgment must lead</h4>
+        <ul>
+          <li>Deciding what problem is worth solving</li>
+          <li>Setting success criteria that reflect real value</li>
+          <li>Determining what is out of scope</li>
+          <li>Owning the plan brief as a commitment</li>
+        </ul>
+      </div>
+    </div>
+
+    <p><strong>Prompt to try:</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>Here is my plan brief: [paste brief]
 
 Challenge my problem statement. Is this the real problem or a symptom of something deeper?
 What constraints am I likely missing?
 Are my success criteria measurable and falsifiable?
 Would an AI agent be able to execute this brief without asking clarifying questions?</code></pre>
+    </div>
+
+    <h2>Exit checklist</h2>
+    <ul class="checklist">
+      <li>Problem is stated in one or two sentences without a solution embedded in it</li>
+      <li>Audience is named — a specific person or group, not "everyone"</li>
+      <li>Goal starts with a specific verb and describes a concrete outcome</li>
+      <li>Appetite is stated — a conscious investment decision, not a guess</li>
+      <li>Constraints are listed beyond the appetite</li>
+      <li>Success criteria are measurable and checkable</li>
+      <li>Core assumption is named — what this plan is betting on</li>
+      <li>Rabbit holes are named — unknowns explicitly set aside for this cycle</li>
+      <li>Out of scope is explicitly defined</li>
+      <li>Someone else (or an AI agent) could read this brief and execute it without asking questions</li>
+    </ul>
+
   </div>
 
-  <h2>Exit checklist</h2>
-  <ul class="checklist">
-    <li>Problem is stated in one or two sentences without a solution embedded in it</li>
-    <li>Audience is named — a specific person or group, not "everyone"</li>
-    <li>Goal starts with a specific verb and describes a concrete outcome</li>
-    <li>Appetite is stated — a conscious investment decision, not a guess</li>
-    <li>Constraints are listed beyond the appetite</li>
-    <li>Success criteria are measurable and checkable</li>
-    <li>Core assumption is named — what this plan is betting on</li>
-    <li>Rabbit holes are named — unknowns explicitly set aside for this cycle</li>
-    <li>Out of scope is explicitly defined</li>
-    <li>Someone else (or an AI agent) could read this brief and execute it without asking questions</li>
-  </ul>
+  <div class="lang-es">
+
+    <div class="page-header">
+      <span class="page-eyebrow">Fase 1</span>
+      <h1>Plan</h1>
+      <p class="page-desc">Define qué estás resolviendo, por qué importa y cómo se ve el éxito — antes de escribir una sola línea de código, texto o diseño.</p>
+    </div>
+
+    <h2>¿Qué es la fase Plan?</h2>
+    <p>Planificar no se trata de producir un mapa de ruta perfecto. Se trata de lograr <strong>claridad</strong> — suficiente claridad para comenzar a construir con confianza y para reconocer cuándo te estás desviando.</p>
+    <p>La fase Plan sigue el patrón <a href="/docs/concepts/diverge-converge/">divergir → converger</a>. Comienza abriéndose: explorando el problema, cuestionando supuestos, considerando quién se ve afectado y por qué. Termina cerrándose: comprometerse con un objetivo específico, una audiencia, un conjunto de criterios de éxito. Ambas mitades importan. Comenzar con convergencia produce planes que resuelven el problema incorrecto. No converger nunca produce análisis sin acción.</p>
+
+    <p>Un buen plan responde estas preguntas:</p>
+    <ol>
+      <li><strong>¿Cuál es el problema?</strong> — ¿Qué está roto, qué falta o qué se necesita?</li>
+      <li><strong>¿Para quién es?</strong> — ¿Quién experimenta este problema? ¿Quién usará o leerá lo que construyas?</li>
+      <li><strong>¿Cuál es el objetivo?</strong> — ¿Cómo se ve un resultado exitoso, específicamente?</li>
+      <li><strong>¿Cuál es el apetito?</strong> — ¿Cuánto estás dispuesto a invertir? Es una apuesta consciente, no una estimación. El alcance es variable dentro de ella.</li>
+      <li><strong>¿Cuáles son las restricciones?</strong> — Habilidades, dependencias, elementos no negociables más allá del apetito.</li>
+      <li><strong>¿Cuáles son los criterios de éxito?</strong> — ¿Cómo sabrás, objetivamente, que esto está terminado?</li>
+      <li><strong>¿Cuál es el supuesto central?</strong> — ¿Qué debe ser verdad para que este plan funcione? Si esto resulta falso, el plan falla.</li>
+      <li><strong>¿Cuáles son los pozos sin fondo?</strong> — ¿Qué incógnitas podrían arrastrar el build hacia territorio que no quieres explorar en este ciclo?</li>
+    </ol>
+
+    <h2>El Plan Brief</h2>
+    <p>El resultado de la fase Plan es un <strong>Plan Brief</strong> — un documento escrito breve que captura las respuestas anteriores. No necesita ser largo. Necesita ser claro.</p>
+    <p>El Plan Brief también es el conjunto de instrucciones que entregas a un agente de IA cuando comienza el Build. Cada ambigüedad en él se convierte en una suposición en el resultado. Escríbelo de modo que alguien (o algo) que no lo escribió pueda ejecutarlo y producir el mismo resultado.</p>
+
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>## Plan Brief
+
+**Problema**
+[Una o dos oraciones. ¿Qué está roto, qué falta o qué se necesita? Sé específico.]
+
+**Audiencia**
+[¿Quién experimenta este problema? ¿Quién usará, leerá o interactuará con lo que construyas?]
+
+**Objetivo**
+[Una oración. ¿Cómo se ve el éxito? Comienza con un verbo: "Construir", "Escribir", "Corregir", "Definir".]
+
+**Apetito**
+[¿Cuánto estás dispuesto a invertir en este ciclo? Es una apuesta, no una estimación. El alcance debe caber dentro.
+Ejemplo: "Una semana de trabajo enfocado. Si no puede hacerse en ese tiempo, reducimos el alcance — no extendemos el tiempo."]
+
+**Restricciones**
+- [Restricción 1 — ej. sin nuevas dependencias]
+- [Restricción 2 — ej. debe funcionar en móvil]
+
+**Criterios de éxito**
+- [ ] [Criterio medible 1]
+- [ ] [Criterio medible 2]
+- [ ] [Criterio medible 3]
+
+**Supuesto central**
+[¿Qué debe ser verdad para que este plan funcione? Si esto resulta falso, el plan falla.
+Ejemplo: "Los usuarios abandonan por el tiempo de carga, no por falta de funcionalidades."]
+
+**Pozos sin fondo**
+[¿Qué incógnitas podrían arrastrar el build hacia territorio que no quieres explorar en este ciclo? Nómbralos para que no se exploren.
+Ejemplo: "No investigar por qué el endpoint legacy es lento — eso es un sistema separado."]
+
+**Fuera de alcance**
+[Lista explícitamente lo que NO estás resolviendo. Esto previene la expansión del alcance.]</code></pre>
+    </div>
+
+    <h2>Errores comunes en la fase Plan</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Error</th><th>Por qué falla</th><th>Corrección</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-warn">Escribir un objetivo que comienza con "mejorar" o "mejor"</td><td>No es medible ni falsificable</td><td>Reescribir con un resultado específico: "Reducir el tiempo de carga de 4s a menos de 1s"</td></tr>
+          <tr><td class="td-warn">Saltarse el apetito</td><td>Seguirás expandiendo el alcance hasta agotarte o llegar tarde</td><td>Declara cuánto estás dispuesto a invertir por adelantado. Luego ajusta el alcance a eso.</td></tr>
+          <tr><td class="td-warn">Saltarse las restricciones</td><td>Las descubrirás a mitad del build y perderás impulso</td><td>Lista todas las restricciones conocidas por adelantado, incluso las obvias</td></tr>
+          <tr><td class="td-warn">Confundir problema con solución</td><td>"Necesitamos un dashboard" es una solución, no un problema</td><td>Llegar a la necesidad real: "Los usuarios no pueden ver su uso de un vistazo"</td></tr>
+          <tr><td class="td-warn">No definir fuera de alcance</td><td>Cada límite indefinido se convierte en una posible expansión del alcance</td><td>Sé explícito sobre lo que este esfuerzo NO aborda</td></tr>
+          <tr><td class="td-warn">Saltarse la audiencia</td><td>La solución estará moldeada por para quién es — un principiante y un experto necesitan cosas diferentes</td><td>Nombra la persona o grupo específico para quien se construye</td></tr>
+          <tr><td class="td-warn">No nombrar el supuesto central</td><td>El plan parece sólido pero descansa en una creencia no examinada que podría estar equivocada</td><td>Escribe en qué estás apostando. Hace que la revisión post-entrega sea honesta.</td></tr>
+          <tr><td class="td-warn">No nombrar los pozos sin fondo</td><td>El build cae en un pozo sin fondo que podría haberse señalado por adelantado</td><td>Nombra las incógnitas que decides no explorar en este ciclo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>¿Cuándo termina la fase Plan?</h2>
+    <p>La fase Plan termina cuando puedes entregar tu Plan Brief a otra persona y entienda:</p>
+    <ul>
+      <li>Qué estás resolviendo</li>
+      <li>Para quién es</li>
+      <li>Qué estás construyendo</li>
+      <li>Cómo se ve "terminado"</li>
+    </ul>
+    <p>Si tiene que hacer preguntas aclaratorias sobre cualquiera de estos puntos, el plan no está listo.</p>
+
+    <h2>Gates opcionales desde Plan</h2>
+    <div class="callout">
+      <p>Antes de pasar al Build, considera usar un gate si:</p>
+      <ul style="margin-top:0.5rem;margin-left:1.2rem;">
+        <li>El espacio del problema es <strong>desconocido</strong> → usa <a href="/docs/gates/research/">Research</a> primero</li>
+        <li>El plan tiene un <strong>alto costo de cambio</strong> una vez iniciado → usa <a href="/docs/gates/plan-validation/">Plan Validation</a></li>
+        <li>El plan involucra <strong>múltiples personas</strong> → usa Plan Validation para alinear antes de la ejecución</li>
+      </ul>
+    </div>
+
+    <h2>Usar IA en la fase Plan</h2>
+    <p>La IA es un compañero de pensamiento útil en Plan — pero el objetivo debe seguir siendo tuyo. Un brief vago produce resultados vagos de un humano y de un agente de IA. Un brief preciso hace a la IA dramáticamente más efectiva.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <h4>Dónde ayuda la IA</h4>
+        <ul>
+          <li>Cuestionar tu enunciado del problema</li>
+          <li>Ayudarte a definir la audiencia con más precisión</li>
+          <li>Descubrir restricciones que podrías haber omitido</li>
+          <li>Reescribir objetivos vagos en objetivos específicos y medibles</li>
+          <li>Generar encuadres alternativos del mismo problema</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <h4>Dónde debe liderar el juicio humano</h4>
+        <ul>
+          <li>Decidir qué problema vale la pena resolver</li>
+          <li>Establecer criterios de éxito que reflejen valor real</li>
+          <li>Determinar qué está fuera de alcance</li>
+          <li>Ser dueño del brief como un compromiso</li>
+        </ul>
+      </div>
+    </div>
+
+    <p><strong>Prompt para probar:</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>Aquí está mi plan brief: [pegar brief]
+
+Cuestiona mi enunciado del problema. ¿Es este el problema real o un síntoma de algo más profundo?
+¿Qué restricciones probablemente me estoy perdiendo?
+¿Mis criterios de éxito son medibles y falsificables?
+¿Podría un agente de IA ejecutar este brief sin hacer preguntas aclaratorias?</code></pre>
+    </div>
+
+    <h2>Lista de verificación de salida</h2>
+    <ul class="checklist">
+      <li>El problema está enunciado en una o dos oraciones sin una solución incluida</li>
+      <li>La audiencia está nombrada — una persona o grupo específico, no "todos"</li>
+      <li>El objetivo comienza con un verbo específico y describe un resultado concreto</li>
+      <li>El apetito está declarado — una decisión de inversión consciente, no una suposición</li>
+      <li>Las restricciones están listadas más allá del apetito</li>
+      <li>Los criterios de éxito son medibles y verificables</li>
+      <li>El supuesto central está nombrado — en qué está apostando este plan</li>
+      <li>Los pozos sin fondo están nombrados — incógnitas explícitamente dejadas de lado para este ciclo</li>
+      <li>El fuera de alcance está definido explícitamente</li>
+      <li>Alguien más (o un agente de IA) podría leer este brief y ejecutarlo sin hacer preguntas</li>
+    </ul>
+
+  </div>
 
 </DocsLayout>

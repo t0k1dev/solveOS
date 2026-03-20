@@ -3,6 +3,8 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Example: Building a Software Feature" currentPath="/docs/examples/feature/">
 
+  <div class="lang-en">
+
   <div class="page-header">
     <span class="page-eyebrow">Example</span>
     <h1>Building a Software Feature</h1>
@@ -329,5 +331,338 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
     <pre><code>[Research] → Plan → [Plan Validation ×2] → Build → [Build Validation] → [Review pre-ship] → Ship → [Review post-ship]</code></pre>
   </div>
   <p>Each arrow is a human decision: read the output, judge it, decide what comes next.</p>
+
+  </div>
+
+  <div class="lang-es">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Ejemplo</span>
+    <h1>Construir una Funcionalidad de Software</h1>
+    <p class="page-desc">Una corrección de rendimiento backend — desde una queja hasta una mejora lanzada y medición post-lanzamiento.</p>
+  </div>
+
+  <p><strong>Escenario:</strong> Los usuarios se quejan de que el panel de análisis en tu aplicación web tarda 8–12 segundos en cargar. Algunos han cancelado. Tu PM lo ha escalado. Necesitas corregirlo.</p>
+
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation ×2] → Build
+  → [Build Validation] → [Review pre-ship] → Ship
+  → [Review post-ship]</code></pre>
+  </div>
+
+  <div class="callout">
+    <p><strong>Cómo leer este ejemplo</strong></p>
+    <p>Cada paso muestra qué se le dio a un agente como instrucción, qué devolvió el agente como resultado, y qué decidió el humano basándose en ese resultado. El agente puede ser tú, un colaborador, o una IA — la estructura es la misma en cualquier caso. Las compuertas son donde el humano lee el resultado y decide si proceder. Esa decisión nunca se omite.</p>
+  </div>
+
+  <h2>Paso 1: Compuerta de Investigación</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>¿Qué está causando realmente que el panel de análisis cargue en 8–12 segundos? ¿Cuál es el alcance del problema? Dedica no más de 30 minutos.</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ul>
+      <li>El panel hace 4 consultas de base de datos separadas al cargar, cada una realizando un escaneo completo de la tabla <code>events</code> (&gt;2M filas para algunas cuentas)</li>
+      <li>Sin índices en las columnas <code>account_id</code> + <code>created_at</code> — cada consulta escanea la tabla completa</li>
+      <li>Las consultas son secuenciales, no concurrentes — cada una espera a que la anterior se complete</li>
+      <li>El rango de 8–12s se correlaciona con el tamaño de la cuenta: cuentas pequeñas (&lt; 10k eventos) cargan en ~1s; cuentas grandes (&gt; 500k eventos) cargan en 10–14s</li>
+      <li>Una consulta obtiene una columna <code>raw_payload</code> que nunca se muestra en la UI — resto de una funcionalidad antigua</li>
+      <li>Causa raíz: índices faltantes + consultas secuenciales + una columna no utilizada que se obtiene</li>
+      <li>Agregar índices solo probablemente reduciría el tiempo de carga un 60–70% para cuentas grandes</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>La causa está entendida. La corrección es solo backend — no se necesita diseño ni trabajo de frontend. Suficiente para escribir un Plan Brief. Proceder a Planificar.</p>
+  </div>
+
+  <h2>Paso 2: Fase de Planificar</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Usando los hallazgos de la investigación, escribe un Plan Brief para corregir el tiempo de carga del panel de análisis.</p>
+    <p><strong>Archivos de referencia:</strong> Hallazgos de investigación del Paso 1</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+
+    <p><strong>Plan Brief</strong></p>
+
+    <p><strong>Problema</strong><br>
+    El panel de análisis carga en 8–12 segundos para cuentas con grandes volúmenes de eventos (&gt; 100k eventos), causando frustración del usuario y cancelaciones. Causa raíz: índices de base de datos faltantes, consultas secuenciales y una columna no utilizada que se obtiene en cada carga.</p>
+
+    <p><strong>Audiencia</strong><br>
+    Equipo de ingeniería interno (implementando la corrección) y las ~200 cuentas con &gt; 100k eventos que experimentan la lentitud.</p>
+
+    <p><strong>Objetivo</strong><br>
+    Corregir el tiempo de carga del panel de análisis a menos de 2 segundos para todos los tamaños de cuenta.</p>
+
+    <p><strong>Apetito</strong><br>
+    Un ingeniero, una semana. Si la corrección no puede completarse en ese tiempo, reducir el alcance — no extender el tiempo.</p>
+
+    <p><strong>Restricciones</strong></p>
+    <ul>
+      <li>Corrección solo de backend — sin cambios de diseño o frontend en este ciclo</li>
+      <li>No debe romper la funcionalidad existente del panel</li>
+      <li>Necesita una migración de base de datos (índices) — debe ser segura para ejecutar en producción sin tiempo de inactividad</li>
+      <li>Lanzamiento por fases: desplegar al 10% de las cuentas primero, monitorear durante 24 horas antes del lanzamiento completo</li>
+    </ul>
+
+    <p><strong>Criterios de éxito</strong></p>
+    <ul>
+      <li>El panel carga en menos de 2 segundos para cuentas con &gt; 100k eventos</li>
+      <li>El panel carga en menos de 1 segundo para cuentas con &lt; 10k eventos</li>
+      <li>Las cuatro consultas del panel están cubiertas por índices</li>
+      <li>La columna <code>raw_payload</code> no utilizada se elimina de la consulta</li>
+      <li>No fallan pruebas existentes del panel</li>
+    </ul>
+
+    <p><strong>Suposición central</strong><br>
+    El problema de tiempo de carga es causado por índices faltantes y consultas secuenciales — no por un problema fundamental de arquitectura que requeriría una reescritura mayor.</p>
+
+    <p><strong>Trampas a evitar</strong><br>
+    No investigar por qué el endpoint heredado es lento — ese es un sistema separado. No explorar una capa de caché — fuera del alcance para este ciclo.</p>
+
+    <p><strong>Fuera de alcance</strong></p>
+    <ul>
+      <li>Capa de caché (puede ser una mejora futura)</li>
+      <li>Estados de carga de frontend o pantallas de esqueleto</li>
+      <li>Rediseño del panel</li>
+      <li>Mejoras de rendimiento a cualquier otra parte de la aplicación</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>El brief es sólido pero "menos de 2 segundos" es vago — ¿2 segundos medidos cómo? ¿Bajo qué carga? Los criterios de éxito necesitan percentiles. Además: no se menciona ningún plan de reversión para la migración. Llevar esto a Validación del Plan antes de construir.</p>
+  </div>
+
+  <h2>Paso 3: Compuerta de Validación del Plan — Pasada 1</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Revisa este Plan Brief. ¿El problema está correctamente planteado? ¿El plan es factible? ¿Es lo suficientemente específico para construir a partir de él sin hacer preguntas de aclaración?</p>
+    <p><strong>Archivos de referencia:</strong> Plan Brief del Paso 2</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ul>
+      <li><strong>¿El problema está correctamente planteado?</strong> Parcialmente. El problema dice "menos de 2 segundos" pero eso es vago — ¿2 segundos para quién? ¿En qué hardware? ¿Bajo qué carga? Los criterios de éxito necesitan un percentil (ej., tiempo de carga P95).</li>
+      <li><strong>¿El plan es factible?</strong> Sí, dados los hallazgos de la investigación. Los cambios están bien delimitados y la causa está entendida.</li>
+      <li><strong>¿Es lo suficientemente específico para construir a partir de él?</strong> No. "Menos de 2 segundos" sin un percentil no es medible de una manera que considere los valores atípicos. Una sola solicitud lenta podría fallar el criterio. Además: el plan de reversión de la migración no está declarado — debería ser explícito.</li>
+    </ul>
+    <p><strong>Brechas identificadas:</strong></p>
+    <ul>
+      <li>Los criterios de éxito usan tiempos absolutos sin percentiles — no medibles de forma confiable</li>
+      <li>Sin plan de reversión para la migración de base de datos</li>
+      <li>Sin línea base declarada — ¿con qué se está comparando?</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>Las brechas son reales y reparables. Actualizar el Plan Brief y ejecutar una segunda pasada — la migración involucra producción y el costo de una suposición incorrecta aquí es alto.</p>
+    <p><strong>Cambios realizados al Plan Brief:</strong></p>
+    <ul>
+      <li>Criterios de éxito actualizados a P95: <em>"El panel carga en menos de 2 segundos (P95) para cuentas con &gt; 100k eventos, medido en producción"</em></li>
+      <li>Agregado: <em>"La migración incluye un script de reversión, probado en staging antes de producción"</em></li>
+      <li>Línea base agregada: el P95 actual es 9.2s para cuentas grandes, 1.0s para cuentas pequeñas</li>
+    </ul>
+  </div>
+
+  <h2>Paso 4: Compuerta de Validación del Plan — Pasada 2</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Lee el Plan Brief actualizado. Dime: ¿qué se está construyendo, cómo se ve el resultado final, y qué harías primero?</p>
+    <p><strong>Archivos de referencia:</strong> Plan Brief actualizado del Paso 3</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ul>
+      <li>"Estás agregando índices a la tabla de eventos en <code>account_id</code> y <code>created_at</code>, ejecutando las consultas del panel de forma concurrente, y eliminando <code>raw_payload</code> del select. Listo significa tiempo de carga P95 bajo 2s para cuentas grandes, confirmado en producción."</li>
+      <li>"Agregaría los índices primero, mediría la mejora, luego abordaría las consultas concurrentes."</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>El entendimiento del agente coincide exactamente. Dos personas (o agentes) leyendo este brief tomarían la misma primera decisión. Listo para Construir.</p>
+  </div>
+
+  <h2>Paso 5: Fase de Construir</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Ejecuta el Plan Brief. Construye la corrección en este orden: (1) agregar índices, (2) eliminar <code>raw_payload</code>, (3) refactorizar consultas para ejecutarse de forma concurrente, (4) medir P95 en staging, (5) escribir y probar el script de reversión.</p>
+    <p><strong>Archivos de referencia:</strong> Plan Brief actualizado, <code>analytics/queries.js</code>, <code>db/schema.sql</code>, <code>tests/dashboard.test.js</code>, credenciales del entorno de staging</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ol>
+      <li>Migración agregada: índice <code>events(account_id, created_at)</code>. Probado en staging con <code>EXPLAIN ANALYZE</code> — escaneo de índice confirmado. El tiempo de carga en staging bajó de ~9s a ~3.5s para cuentas grandes.</li>
+      <li><code>raw_payload</code> eliminado del select — cambio de una línea. Bajó el tiempo de carga otros ~0.4s.</li>
+      <li>Consultas del panel refactorizadas para ejecutarse de forma concurrente usando <code>Promise.all</code>. Tiempo de carga en staging: ~1.1s para cuentas grandes, ~0.4s para cuentas pequeñas.</li>
+      <li>Mediciones P95 en staging: 1.1s para &gt; 100k eventos, 0.4s para &lt; 10k eventos. Ambas por debajo del objetivo. La línea base era 9.2s y 1.0s respectivamente.</li>
+      <li>Script de reversión escrito y probado — elimina los índices de forma segura sin pérdida de datos.</li>
+    </ol>
+    <p><strong>Bloqueador encontrado durante la Construcción:</strong> Una de las cuatro consultas tenía una dependencia de escritura en el resultado de otra — no eran verdaderamente independientes. La ejecución concurrente causó una condición de carrera en las pruebas. Se necesita reestructuración: ejecutar dos consultas de forma concurrente, luego una tercera de forma secuencial, luego la cuarta.</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana — verificación a mitad de construcción</p>
+    <p>La condición de carrera es real. La reestructuración es la decisión correcta — no rodear el problema. El resultado sigue estando bien dentro del objetivo (1.1s vs. el objetivo de 2s). Actualizar el Plan Brief para documentar esto como una limitación conocida, no un fracaso.</p>
+    <p><strong>Plan Brief actualizado:</strong> Agregado a Fuera de alcance: <em>"Las consultas 2 y 3 tienen una dependencia secuencial — no se pueden paralelizar completamente. Documentado para optimización futura."</em></p>
+    <p>Proceder a Validación de la Construcción.</p>
+  </div>
+
+  <h2>Paso 6: Compuerta de Validación de la Construcción</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Verifica el resultado contra cada criterio de éxito del Plan Brief. Señala cualquiera que no se cumpla.</p>
+    <p><strong>Archivos de referencia:</strong> Plan Brief actualizado, mediciones P95 de staging, resultado de <code>EXPLAIN ANALYZE</code>, resultados del conjunto de pruebas</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Criterio de éxito</th><th>Estado</th><th>Nota</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P95 &lt; 2s para cuentas &gt; 100k eventos</td><td>Pasa</td><td>P95 en staging: 1.1s. Probado contra 5 cuentas grandes.</td></tr>
+          <tr><td>P95 &lt; 1s para cuentas &lt; 10k eventos</td><td>Pasa</td><td>P95 en staging: 0.4s.</td></tr>
+          <tr><td>Las cuatro consultas cubiertas por índices</td><td>Pasa</td><td>Confirmado via <code>EXPLAIN ANALYZE</code> — todas usan escaneo de índice</td></tr>
+          <tr><td><code>raw_payload</code> eliminado de la consulta</td><td>Pasa</td><td>Verificado en revisión de código</td></tr>
+          <tr><td>No fallan pruebas existentes del panel</td><td>Pasa</td><td>Suite de pruebas completa en verde</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Ningún criterio falló. Limitación conocida: las consultas 2 y 3 no se pueden paralelizar completamente — documentado en Plan Brief. Severidad: baja (el objetivo se cumple sin ello).</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>Todos los criterios cumplidos. Sin regresiones. La limitación conocida está documentada y diferida. Proceder a la Revisión pre-lanzamiento.</p>
+  </div>
+
+  <h2>Paso 7: Compuerta de Revisión — pre-lanzamiento</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>¿Este resultado resuelve el problema planteado en el Plan Brief? ¿Los usuarios afectados notarían la mejora? ¿Cuál es la parte más débil de este resultado?</p>
+    <p><strong>Archivos de referencia:</strong> Plan Brief, resultados de Validación de la Construcción</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ul>
+      <li>El problema era un tiempo de carga de 8–12s que causaba cancelaciones. La corrección lo lleva a 1.1s P95 para las cuentas más afectadas — una mejora de 8x. El problema está resuelto.</li>
+      <li>Los usuarios que experimentan cargas de 10s experimentarán cargas de 1s después del lanzamiento. La mejora es lo suficientemente grande como para notarla sin necesidad de informar.</li>
+      <li>Parte más débil: el lanzamiento por fases significa que los usuarios de cuentas grandes obtendrán la corrección en diferentes momentos. Alguien que canceló la semana pasada no será retenido automáticamente.</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>La debilidad es real pero no es un problema con la corrección — es una propiedad del lanzamiento por fases, que existe para reducir el riesgo de producción. Aceptar. Listo para Lanzar.</p>
+  </div>
+
+  <h2>Paso 8: Fase de Lanzar</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>Despliega la migración al 10% de las cuentas de producción. Monitorea tasas de error, duraciones de consultas y tiempos de carga P95 durante 24 horas. Reporta.</p>
+    <p><strong>Archivos de referencia:</strong> Script de reversión, manual de despliegue, panel de monitoreo</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <ul>
+      <li>Migración desplegada al 10% de las cuentas de producción</li>
+      <li>Monitoreado durante 24 horas: sin errores, sin regresiones</li>
+      <li>P95 de producción para cuentas grandes: 0.9s (ligeramente mejor que staging)</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>La señal es clara. Sin regresiones. Lanzamiento completo aprobado.</p>
+    <p>Lanzamiento completo desplegado. Confirmado en vivo: abrió el panel como un usuario de cuenta grande — carga en menos de 1 segundo. Actualización interna publicada: <em>"Corrección de rendimiento del panel de análisis lanzada. Tiempo de carga P95 bajó de 9.2s a 0.9s para cuentas grandes."</em></p>
+  </div>
+
+  <h2>Paso 9: Compuerta de Revisión — post-lanzamiento</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instrucción dada al agente</p>
+    <p>10 días después del lanzamiento completo: mide los resultados reales de producción contra cada criterio de éxito. ¿Qué funcionó, qué no, y qué debería alimentar el próximo ciclo?</p>
+    <p><strong>Archivos de referencia:</strong> Datos de monitoreo de producción (ventana de 10 días), Plan Brief, notas de la Construcción</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Resultado del agente</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Criterio de éxito</th><th>Resultado</th><th>Evidencia</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P95 &lt; 2s para cuentas &gt; 100k eventos</td><td>Cumplido</td><td>P95 de producción: 0.9s (promedio de 10 días)</td></tr>
+          <tr><td>P95 &lt; 1s para cuentas &lt; 10k eventos</td><td>Cumplido</td><td>P95 de producción: 0.35s (promedio de 10 días)</td></tr>
+          <tr><td>Las cuatro consultas cubiertas por índices</td><td>Cumplido</td><td>Confirmado en los planes de explicación de consultas de producción</td></tr>
+          <tr><td><code>raw_payload</code> eliminado de la consulta</td><td>Cumplido</td><td>Sin selects de <code>raw_payload</code> en los logs de consultas de producción</td></tr>
+          <tr><td>No fallan pruebas existentes del panel</td><td>Cumplido</td><td>Sin nuevas fallas de pruebas o errores de producción en 10 días</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Lo que funcionó:</strong> Ejecutar Investigación antes de Planificar redirigió todo el enfoque — la alternativa obvia (una capa de caché) habría sido más compleja y no habría abordado la causa raíz (índices faltantes). El ciclo de Validación del Plan en dos pasadas detectó la vaguedad de "menos de 2 segundos" antes de que se volviera ambigua durante la Construcción.</p>
+    <p><strong>Lo que no funcionó:</strong> La dependencia de consultas (consultas 2 y 3) fue una sorpresa — la Investigación no la descubrió. Una revisión de código más profunda antes de planificar la habría detectado.</p>
+    <p><strong>Retroalimentación hacia adelante:</strong></p>
+    <ul>
+      <li>Las consultas 2 y 3 tienen una dependencia secuencial que merece un ciclo de investigación dedicado</li>
+      <li>La ventana de monitoreo de 24 horas se sintió larga — la señal fue clara dentro de las 2 horas. Podría reducirse a 4–6 horas para migraciones no destructivas de datos</li>
+      <li>Dos cuentas canceladas se reactivaron después de la corrección, citando la velocidad del panel en hilos de soporte</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Decisión humana</p>
+    <p>Los resultados superan el objetivo. El ciclo está completo. Alimentar los hallazgos sobre la dependencia de consultas y la ventana de monitoreo en el próximo Plan.</p>
+  </div>
+
+  <h2>Qué demuestra este ejemplo</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Principio</th><th>Dónde apareció</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Claridad antes de acción</td><td>La Investigación identificó la causa raíz antes de planificar. La Validación del Plan hizo los criterios de éxito medibles (P95, no "menos de 2 segundos").</td></tr>
+        <tr><td>Construir para aprender</td><td>La dependencia secuencial entre las consultas 2 y 3 solo apareció durante la Construcción — manejada y documentada sin descarrilar el ciclo.</td></tr>
+        <tr><td>La realidad es el único validador</td><td>Staging mostró 1.1s. Producción mostró 0.9s. El plan predijo mejora; solo lanzar produjo el número real.</td></tr>
+        <tr><td>Las compuertas reducen el costo, no el impulso</td><td>Dos pasadas de Validación del Plan agregaron ~2 horas. Evitaron construir contra un objetivo vago y aseguraron que la migración tuviera un camino de reversión.</td></tr>
+        <tr><td>El brief es tu brújula</td><td>Cuando se encontró la dependencia de consultas, el Plan Brief se actualizó para documentarla — no se aceptó silenciosamente.</td></tr>
+        <tr><td>La IA ejecuta. El humano decide.</td><td>En cada compuerta, el humano leyó el resultado y tomó la decisión — proceder, iterar o cortar. El bloqueador de la condición de carrera se descubrió y decidió a mitad de construcción, no se eludió.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>El ciclo completo de un vistazo</h2>
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation ×2] → Build → [Build Validation] → [Review pre-ship] → Ship → [Review post-ship]</code></pre>
+  </div>
+  <p>Cada flecha es una decisión humana: leer el resultado, juzgarlo, decidir qué viene después.</p>
+
+  </div>
 
 </DocsLayout>

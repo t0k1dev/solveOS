@@ -10,6 +10,10 @@ import Layout from '../layouts/Layout.astro';
       <a href="/" class="nav-logo">solveOS</a>
       <div class="nav-right">
         <a href="/docs/" class="nav-link">Docs</a>
+        <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language">
+          <span class="lang-label-en">ES</span>
+          <span class="lang-label-es">EN</span>
+        </button>
         <a href="https://github.com/t0k1dev/solveOS/tree/main" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub repository">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
         </a>
@@ -20,121 +24,230 @@ import Layout from '../layouts/Layout.astro';
   <!-- ── Section 1: Hero ──────────────────────────────── -->
   <section id="hero" class="hero">
     <div class="container hero-inner">
-      <p class="hero-eyebrow">Problem-solving framework</p>
-      <h1 class="hero-title">The first framework for humans and AI agents to solve problems together.</h1>
-      <p class="hero-sub">
-        Plan. Build. Ship. A repeatable structure that tells you what to do, in what order, and who is responsible for each decision — whether you're working alone, with a team, or with AI doing most of the execution.
-      </p>
-      <p class="hero-agnostic">
-        Works with any AI model. Applies to any type of problem — software, content, product, research, or anything else you build and ship.
-      </p>
+
+      <div class="lang-en">
+        <p class="hero-eyebrow">Problem-solving framework</p>
+        <h1 class="hero-title">The first framework for humans and AI agents to solve problems together.</h1>
+        <p class="hero-sub">
+          Plan. Build. Ship. A repeatable structure that tells you what to do, in what order, and who is responsible for each decision — whether you're working alone, with a team, or with AI doing most of the execution.
+        </p>
+        <p class="hero-agnostic">
+          Works with any AI model. Applies to any type of problem — software, content, product, research, or anything else you build and ship.
+        </p>
+      </div>
+
+      <div class="lang-es">
+        <p class="hero-eyebrow">Framework de resolución de problemas</p>
+        <h1 class="hero-title">El primer framework para que humanos y agentes de IA resuelvan problemas juntos.</h1>
+        <p class="hero-sub">
+          Planifica. Construye. Lanza. Una estructura repetible que te dice qué hacer, en qué orden y quién es responsable de cada decisión — ya sea que trabajes solo, en equipo o con IA ejecutando la mayor parte.
+        </p>
+        <p class="hero-agnostic">
+          Compatible con cualquier modelo de IA. Aplicable a cualquier tipo de problema — software, contenido, producto, investigación, o cualquier otra cosa que construyas y lances.
+        </p>
+      </div>
 
       <div class="loop-diagram">
         <div class="loop-main">
           <span class="loop-arrow-left">↻</span>
           <div class="loop-steps">
-            <span class="lph">Plan</span>
+            <span class="lph"><span class="lang-en">Plan</span><span class="lang-es">Planifica</span></span>
             <span class="lar">→</span>
-            <span class="lph">Build</span>
+            <span class="lph"><span class="lang-en">Build</span><span class="lang-es">Construye</span></span>
             <span class="lar">→</span>
-            <span class="lph">Ship</span>
+            <span class="lph"><span class="lang-en">Ship</span><span class="lang-es">Lanza</span></span>
             <span class="lar">→</span>
-            <span class="lgt">[Review]</span>
+            <span class="lgt">[<span class="lang-en">Review</span><span class="lang-es">Revisión</span>]</span>
             <span class="lar">→</span>
-            <span class="lph">Plan</span>
+            <span class="lph"><span class="lang-en">Plan</span><span class="lang-es">Planifica</span></span>
             <span class="lar">···</span>
           </div>
         </div>
         <div class="loop-labels">
-          <div class="loop-label"><span class="ll-name">Plan</span><span class="ll-desc">Define the problem and write the brief before touching anything</span></div>
-          <div class="loop-label"><span class="ll-name">Build</span><span class="ll-desc">Execute against the brief; update it when the build teaches you something</span></div>
-          <div class="loop-label"><span class="ll-name">Ship</span><span class="ll-desc">Put it in front of real people — not "ready to ship", shipped</span></div>
-          <div class="loop-label"><span class="ll-name ll-gate">[Review]</span><span class="ll-desc">Measure what happened; feed what you learned into the next cycle</span></div>
+          <div class="loop-label">
+            <span class="ll-name lang-en">Plan</span>
+            <span class="ll-name lang-es">Planifica</span>
+            <span class="ll-desc lang-en">Define the problem and write the brief before touching anything</span>
+            <span class="ll-desc lang-es">Define el problema y escribe el brief antes de tocar nada</span>
+          </div>
+          <div class="loop-label">
+            <span class="ll-name lang-en">Build</span>
+            <span class="ll-name lang-es">Construye</span>
+            <span class="ll-desc lang-en">Execute against the brief; update it when the build teaches you something</span>
+            <span class="ll-desc lang-es">Ejecuta según el brief; actualízalo cuando la construcción te enseñe algo</span>
+          </div>
+          <div class="loop-label">
+            <span class="ll-name lang-en">Ship</span>
+            <span class="ll-name lang-es">Lanza</span>
+            <span class="ll-desc lang-en">Put it in front of real people — not "ready to ship", shipped</span>
+            <span class="ll-desc lang-es">Ponlo frente a personas reales — no "listo para lanzar", lanzado</span>
+          </div>
+          <div class="loop-label">
+            <span class="ll-name ll-gate lang-en">[Review]</span>
+            <span class="ll-name ll-gate lang-es">[Revisión]</span>
+            <span class="ll-desc lang-en">Measure what happened; feed what you learned into the next cycle</span>
+            <span class="ll-desc lang-es">Mide lo que ocurrió; alimenta lo aprendido en el siguiente ciclo</span>
+          </div>
         </div>
       </div>
 
       <div class="hero-ctas">
-        <a href="/docs/" class="btn btn-primary">Read the docs</a>
-        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="btn btn-ghost" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="/docs/" class="btn btn-primary lang-en">Read the docs</a>
+        <a href="/docs/" class="btn btn-primary lang-es">Leer la documentación</a>
+        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="btn btn-ghost lang-en" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="btn btn-ghost lang-es" target="_blank" rel="noopener">Ver en GitHub</a>
       </div>
+
     </div>
   </section>
 
   <!-- ── Section 2: The problem ───────────────────────── -->
   <section id="why" class="alt">
     <div class="container">
-      <span class="label">Why solveOS</span>
-      <h2 class="section-title">Most people fail at solving things for the same four reasons.</h2>
-      <p class="section-sub">You have probably experienced at least one of these.</p>
 
-      <div class="grid-2 failure-grid">
-        <div class="failure-card">
-          <div class="failure-num">01</div>
-          <h3>They skip planning.</h3>
-          <p>They jump into execution without a clear goal and end up building the wrong thing. The work is real — the output isn't useful.</p>
+      <div class="lang-en">
+        <span class="label">Why solveOS</span>
+        <h2 class="section-title">Most people fail at solving things for the same four reasons.</h2>
+        <p class="section-sub">You have probably experienced at least one of these.</p>
+
+        <div class="grid-2 failure-grid">
+          <div class="failure-card">
+            <div class="failure-num">01</div>
+            <h3>They skip planning.</h3>
+            <p>They jump into execution without a clear goal and end up building the wrong thing. The work is real — the output isn't useful.</p>
+          </div>
+          <div class="failure-card">
+            <div class="failure-num">02</div>
+            <h3>They over-plan.</h3>
+            <p>They get stuck refining the plan and never ship anything real. Perfect plans that never touch the world produce nothing.</p>
+          </div>
+          <div class="failure-card">
+            <div class="failure-num">03</div>
+            <h3>They lose direction.</h3>
+            <p>The goal defined at the start gets distorted by the time execution ends. By the time it ships, nobody remembers what problem it was solving.</p>
+          </div>
+          <div class="failure-card">
+            <div class="failure-num">04</div>
+            <h3>They never measure.</h3>
+            <p>They ship something, move on, and never find out if it worked. The same mistakes repeat in the next cycle, invisibly.</p>
+          </div>
         </div>
-        <div class="failure-card">
-          <div class="failure-num">02</div>
-          <h3>They over-plan.</h3>
-          <p>They get stuck refining the plan and never ship anything real. Perfect plans that never touch the world produce nothing.</p>
-        </div>
-        <div class="failure-card">
-          <div class="failure-num">03</div>
-          <h3>They lose direction.</h3>
-          <p>The goal defined at the start gets distorted by the time execution ends. By the time it ships, nobody remembers what problem it was solving.</p>
-        </div>
-        <div class="failure-card">
-          <div class="failure-num">04</div>
-          <h3>They never measure.</h3>
-          <p>They ship something, move on, and never find out if it worked. The same mistakes repeat in the next cycle, invisibly.</p>
-        </div>
+
+        <p class="why-close">
+          Here's how the framework is structured.
+        </p>
       </div>
 
-      <p class="why-close">
-        Here's how the framework is structured.
-      </p>
+      <div class="lang-es">
+        <span class="label">Por qué solveOS</span>
+        <h2 class="section-title">La mayoría de las personas falla en resolver problemas por las mismas cuatro razones.</h2>
+        <p class="section-sub">Probablemente hayas experimentado al menos una de estas.</p>
+
+        <div class="grid-2 failure-grid">
+          <div class="failure-card">
+            <div class="failure-num">01</div>
+            <h3>Se saltan la planificación.</h3>
+            <p>Se lanzan a ejecutar sin un objetivo claro y terminan construyendo lo que no corresponde. El trabajo es real — el resultado no sirve.</p>
+          </div>
+          <div class="failure-card">
+            <div class="failure-num">02</div>
+            <h3>Planifican en exceso.</h3>
+            <p>Se quedan atascados refinando el plan y nunca lanzan nada real. Los planes perfectos que nunca tocan el mundo no producen nada.</p>
+          </div>
+          <div class="failure-card">
+            <div class="failure-num">03</div>
+            <h3>Pierden el rumbo.</h3>
+            <p>El objetivo definido al inicio se distorsiona cuando termina la ejecución. Al momento de lanzar, nadie recuerda qué problema se estaba resolviendo.</p>
+          </div>
+          <div class="failure-card">
+            <div class="failure-num">04</div>
+            <h3>Nunca miden.</h3>
+            <p>Lanzan algo, siguen adelante y nunca saben si funcionó. Los mismos errores se repiten en el siguiente ciclo, de forma invisible.</p>
+          </div>
+        </div>
+
+        <p class="why-close">
+          Así está estructurado el framework.
+        </p>
+      </div>
+
     </div>
   </section>
 
   <!-- ── Section 3: How it works ──────────────────────── -->
   <section id="phases">
     <div class="container">
-      <span class="label">The framework</span>
-      <h2 class="section-title">Three phases. Always in this order.</h2>
-      <p class="section-sub">You plan before you build. You build before you ship. The loop closes when you review.</p>
 
-      <div class="grid-3">
+      <div class="lang-en">
+        <span class="label">The framework</span>
+        <h2 class="section-title">Three phases. Always in this order.</h2>
+        <p class="section-sub">You plan before you build. You build before you ship. The loop closes when you review.</p>
 
-        <div class="phase-card card">
-          <div class="phase-number">01</div>
-          <h3>Plan</h3>
-          <p class="phase-desc">Define the problem, audience, goal, and success criteria before you build anything.</p>
-          <p class="phase-note">Output: a Plan Brief — the instruction set for the Build phase and the primary input for AI execution.</p>
-          <span class="card-link card-link-disabled">Plan phase <span class="cs-badge">coming soon</span></span>
+        <div class="grid-3">
+          <div class="phase-card card">
+            <div class="phase-number">01</div>
+            <h3>Plan</h3>
+            <p class="phase-desc">Define the problem, audience, goal, and success criteria before you build anything.</p>
+            <p class="phase-note">Output: a Plan Brief — the instruction set for the Build phase and the primary input for AI execution.</p>
+            <span class="card-link card-link-disabled">Plan phase <span class="cs-badge">coming soon</span></span>
+          </div>
+          <div class="phase-card card">
+            <div class="phase-number">02</div>
+            <h3>Build</h3>
+            <p class="phase-desc">Execute against the plan. Stay anchored. Update the brief when the build teaches you something.</p>
+            <p class="phase-note">Build is structured discovery. You will learn things that planning couldn't reveal — the brief is your anchor when you do.</p>
+            <span class="card-link card-link-disabled">Build phase <span class="cs-badge">coming soon</span></span>
+          </div>
+          <div class="phase-card card">
+            <div class="phase-number">03</div>
+            <h3>Ship</h3>
+            <p class="phase-desc">Put it in the world. In front of real people. Not "ready to ship" — shipped.</p>
+            <p class="phase-note">Until something ships, you are operating on assumptions. Reality is the only validator. Ship, then review.</p>
+            <span class="card-link card-link-disabled">Ship phase <span class="cs-badge">coming soon</span></span>
+          </div>
         </div>
 
-        <div class="phase-card card">
-          <div class="phase-number">02</div>
-          <h3>Build</h3>
-          <p class="phase-desc">Execute against the plan. Stay anchored. Update the brief when the build teaches you something.</p>
-          <p class="phase-note">Build is structured discovery. You will learn things that planning couldn't reveal — the brief is your anchor when you do.</p>
-          <span class="card-link card-link-disabled">Build phase <span class="cs-badge">coming soon</span></span>
+        <div class="gates-note">
+          Optional gates — [Research], [Plan Validation], [Build Validation], [Review] — sit between phases. Use them when the cost of being wrong is high. Skip them when it isn't.
+          <span class="card-link card-link-disabled">Gates overview <span class="cs-badge">coming soon</span></span>
         </div>
-
-        <div class="phase-card card">
-          <div class="phase-number">03</div>
-          <h3>Ship</h3>
-          <p class="phase-desc">Put it in the world. In front of real people. Not "ready to ship" — shipped.</p>
-          <p class="phase-note">Until something ships, you are operating on assumptions. Reality is the only validator. Ship, then review.</p>
-          <span class="card-link card-link-disabled">Ship phase <span class="cs-badge">coming soon</span></span>
-        </div>
-
       </div>
 
-      <div class="gates-note">
-        Optional gates — [Research], [Plan Validation], [Build Validation], [Review] — sit between phases. Use them when the cost of being wrong is high. Skip them when it isn't.
-        <span class="card-link card-link-disabled">Gates overview <span class="cs-badge">coming soon</span></span>
+      <div class="lang-es">
+        <span class="label">El framework</span>
+        <h2 class="section-title">Tres fases. Siempre en este orden.</h2>
+        <p class="section-sub">Planificas antes de construir. Construyes antes de lanzar. El ciclo se cierra cuando revisas.</p>
+
+        <div class="grid-3">
+          <div class="phase-card card">
+            <div class="phase-number">01</div>
+            <h3>Planifica</h3>
+            <p class="phase-desc">Define el problema, la audiencia, el objetivo y los criterios de éxito antes de construir nada.</p>
+            <p class="phase-note">Resultado: un Plan Brief — el conjunto de instrucciones para la fase de construcción y la entrada principal para la ejecución con IA.</p>
+            <span class="card-link card-link-disabled">Fase Plan <span class="cs-badge">próximamente</span></span>
+          </div>
+          <div class="phase-card card">
+            <div class="phase-number">02</div>
+            <h3>Construye</h3>
+            <p class="phase-desc">Ejecuta según el plan. Mantente enfocado. Actualiza el brief cuando la construcción te enseñe algo.</p>
+            <p class="phase-note">Construir es descubrimiento estructurado. Aprenderás cosas que la planificación no pudo revelar — el brief es tu ancla cuando eso ocurre.</p>
+            <span class="card-link card-link-disabled">Fase Build <span class="cs-badge">próximamente</span></span>
+          </div>
+          <div class="phase-card card">
+            <div class="phase-number">03</div>
+            <h3>Lanza</h3>
+            <p class="phase-desc">Ponlo en el mundo. Frente a personas reales. No "listo para lanzar" — lanzado.</p>
+            <p class="phase-note">Hasta que algo se lanza, operas sobre suposiciones. La realidad es el único validador. Lanza, luego revisa.</p>
+            <span class="card-link card-link-disabled">Fase Ship <span class="cs-badge">próximamente</span></span>
+          </div>
+        </div>
+
+        <div class="gates-note">
+          Gates opcionales — [Investigación], [Validación de Plan], [Validación de Build], [Revisión] — se ubican entre fases. Úsalos cuando el costo de equivocarse es alto. Saltéalos cuando no lo es.
+          <span class="card-link card-link-disabled">Resumen de gates <span class="cs-badge">próximamente</span></span>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -142,6 +255,8 @@ import Layout from '../layouts/Layout.astro';
   <section id="ai" class="ai-dark">
     <div class="container ai-outer">
       <div class="ai-text">
+
+        <div class="lang-en">
         <span class="label">AI-first design</span>
         <h2 class="section-title">AI executes. The human decides.</h2>
         <p class="ai-body">
@@ -155,88 +270,167 @@ import Layout from '../layouts/Layout.astro';
         </p>
         <span class="btn btn-outline btn-disabled">How AI fits into solveOS <span class="cs-badge">coming soon</span></span>
       </div>
+
+      <div class="lang-es">
+        <span class="label">Diseño centrado en IA</span>
+        <h2 class="section-title">La IA ejecuta. El humano decide.</h2>
+        <p class="ai-body">
+          La mayoría de los frameworks fueron diseñados antes de que la IA pudiera hacer trabajo real. solveOS está construido desde cero asumiendo que la IA puede ser responsable de la fase de construcción.
+        </p>
+        <p class="ai-body">
+          El Plan Brief es el producto principal del humano — un documento escrito lo suficientemente específico para que un agente de IA lo ejecute sin hacer preguntas de aclaración. En cada gate, el humano lee el resultado y toma la decisión: avanzar, iterar o cortar. La IA no decide qué se lanza. Esa decisión es siempre del humano.
+        </p>
+        <p class="ai-body">
+          La IA tampoco tiene memoria entre sesiones. solveOS trata el contexto como un artefacto de primera clase. Cada transición de fase requiere llevar hacia adelante lo aprendido — por escrito — para que la siguiente sesión no empiece desde cero.
+        </p>
+        <span class="btn btn-outline btn-disabled">Cómo encaja la IA en solveOS <span class="cs-badge">próximamente</span></span>
+      </div>
+
+      </div> <!-- /.ai-text -->
+
       <div class="ai-summary">
         <div class="ai-row">
-          <div class="ai-role-label">AI can</div>
+          <div class="ai-role-label lang-en">AI can</div>
+          <div class="ai-role-label lang-es">La IA puede</div>
           <ul class="ai-list">
-            <li>Challenge the problem statement and sharpen the plan</li>
-            <li>Produce code, text, designs, and other output given a clear brief</li>
-            <li>Check output against criteria and flag gaps</li>
-            <li>Summarize, measure, and surface patterns after Ship</li>
+            <li><span class="lang-en">Challenge the problem statement and sharpen the plan</span><span class="lang-es">Cuestionar el planteamiento del problema y afilar el plan</span></li>
+            <li><span class="lang-en">Produce code, text, designs, and other output given a clear brief</span><span class="lang-es">Producir código, texto, diseños y otro tipo de salidas con un brief claro</span></li>
+            <li><span class="lang-en">Check output against criteria and flag gaps</span><span class="lang-es">Verificar los resultados contra los criterios e identificar vacíos</span></li>
+            <li><span class="lang-en">Summarize, measure, and surface patterns after Ship</span><span class="lang-es">Resumir, medir y detectar patrones después de lanzar</span></li>
           </ul>
         </div>
         <div class="ai-divider"></div>
         <div class="ai-row">
-          <div class="ai-role-label ai-role-human">Human must</div>
+          <div class="ai-role-label ai-role-human lang-en">Human must</div>
+          <div class="ai-role-label ai-role-human lang-es">El humano debe</div>
           <ul class="ai-list">
-            <li>Own the goal and decide what success means</li>
-            <li>Commit to the plan — in writing</li>
-            <li>Recognize when output doesn't match the goal</li>
-            <li>Decide that this goes in front of real people</li>
-            <li>Decide what to learn and what to change next cycle</li>
+            <li><span class="lang-en">Own the goal and decide what success means</span><span class="lang-es">Ser dueño del objetivo y decidir qué significa el éxito</span></li>
+            <li><span class="lang-en">Commit to the plan — in writing</span><span class="lang-es">Comprometerse con el plan — por escrito</span></li>
+            <li><span class="lang-en">Recognize when output doesn't match the goal</span><span class="lang-es">Reconocer cuando el resultado no coincide con el objetivo</span></li>
+            <li><span class="lang-en">Decide that this goes in front of real people</span><span class="lang-es">Decidir que esto llega frente a personas reales</span></li>
+            <li><span class="lang-en">Decide what to learn and what to change next cycle</span><span class="lang-es">Decidir qué aprender y qué cambiar en el siguiente ciclo</span></li>
           </ul>
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- ── Section 5: The cycle ─────────────────────────── -->
   <section id="cycle">
     <div class="container">
-      <span class="label">The loop</span>
-      <h2 class="section-title">It's a cycle, not a line.</h2>
-      <p class="section-sub">
-        Without a loop before Build, you build the wrong thing. Without a loop after Ship, you repeat the same mistakes. These two loops close both gaps.
-      </p>
 
-      <div class="grid-2 cycle-grid">
-        <div class="cycle-item card">
-          <div class="cycle-num">Loop 1</div>
-          <h3>Refine before you build.</h3>
-          <div class="cycle-flow">
-            <span class="lph-sm">Plan</span>
-            <span class="lar-sm">→</span>
-            <span class="lgt-sm">[Plan Validation]</span>
-            <span class="lar-sm">→ gaps found →</span>
-            <span class="lph-sm">Plan</span>
-            <span class="lar-sm">···</span>
+      <div class="lang-en">
+        <span class="label">The loop</span>
+        <h2 class="section-title">It's a cycle, not a line.</h2>
+        <p class="section-sub">
+          Without a loop before Build, you build the wrong thing. Without a loop after Ship, you repeat the same mistakes. These two loops close both gaps.
+        </p>
+
+        <div class="grid-2 cycle-grid">
+          <div class="cycle-item card">
+            <div class="cycle-num">Loop 1</div>
+            <h3>Refine before you build.</h3>
+            <div class="cycle-flow">
+              <span class="lph-sm">Plan</span>
+              <span class="lar-sm">→</span>
+              <span class="lgt-sm">[Plan Validation]</span>
+              <span class="lar-sm">→ gaps found →</span>
+              <span class="lph-sm">Plan</span>
+              <span class="lar-sm">···</span>
+            </div>
+            <p>Plan Validation checks the plan before any build work begins. If gaps exist, you go back to Plan to sharpen it. The loop runs until the plan can be executed without guesswork — typically 1–3 passes. Fixing ambiguity before execution is cheaper than fixing it after.</p>
           </div>
-          <p>Plan Validation checks the plan before any build work begins. If gaps exist, you go back to Plan to sharpen it. The loop runs until the plan can be executed without guesswork — typically 1–3 passes. Fixing ambiguity before execution is cheaper than fixing it after.</p>
-        </div>
-        <div class="cycle-item card">
-          <div class="cycle-num">Loop 2</div>
-          <h3>Keep building after you ship.</h3>
-          <div class="cycle-flow">
-            <span class="lph-sm">Ship</span>
-            <span class="lar-sm">→</span>
-            <span class="lgt-sm">[Review]</span>
-            <span class="lar-sm">→</span>
-            <span class="lph-sm">Plan</span>
-            <span class="lar-sm">→</span>
-            <span class="lph-sm">···</span>
+          <div class="cycle-item card">
+            <div class="cycle-num">Loop 2</div>
+            <h3>Keep building after you ship.</h3>
+            <div class="cycle-flow">
+              <span class="lph-sm">Ship</span>
+              <span class="lar-sm">→</span>
+              <span class="lgt-sm">[Review]</span>
+              <span class="lar-sm">→</span>
+              <span class="lph-sm">Plan</span>
+              <span class="lar-sm">→</span>
+              <span class="lph-sm">···</span>
+            </div>
+            <p>Shipping is the beginning of knowing, not the end of the work. Review captures what worked, what didn't, and what you discovered — and feeds that directly into the next Plan. Every cycle starts smarter than the last.</p>
           </div>
-          <p>Shipping is the beginning of knowing, not the end of the work. Review captures what worked, what didn't, and what you discovered — and feeds that directly into the next Plan. Every cycle starts smarter than the last.</p>
         </div>
       </div>
+
+      <div class="lang-es">
+        <span class="label">El ciclo</span>
+        <h2 class="section-title">Es un ciclo, no una línea.</h2>
+        <p class="section-sub">
+          Sin un ciclo antes de construir, construyes lo equivocado. Sin un ciclo después de lanzar, repites los mismos errores. Estos dos ciclos cierran ambas brechas.
+        </p>
+
+        <div class="grid-2 cycle-grid">
+          <div class="cycle-item card">
+            <div class="cycle-num">Ciclo 1</div>
+            <h3>Refina antes de construir.</h3>
+            <div class="cycle-flow">
+              <span class="lph-sm">Planifica</span>
+              <span class="lar-sm">→</span>
+              <span class="lgt-sm">[Validación de Plan]</span>
+              <span class="lar-sm">→ vacíos encontrados →</span>
+              <span class="lph-sm">Planifica</span>
+              <span class="lar-sm">···</span>
+            </div>
+            <p>La Validación de Plan verifica el plan antes de que comience cualquier trabajo de construcción. Si existen vacíos, vuelves a Planificar para afinar el plan. El ciclo continúa hasta que el plan pueda ejecutarse sin suposiciones — típicamente 1–3 pasadas. Resolver la ambigüedad antes de ejecutar es más barato que hacerlo después.</p>
+          </div>
+          <div class="cycle-item card">
+            <div class="cycle-num">Ciclo 2</div>
+            <h3>Sigue construyendo después de lanzar.</h3>
+            <div class="cycle-flow">
+              <span class="lph-sm">Lanza</span>
+              <span class="lar-sm">→</span>
+              <span class="lgt-sm">[Revisión]</span>
+              <span class="lar-sm">→</span>
+              <span class="lph-sm">Planifica</span>
+              <span class="lar-sm">→</span>
+              <span class="lph-sm">···</span>
+            </div>
+            <p>Lanzar es el comienzo del conocimiento, no el fin del trabajo. La Revisión captura qué funcionó, qué no y qué descubriste — y eso se alimenta directamente en el siguiente Plan. Cada ciclo comienza más inteligente que el anterior.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ── Section 6: Notify ─────────────────────────────── -->
   <section id="notify" class="alt">
     <div class="container notify-inner">
-      <h2 class="notify-title">Get notified when docs and tools launch.</h2>
-      <p class="notify-sub">Docs, worked examples, Plan Brief templates, and the CLI — one email when they're ready.</p>
+      <h2 class="notify-title">
+        <span class="lang-en">Get notified when docs and tools launch.</span>
+        <span class="lang-es">Recibe una notificación cuando lancen los docs y las herramientas.</span>
+      </h2>
+      <p class="notify-sub">
+        <span class="lang-en">Docs, worked examples, Plan Brief templates, and the CLI — one email when they're ready.</span>
+        <span class="lang-es">Docs, ejemplos trabajados, plantillas de Plan Brief y el CLI — un solo email cuando estén listos.</span>
+      </p>
       <form class="notify-form" onsubmit="return false;">
         <input
           type="email"
           class="notify-input"
-          placeholder="your@email.com"
+          placeholder="tu@email.com"
           aria-label="Email address"
           disabled
         />
-        <button type="submit" class="btn btn-primary notify-btn btn-disabled" disabled>Notify me <span class="cs-badge cs-badge-inv">coming soon</span></button>
+        <button type="submit" class="btn btn-primary notify-btn btn-disabled" disabled>
+          <span class="lang-en">Notify me</span>
+          <span class="lang-es">Notifícame</span>
+          <span class="cs-badge cs-badge-inv">
+            <span class="lang-en">coming soon</span>
+            <span class="lang-es">próximamente</span>
+          </span>
+        </button>
       </form>
-      <p class="notify-note">Nothing ships until it's ready. That's the whole point.</p>
+      <p class="notify-note">
+        <span class="lang-en">Nothing ships until it's ready. That's the whole point.</span>
+        <span class="lang-es">Nada se lanza hasta que está listo. Ese es el punto.</span>
+      </p>
     </div>
   </section>
 
@@ -244,17 +438,36 @@ import Layout from '../layouts/Layout.astro';
   <footer>
     <div class="container footer-inner">
       <span class="footer-logo">solveOS</span>
-      <span class="footer-tagline">A living framework. It improves through use.</span>
+      <span class="footer-tagline">
+        <span class="lang-en">A living framework. It improves through use.</span>
+        <span class="lang-es">Un framework vivo. Mejora con el uso.</span>
+      </span>
       <span class="footer-credit">Built with ♥ by @tokidev_</span>
       <a href="https://github.com/t0k1dev/solveOS/tree/main" class="footer-github" target="_blank" rel="noopener" aria-label="GitHub repository">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
         GitHub
       </a>
-      <span class="footer-link footer-link-disabled">Full documentation <span class="cs-badge cs-badge-dark">coming soon</span></span>
+      <span class="footer-link footer-link-disabled">
+        <span class="lang-en">Full documentation</span>
+        <span class="lang-es">Documentación completa</span>
+        <span class="cs-badge cs-badge-dark">
+          <span class="lang-en">coming soon</span>
+          <span class="lang-es">próximamente</span>
+        </span>
+      </span>
     </div>
   </footer>
 
 </Layout>
+
+<script is:inline>
+  document.getElementById('lang-toggle')?.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-lang');
+    var next = current === 'es' ? 'en' : 'es';
+    document.documentElement.setAttribute('data-lang', next);
+    localStorage.setItem('docs-lang', next);
+  });
+</script>
 
 <style>
   /* ── Nav ─────────────────────────────── */
@@ -712,6 +925,25 @@ import Layout from '../layouts/Layout.astro';
     font-size: 0.825rem;
     color: rgba(255,255,255,.25);
     cursor: default;
+  }
+
+  /* ── Lang toggle ─────────────────────── */
+  .lang-toggle {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 4px;
+    color: rgba(255,255,255,.55);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.2em 0.55em;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    font-family: var(--font-sans);
+  }
+  .lang-toggle:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,.55);
   }
 
   /* ── Responsive ─────────────────────── */

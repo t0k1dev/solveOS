@@ -3,6 +3,8 @@ import DocsLayout from '../../../../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Gate: Research" currentPath="/docs/gates/research/">
 
+  <div class="lang-en">
+
   <div class="page-header">
     <span class="page-eyebrow">Gate</span>
     <h1>Research</h1>
@@ -182,5 +184,191 @@ What assumptions am I likely making that I should validate first?</code></pre>
     <li>Open questions are listed and assessed</li>
     <li>A clear decision to proceed to Plan (or do more targeted research) is made</li>
   </ul>
+
+  </div>
+
+  <div class="lang-es">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Compuerta</span>
+    <h1>Investigación</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Posición</p>
+      <p class="gate-meta-value">Antes o durante Planificar</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Propósito</p>
+      <p class="gate-meta-value">Entender el espacio del problema antes de comprometerse con una dirección</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Cuándo usar</p>
+      <p class="gate-meta-value">Cuando el problema es desconocido, el espacio de soluciones no está claro, o las suposiciones deben validarse antes de planificar</p>
+    </div>
+  </div>
+
+  <h2>¿Qué es la compuerta de Investigación?</h2>
+  <p>La Investigación es un punto de control previo a la planificación. Se usa cuando no tienes suficiente información para redactar un Plan Brief confiable — cuando corres el riesgo de planificar en la dirección equivocada porque aún no entiendes el espacio del problema.</p>
+  <p>La Investigación es acotada y con propósito. No es exploración abierta. Tiene una pregunta definida, un límite de tiempo y un resultado claro.</p>
+  <p><strong>La Investigación responde a la pregunta: "¿Entiendo lo suficiente para planificar?"</strong></p>
+
+  <h2>Cuándo usar la Investigación</h2>
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Usa Investigación cuando</h4>
+      <ul>
+        <li>Trabajas en un dominio en el que no has trabajado antes</li>
+        <li>Necesitas entender qué ya existe antes de decidir qué construir</li>
+        <li>Tu planteamiento del problema se basa en suposiciones que no has validado</li>
+        <li>Las restricciones son desconocidas y podrían cambiar significativamente el plan</li>
+        <li>Necesitas evaluar opciones antes de comprometerte con un enfoque</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>No uses Investigación cuando</h4>
+      <ul>
+        <li>Estás procrastinando bajo el pretexto de necesitar más información</li>
+        <li>Ya sabes suficiente para redactar un Plan Brief</li>
+        <li>El costo de estar ligeramente equivocado es bajo y corregible durante la construcción</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Cómo ejecutar una compuerta de Investigación</h2>
+
+  <div class="step-block">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Define la pregunta de investigación</h3>
+      <p>Antes de investigar cualquier cosa, escribe exactamente lo que necesitas saber. Una investigación vaga produce respuestas vagas.</p>
+      <p><strong>Buenas preguntas de investigación:</strong></p>
+      <ul>
+        <li>"¿Cuáles son las soluciones existentes a este problema y cuáles son sus limitaciones?"</li>
+        <li>"¿Cuáles son las restricciones técnicas de construir X en el entorno Y?"</li>
+        <li>"¿Alguien ha resuelto esto antes? ¿Qué enfoque tomaron?"</li>
+        <li>"¿Qué necesita realmente el usuario aquí, frente a lo que asumo que necesita?"</li>
+      </ul>
+      <p><strong>Malas preguntas de investigación:</strong></p>
+      <ul>
+        <li>"Aprender más sobre este tema"</li>
+        <li>"Ver qué hay disponible"</li>
+        <li>"Obtener una mejor comprensión"</li>
+      </ul>
+
+      <h3>1a. Usa los Cinco Por Qué para encontrar el problema real</h3>
+      <p>Si tu pregunta de investigación trata de diagnosticar un problema (no de evaluar opciones), usa los Cinco Por Qué antes de comenzar a investigar en general. Te impide investigar lo equivocado.</p>
+      <div class="code-wrap">
+        <pre><code>Síntoma: El panel de control carga lentamente.
+¿Por qué? → Las consultas tardan demasiado.
+¿Por qué? → La tabla no tiene índices.
+¿Por qué? → Nadie los agregó cuando se construyó la funcionalidad.
+¿Por qué? → La funcionalidad se construyó como prototipo y nunca se consolidó.
+¿Por qué? → No había una definición de "listo para producción" para esa funcionalidad.
+
+Causa raíz: Falta de estándares de ingeniería para promover prototipos a producción.</code></pre>
+      </div>
+      <p>Detente cuando llegues a una causa que sea accionable y específica. El objetivo es no investigar el síntoma. Investiga la causa raíz.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Establece un límite de tiempo</h3>
+      <p>La investigación sin límite de tiempo se convierte en evasión. Establece un límite específico antes de comenzar:</p>
+      <ul>
+        <li>Para decisiones pequeñas: 30–60 minutos</li>
+        <li>Para decisiones medianas: 2–4 horas</li>
+        <li>Para decisiones grandes: máximo 1–2 días</li>
+      </ul>
+      <p>Si no encontraste lo que necesitas dentro del límite de tiempo, necesitas reformular la pregunta o aceptar la incertidumbre y proceder a Planificar con suposiciones explícitas.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Documenta lo que encuentras</h3>
+      <p>Captura los hallazgos en un formato que pueda alimentar directamente el Plan Brief. No solo tomes notas — escribe conclusiones.</p>
+      <div class="code-wrap">
+        <button class="copy-btn">Copy</button>
+        <pre><code>## Research Summary
+
+**Question:** [The specific question you were answering]
+
+**Time spent:** [e.g. 2 hours]
+
+**Key findings:**
+- [Finding 1]
+- [Finding 2]
+- [Finding 3]
+
+**Conclusions:**
+- [What this means for the Plan]
+
+**Open questions / remaining unknowns:**
+- [What you still don't know, and whether it blocks planning]
+
+**Decision:**
+- [ ] I have enough information to write the Plan Brief
+- [ ] I need more research: [what specifically, and why]</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Sal de la Investigación</h3>
+      <p>Una vez que hayas respondido tu pregunta o alcanzado tu límite de tiempo, detente. Avanza a la fase de Planificar usando tus hallazgos como insumo.</p>
+    </div>
+  </div>
+
+  <h2>Usar IA en la compuerta de Investigación</h2>
+  <p>La IA es particularmente efectiva en la fase de Investigación cuando se usa como compañero de pensamiento y acelerador de información.</p>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Donde la IA ayuda</h4>
+      <ul>
+        <li>Resumen rápido de soluciones existentes y sus compromisos</li>
+        <li>Identificar casos extremos y antecedentes que quizás no habrías buscado</li>
+        <li>Cuestionar el enfoque de tu pregunta de investigación</li>
+        <li>Generar un desglose estructurado de un dominio desconocido</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Donde el juicio humano debe liderar</h4>
+      <ul>
+        <li>Evaluar la confiabilidad y relevancia de la información encontrada</li>
+        <li>Decidir cuándo sabes suficiente para avanzar</li>
+        <li>Interpretar los hallazgos en el contexto de tu situación específica</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>I'm about to plan [describe the problem or project].
+Before I write the plan, I need to understand [your research question].
+
+What do I need to know?
+What are the common approaches and their trade-offs?
+What assumptions am I likely making that I should validate first?</code></pre>
+  </div>
+
+  <h2>Lista de verificación de la compuerta de Investigación</h2>
+  <ul class="checklist">
+    <li>La pregunta de investigación es específica y está escrita antes de comenzar</li>
+    <li>El límite de tiempo está establecido antes de comenzar</li>
+    <li>Los hallazgos están documentados en el formato de Resumen de Investigación</li>
+    <li>Las conclusiones están escritas (no solo notas sin procesar)</li>
+    <li>Las preguntas abiertas están listadas y evaluadas</li>
+    <li>Se toma una decisión clara de proceder a Planificar (o hacer más investigación específica)</li>
+  </ul>
+
+  </div>
 
 </DocsLayout>

@@ -22,6 +22,18 @@ const { title, description = 'A problem-solving framework for builders and maker
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:creator" content="@tokidev_" />
+  <script is:inline>
+    (function() {
+      const stored = localStorage.getItem('docs-lang');
+      if (stored) {
+        document.documentElement.setAttribute('data-lang', stored);
+      } else if (navigator.language && navigator.language.startsWith('es')) {
+        document.documentElement.setAttribute('data-lang', 'es');
+      } else {
+        document.documentElement.setAttribute('data-lang', 'en');
+      }
+    })();
+  </script>
   </head>
   <body>
     <slot />
@@ -274,6 +286,13 @@ const { title, description = 'A problem-solving framework for builders and maker
     border-top: 1px solid var(--border);
     margin: 3rem 0;
   }
+
+  /* ─── Language toggle ────────────────────────────── */
+
+  [data-lang="en"] .lang-es  { display: none; }
+  [data-lang="es"] .lang-en  { display: none; }
+  [data-lang="en"] .lang-label-es { display: none; }
+  [data-lang="es"] .lang-label-en { display: none; }
 
   /* ─── Responsive ─────────────────────────────────── */
 
