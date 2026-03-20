@@ -1,0 +1,60 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Examples" currentPath="/docs/examples/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Examples</span>
+    <h1>Worked Examples</h1>
+    <p class="page-desc">Full solveOS cycles from start to finish. See the framework applied to real problems.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>How to read these examples</strong></p>
+    <p>Each step shows what was given to an agent as an instruction, what the agent returned as output, and what the human decided based on that output. The agent can be you, a collaborator, or an AI — the structure is the same either way. Gates are where the human reads the output and decides whether to proceed. That decision is never skipped.</p>
+  </div>
+
+  <h2>Choose an example</h2>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Write an Article</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.75rem;">A full writing cycle — from deciding on an angle to publishing a technical article.</p>
+      <div class="code-wrap" style="margin-bottom:0.75rem;">
+        <pre><code>Research → Plan → Plan Validation → Build → Ship</code></pre>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin:0 0 1rem;">A 5-step cycle. Shows how Research prevents planning in the wrong direction, and how Plan Validation sharpens the argument before writing begins.</p>
+      <a href="/docs/examples/article/" class="nav-card" style="margin:0;">Read the example <span>→</span></a>
+    </div>
+    <div class="two-col-card">
+      <h4>Build a Feature</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0 0 0.75rem;">A backend performance fix — from complaint to shipped improvement to post-ship measurement.</p>
+      <div class="code-wrap" style="margin-bottom:0.75rem;">
+        <pre><code>Research → Plan → Plan Validation ×2
+  → Build → Build Validation
+  → Review (pre-ship) → Ship
+  → Review (post-ship)</code></pre>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin:0 0 1rem;">A 9-step cycle. Shows two passes of Plan Validation, a mid-build blocker handled without derailing the cycle, and a full post-ship Review.</p>
+      <a href="/docs/examples/feature/" class="nav-card" style="margin:0;">Read the example <span>→</span></a>
+    </div>
+  </div>
+
+  <h2>What these examples demonstrate</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Principle</th><th>Write an Article</th><th>Build a Feature</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Clarity before action</td><td>Research gate prevented planning the wrong angle</td><td>Two-pass Plan Validation made success criteria measurable</td></tr>
+        <tr><td>Build to learn</td><td>3-question framework emerged during writing</td><td>Query dependency only surfaced during Build</td></tr>
+        <tr><td>Reality is the only validator</td><td>Only publishing would show if the argument landed</td><td>Staging showed 1.1s; production showed 0.9s</td></tr>
+        <tr><td>Gates reduce cost, not momentum</td><td>Plan Validation caught a weak argument before writing</td><td>Two validation passes prevented building against a vague target</td></tr>
+        <tr><td>The brief is your compass</td><td>Plan Brief updated mid-build to stay honest</td><td>Race condition blocker documented, not silently worked around</td></tr>
+        <tr><td>AI executes. Human decides.</td><td>Every gate: human read output and made the call</td><td>Every gate: human read output and made the call</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</DocsLayout>

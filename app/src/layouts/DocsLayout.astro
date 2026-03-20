@@ -1,0 +1,479 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  currentPath: string;
+}
+const { title, description = 'solveOS documentation — phases, gates, concepts, and worked examples.', currentPath } = Astro.props;
+
+const nav = [
+  { label: 'Introduction', href: '/docs/' },
+  {
+    group: 'Guide',
+    items: [
+      { label: 'Why solveOS', href: '/docs/guide/' },
+      { label: 'How to start', href: '/docs/guide/how-to-start/' },
+    ],
+  },
+  {
+    group: 'Concepts',
+    items: [
+      { label: 'Diverge and converge', href: '/docs/concepts/diverge-converge/' },
+      { label: 'Feedback loops', href: '/docs/concepts/feedback-loops/' },
+      { label: 'Keeping context', href: '/docs/concepts/context/' },
+    ],
+  },
+  {
+    group: 'Phases',
+    items: [
+      { label: 'Plan', href: '/docs/phases/plan/' },
+      { label: 'Build', href: '/docs/phases/build/' },
+      { label: 'Ship', href: '/docs/phases/ship/' },
+    ],
+  },
+  {
+    group: 'Gates',
+    items: [
+      { label: 'Research', href: '/docs/gates/research/' },
+      { label: 'Plan Validation', href: '/docs/gates/plan-validation/' },
+      { label: 'Build Validation', href: '/docs/gates/build-validation/' },
+      { label: 'Review', href: '/docs/gates/review/' },
+    ],
+  },
+  {
+    group: 'Examples',
+    items: [
+      { label: 'Examples overview', href: '/docs/examples/' },
+      { label: 'Write an article', href: '/docs/examples/article/' },
+      { label: 'Build a feature', href: '/docs/examples/feature/' },
+    ],
+  },
+];
+
+const readingOrder = [
+  '/docs/',
+  '/docs/guide/',
+  '/docs/guide/how-to-start/',
+  '/docs/concepts/diverge-converge/',
+  '/docs/concepts/feedback-loops/',
+  '/docs/concepts/context/',
+  '/docs/phases/plan/',
+  '/docs/phases/build/',
+  '/docs/phases/ship/',
+  '/docs/gates/research/',
+  '/docs/gates/plan-validation/',
+  '/docs/gates/build-validation/',
+  '/docs/gates/review/',
+  '/docs/examples/',
+  '/docs/examples/article/',
+  '/docs/examples/feature/',
+];
+
+const pageLabels: Record<string, string> = {
+  '/docs/': 'Introduction',
+  '/docs/guide/': 'Why solveOS',
+  '/docs/guide/how-to-start/': 'How to start',
+  '/docs/concepts/diverge-converge/': 'Diverge and converge',
+  '/docs/concepts/feedback-loops/': 'Feedback loops',
+  '/docs/concepts/context/': 'Keeping context',
+  '/docs/phases/plan/': 'Plan',
+  '/docs/phases/build/': 'Build',
+  '/docs/phases/ship/': 'Ship',
+  '/docs/gates/research/': 'Research',
+  '/docs/gates/plan-validation/': 'Plan Validation',
+  '/docs/gates/build-validation/': 'Build Validation',
+  '/docs/gates/review/': 'Review',
+  '/docs/examples/': 'Examples',
+  '/docs/examples/article/': 'Write an article',
+  '/docs/examples/feature/': 'Build a feature',
+};
+
+const idx = readingOrder.indexOf(currentPath);
+const prevPath = idx > 0 ? readingOrder[idx - 1] : null;
+const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} — solveOS</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="solveOS" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@tokidev_" />
+  </head>
+  <body>
+
+    <!-- Top nav -->
+    <header class="docs-header">
+      <div class="docs-header-inner">
+        <div class="docs-header-left">
+          <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <a href="/" class="docs-logo">solveOS</a>
+          <span class="docs-header-divider">/</span>
+          <span class="docs-header-section">Docs</span>
+        </div>
+        <div class="docs-header-right">
+          <div class="search-wrap">
+            <input type="text" id="search-input" class="search-input" placeholder="Search docs…" autocomplete="off" spellcheck="false" />
+            <div id="search-results" class="search-results" hidden></div>
+          </div>
+          <a href="/" class="back-link">← solveOS</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="docs-layout">
+      <!-- Left nav -->
+      <nav class="docs-nav" id="docs-nav">
+        <div class="docs-nav-inner">
+          {nav.map(item => 'group' in item ? (
+            <div class="nav-group">
+              <p class="nav-group-label">{item.group}</p>
+              <ul>
+                {item.items.map(link => (
+                  <li>
+                    <a href={link.href} class={`nav-link${currentPath === link.href ? ' active' : ''}`}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <a href={item.href} class={`nav-link nav-link-top${currentPath === item.href ? ' active' : ''}`}>{item.label}</a>
+          ))}
+          <div class="nav-footer">
+            <a href="/" class="nav-back">← Back to solveOS</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main content -->
+      <main class="docs-main">
+        <article class="docs-article">
+          <slot />
+        </article>
+
+        <!-- Prev / Next -->
+        {(prevPath || nextPath) && (
+          <nav class="docs-prevnext">
+            <div class="prevnext-inner">
+              {prevPath ? (
+                <a href={prevPath} class="prevnext-link prevnext-prev">
+                  <span class="prevnext-dir">← Previous</span>
+                  <span class="prevnext-title">{pageLabels[prevPath]}</span>
+                </a>
+              ) : <div />}
+              {nextPath ? (
+                <a href={nextPath} class="prevnext-link prevnext-next">
+                  <span class="prevnext-dir">Next →</span>
+                  <span class="prevnext-title">{pageLabels[nextPath]}</span>
+                </a>
+              ) : <div />}
+            </div>
+          </nav>
+        )}
+      </main>
+    </div>
+
+    <script src="/search.js" defer></script>
+    <script>
+      // Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const docsNav = document.getElementById('docs-nav');
+      const overlay = document.getElementById('sidebar-overlay');
+      function openNav() { docsNav?.classList.add('open'); overlay?.classList.add('visible'); }
+      function closeNav() { docsNav?.classList.remove('open'); overlay?.classList.remove('visible'); }
+      hamburger?.addEventListener('click', () => docsNav?.classList.contains('open') ? closeNav() : openNav());
+      overlay?.addEventListener('click', closeNav);
+
+      // Copy buttons
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-target');
+          const code = target ? document.getElementById(target)?.textContent : btn.closest('.code-wrap')?.querySelector('code')?.textContent;
+          if (code) {
+            navigator.clipboard.writeText(code.trim()).then(() => {
+              btn.textContent = 'Copied!';
+              setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #ffffff;
+    --bg-alt:      #f8f9fa;
+    --bg-hero:     #0a0a0a;
+    --text:        #0f172a;
+    --text-muted:  #64748b;
+    --text-inv:    #f1f5f9;
+    --border:      #e2e8f0;
+    --accent:      #2563eb;
+    --accent-light:#dbeafe;
+    --phase-color: #2563eb;
+    --gate-color:  #64748b;
+    --warn-color:  #dc2626;
+    --font-sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-mono:   'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --radius:      6px;
+    --radius-lg:   10px;
+    --shadow:      0 1px 3px rgba(0,0,0,.07);
+    --nav-w:       260px;
+    --header-h:    56px;
+    /* docs-specific */
+    --docs-nav-bg:        #f8f9fa;
+    --docs-nav-active-bg: #e8f0fe;
+    --docs-nav-active:    #1d4ed8;
+    --docs-callout-bg:    #f0f9ff;
+    --docs-callout-border:#3b82f6;
+    --docs-warn-bg:       #fef2f2;
+    --docs-warn-border:   #fca5a5;
+    --docs-code-bg:       #0f172a;
+    --docs-code-text:     #e2e8f0;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1,h2,h3,h4 { line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; }
+
+  /* ── Header ─────────────────────── */
+  .docs-header {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--header-h);
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    z-index: 100; display: flex; align-items: center;
+  }
+  .docs-header-inner {
+    width: 100%; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 1.25rem; gap: 1rem;
+  }
+  .docs-header-left { display: flex; align-items: center; gap: 0.6rem; }
+  .docs-header-right { display: flex; align-items: center; gap: 1rem; }
+  .docs-logo { font-weight: 800; font-size: 1rem; color: var(--text); letter-spacing: -0.03em; }
+  .docs-logo:hover { text-decoration: none; }
+  .docs-header-divider { color: var(--border); font-size: 1.1rem; }
+  .docs-header-section { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+  .back-link { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
+  .back-link:hover { color: var(--accent); }
+  .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; }
+
+  /* ── Layout ─────────────────────── */
+  .docs-layout {
+    display: flex; min-height: 100vh;
+    padding-top: var(--header-h);
+  }
+
+  /* ── Sidebar ────────────────────── */
+  .docs-nav {
+    width: var(--nav-w); flex-shrink: 0;
+    position: fixed; top: var(--header-h); bottom: 0; left: 0;
+    overflow-y: auto; background: var(--docs-nav-bg);
+    border-right: 1px solid var(--border);
+    z-index: 90;
+  }
+  .docs-nav-inner { padding: 1.5rem 0 2rem; }
+  .nav-group { margin-bottom: 1.5rem; }
+  .nav-group-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted);
+    padding: 0 1.25rem; margin-bottom: 0.3rem;
+  }
+  .nav-group ul { list-style: none; }
+  .nav-link {
+    display: block; padding: 0.38rem 1.25rem;
+    font-size: 0.875rem; color: var(--text); border-radius: 0;
+    transition: background 0.1s, color 0.1s;
+  }
+  .nav-link:hover { background: var(--border); text-decoration: none; color: var(--text); }
+  .nav-link.active { background: var(--docs-nav-active-bg); color: var(--docs-nav-active); font-weight: 600; }
+  .nav-link-top { padding: 0.5rem 1.25rem; font-weight: 600; font-size: 0.875rem; }
+  .nav-footer { border-top: 1px solid var(--border); margin-top: 1.5rem; padding: 1rem 1.25rem 0; }
+  .nav-back { font-size: 0.82rem; color: var(--text-muted); }
+  .nav-back:hover { color: var(--accent); }
+  .sidebar-overlay { display: none; }
+
+  /* ── Main ───────────────────────── */
+  .docs-main {
+    flex: 1; margin-left: var(--nav-w);
+    min-width: 0; padding: 3rem 2rem 4rem;
+    max-width: calc(100% - var(--nav-w));
+  }
+  .docs-article { max-width: 720px; margin: 0 auto; }
+
+  /* ── Article typography ─────────── */
+  .docs-article h1 { font-size: clamp(1.6rem, 3vw, 2rem); margin-bottom: 0.5rem; color: var(--text); }
+  .docs-article h2 { font-size: 1.3rem; margin: 2.5rem 0 0.75rem; color: var(--text); padding-top: 0.5rem; border-top: 1px solid var(--border); }
+  .docs-article h2:first-of-type { border-top: none; }
+  .docs-article h3 { font-size: 1.05rem; margin: 1.75rem 0 0.5rem; color: var(--text); }
+  .docs-article h4 { font-size: 0.9rem; font-weight: 700; margin: 1.25rem 0 0.4rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+  .docs-article p { margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.75; color: var(--text); }
+  .docs-article ul, .docs-article ol { margin: 0.75rem 0 1rem 1.4rem; }
+  .docs-article li { font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.35rem; }
+  .docs-article strong { font-weight: 700; color: var(--text); }
+  .docs-article code { font-family: var(--font-mono); font-size: 0.82em; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.35em; }
+
+  /* ── Page header ────────────────── */
+  .page-header { margin-bottom: 2rem; }
+  .page-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .page-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-top: 0.5rem; }
+
+  /* ── Code block ─────────────────── */
+  .code-wrap { position: relative; margin: 1.25rem 0; }
+  .code-wrap pre {
+    background: var(--docs-code-bg); color: var(--docs-code-text);
+    font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.8;
+    padding: 1.5rem 1.75rem; border-radius: var(--radius-lg);
+    overflow-x: auto; white-space: pre;
+  }
+  .copy-btn {
+    position: absolute; top: 0.6rem; right: 0.6rem;
+    background: rgba(255,255,255,.1); color: var(--docs-code-text);
+    border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius);
+    font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.6rem;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,.2); }
+
+  /* ── Callout ────────────────────── */
+  .callout {
+    background: var(--docs-callout-bg); border-left: 3px solid var(--docs-callout-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1rem 1.25rem; margin: 1.25rem 0; font-size: 0.9rem;
+  }
+  .callout p { margin: 0; color: var(--text); }
+  .callout p + p { margin-top: 0.5rem; }
+  .callout strong { color: var(--text); }
+  .callout-warn {
+    background: var(--docs-warn-bg); border-left-color: var(--docs-warn-border);
+  }
+
+  /* ── Gate meta card ─────────────── */
+  .gate-meta {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    background: var(--bg-alt); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .gate-meta-item {}
+  .gate-meta-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
+  .gate-meta-value { font-size: 0.875rem; font-weight: 500; color: var(--text); }
+
+  /* ── Table ──────────────────────── */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 1.25rem 0; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  .data-table th { text-align: left; padding: 0.65rem 1rem; background: var(--bg-alt); border-bottom: 2px solid var(--border); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+  .data-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; font-size: 0.875rem; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td:first-child { font-weight: 600; }
+  .data-table .td-warn { color: var(--warn-color); }
+  .data-table .td-muted { color: var(--text-muted); font-size: 0.82rem; }
+
+  /* ── Checklist ──────────────────── */
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; padding: 0.3rem 0; }
+  .checklist li::before { content: '☐'; color: var(--accent); font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+
+  /* ── Cycle display ──────────────── */
+  .cycle-display { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; font-family: var(--font-mono); font-size: 0.82rem; padding: 1rem 1.25rem; background: var(--bg-alt); border-radius: var(--radius-lg); margin: 1rem 0; border: 1px solid var(--border); }
+  .cycle-display .ph { color: var(--phase-color); font-weight: 700; }
+  .cycle-display .gt { color: var(--gate-color); }
+  .cycle-display .ar { color: var(--border); }
+
+  /* ── Two columns ────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.25rem 0; }
+  .two-col-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; }
+  .two-col-card h4 { margin-top: 0; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; }
+  .two-col-card ul { margin-left: 1.2rem; }
+  .two-col-card li { font-size: 0.875rem; margin-bottom: 0.3rem; }
+
+  /* ── Nav card ───────────────────── */
+  .nav-card { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text); font-weight: 600; font-size: 0.9rem; transition: border-color 0.15s, box-shadow 0.15s; margin: 0.5rem 0; }
+  .nav-card:hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); text-decoration: none; color: var(--accent); }
+  .nav-card-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0; }
+
+  /* ── Step block ─────────────────── */
+  .step-block { display: flex; gap: 1.25rem; margin: 2rem 0; }
+  .step-num { flex-shrink: 0; width: 2rem; height: 2rem; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-top: 0.1rem; }
+  .step-body { flex: 1; }
+  .step-body h3 { margin-top: 0; }
+
+  /* ── Decision block (examples) ───── */
+  .decision-block { border-left: 3px solid var(--phase-color); background: #f0f7ff; border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin: 1rem 0; }
+  .decision-block .decision-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--phase-color); margin-bottom: 0.4rem; }
+  .agent-block { border-left: 3px solid var(--border); background: var(--bg-alt); border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin: 1rem 0; }
+  .agent-block .agent-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+
+  /* ── Mode badge ─────────────────── */
+  .mode-diverge { display: inline-block; background: #eff6ff; color: #1d4ed8; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid #bfdbfe; }
+  .mode-converge { display: inline-block; background: #f0fdf4; color: #15803d; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid #bbf7d0; }
+
+  /* ── Principle block ────────────── */
+  .principle-block { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1rem 0; }
+  .principle-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
+  .principle-block h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .principle-block p { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+
+  /* ── Prev / Next ────────────────── */
+  .docs-prevnext { border-top: 1px solid var(--border); padding-top: 2rem; margin-top: 3rem; }
+  .prevnext-inner { max-width: 720px; margin: 0 auto; display: flex; justify-content: space-between; gap: 1rem; }
+  .prevnext-link { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.875rem 1.125rem; border: 1px solid var(--border); border-radius: var(--radius-lg); max-width: 240px; transition: border-color 0.15s; text-decoration: none; }
+  .prevnext-link:hover { border-color: var(--accent); text-decoration: none; }
+  .prevnext-dir { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+  .prevnext-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+  .prevnext-next { align-items: flex-end; text-align: right; margin-left: auto; }
+
+  /* ── Search ─────────────────────── */
+  .search-wrap { position: relative; }
+  .search-input { width: 200px; padding: 0.4rem 0.75rem; font-size: 0.85rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-alt); color: var(--text); outline: none; font-family: var(--font-sans); }
+  .search-input:focus { border-color: var(--accent); background: var(--bg); }
+  .search-results { position: absolute; top: calc(100% + 6px); right: 0; width: 360px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 200; max-height: 380px; overflow-y: auto; }
+  .search-result-item { display: block; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); text-decoration: none; transition: background 0.1s; }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover, .search-result-item.focused { background: var(--bg-alt); text-decoration: none; }
+  .search-result-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+  .search-result-section { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+  .search-result-excerpt { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .search-empty { padding: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+
+  /* ── Responsive ─────────────────── */
+  @media (max-width: 900px) {
+    .hamburger { display: flex; }
+    .docs-nav {
+      transform: translateX(-100%); transition: transform 0.25s ease;
+      box-shadow: 2px 0 12px rgba(0,0,0,.08);
+    }
+    .docs-nav.open { transform: translateX(0); }
+    .sidebar-overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 89; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .sidebar-overlay.visible { opacity: 1; pointer-events: all; }
+    .docs-main { margin-left: 0; max-width: 100%; padding: 2rem 1.25rem 3rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .nav-card-group { grid-template-columns: 1fr; }
+    .gate-meta { grid-template-columns: 1fr; }
+    .search-input { width: 150px; }
+    .search-results { width: 280px; right: 0; }
+    .back-link { display: none; }
+  }
+  @media (max-width: 600px) {
+    .prevnext-inner { flex-direction: column; }
+    .prevnext-link { max-width: 100%; }
+    .prevnext-next { align-items: flex-start; text-align: left; margin-left: 0; }
+    .step-block { flex-direction: column; gap: 0.5rem; }
+    .step-num { width: 1.6rem; height: 1.6rem; font-size: 0.75rem; }
+  }
+</style>

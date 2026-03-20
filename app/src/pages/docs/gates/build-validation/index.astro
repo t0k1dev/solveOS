@@ -1,0 +1,143 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Gate: Build Validation" currentPath="/docs/gates/build-validation/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Gate</span>
+    <h1>Build Validation</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Position</p>
+      <p class="gate-meta-value">During or after Build, before Ship</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Purpose</p>
+      <p class="gate-meta-value">Verify the output functions correctly and satisfies the success criteria before it goes live</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">When to use</p>
+      <p class="gate-meta-value">Complex builds, high-stakes output, before any public-facing release</p>
+    </div>
+  </div>
+
+  <h2>What is Build Validation?</h2>
+  <p>Build Validation is a <strong>technical and functional check</strong>. It answers: does what you built actually work, and does it match what the Plan Brief asked for?</p>
+  <p>This is distinct from <a href="/docs/gates/plan-validation/">Plan Validation</a>, which checks whether the plan is sound. Build Validation checks whether the execution is sound.</p>
+  <p>It is also distinct from <a href="/docs/gates/review/">Review</a>, which checks whether the result serves the original goal holistically and whether the audience would actually find it valuable. Build Validation is about correctness. Review is about judgment.</p>
+
+  <div class="code-wrap">
+    <pre><code>Build → Build Validation → [Review] → Ship
+             │
+             ↓ if issues found
+           Back to Build</code></pre>
+  </div>
+
+  <h2>The three build validation questions</h2>
+  <ol>
+    <li style="margin-bottom:0.75rem;"><strong>Does it work?</strong> Does the output function as intended, without critical failures?</li>
+    <li style="margin-bottom:0.75rem;"><strong>Does it match the plan?</strong> Does the output satisfy the success criteria from the Plan Brief?</li>
+    <li style="margin-bottom:0.75rem;"><strong>Is it stable enough to ship?</strong> Are the remaining issues known, bounded, and acceptable?</li>
+  </ol>
+
+  <h2>How to run Build Validation</h2>
+
+  <h3>Functional check</h3>
+  <p>Test or review the output against each success criterion from the Plan Brief:</p>
+  <ul>
+    <li>For each criterion: <strong>pass</strong>, <strong>fail</strong>, or <strong>partial</strong></li>
+    <li>A <strong>fail</strong> means the criterion is not met — fix before shipping or explicitly descope it</li>
+    <li>A <strong>partial</strong> means the criterion is partially met — decide: fix, descope, or accept with known limitations</li>
+    <li>Document any accepted limitations as known issues for the next cycle</li>
+  </ul>
+
+  <h3>Scope check</h3>
+  <p>Compare what was built to what was planned:</p>
+  <ul>
+    <li>Note anything added outside of original scope (may be fine, but should be explicit)</li>
+    <li>Note anything cut from scope (must be documented for the next cycle, not silently dropped)</li>
+  </ul>
+
+  <h3>Stability check</h3>
+  <ul>
+    <li>Is the output stable enough to put in front of its intended audience?</li>
+    <li>Are there known failure modes? Are they bounded and low-impact?</li>
+    <li>Would a critical failure here be difficult to reverse? If yes, validate more rigorously.</li>
+  </ul>
+
+  <h2>Build Validation output</h2>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Build Validation
+
+**Reviewed by:** [Name, "Self", or "AI-assisted"]
+**Date:** [Date]
+
+**Functional check**
+| Success Criterion | Status | Notes |
+|------------------|--------|-------|
+| [Criterion 1] | Pass / Fail / Partial | [How tested, what found] |
+| [Criterion 2] | Pass / Fail / Partial | [How tested, what found] |
+| [Criterion 3] | Pass / Fail / Partial | [How tested, what found] |
+
+**Scope drift**
+- Added (outside original scope): [List or "None"]
+- Cut (from original scope, deferred): [List or "None"]
+
+**Known issues**
+- [Issue 1 — severity, decision: fix now / defer / accept]
+- [Issue 2 — severity, decision: fix now / defer / accept]
+
+**Decision:**
+- [ ] Ready to proceed to Review
+- [ ] Needs fixes — return to Build
+- [ ] Needs re-plan — return to Plan</code></pre>
+  </div>
+
+  <h2>Using AI in Build Validation</h2>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Where AI helps</h4>
+      <ul>
+        <li>Reviewing output against success criteria systematically</li>
+        <li>Generating test cases for edge cases you might have missed</li>
+        <li>Identifying scope drift by comparing output description to Plan Brief</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Where human judgment must lead</h4>
+      <ul>
+        <li>Deciding whether a partial pass is acceptable</li>
+        <li>Deciding which failures to fix now vs. defer</li>
+        <li>Assessing whether the output is stable enough to proceed</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>Here is my Plan Brief: [paste brief]
+Here is what I built: [describe or paste output]
+
+For each success criterion in the brief:
+- Does the output satisfy it? (pass / fail / partial)
+- What evidence supports that assessment?
+
+What is missing or inconsistent between the plan and the output?
+What edge cases should I test before shipping?</code></pre>
+  </div>
+
+  <h2>Build Validation checklist</h2>
+  <ul class="checklist">
+    <li>Each success criterion tested or reviewed against actual output</li>
+    <li>All failures addressed or explicitly deferred with justification</li>
+    <li>Scope drift (additions and cuts) documented</li>
+    <li>No critical blockers to shipping remain</li>
+    <li>Plan Brief updated to reflect final scope and known deferred items</li>
+    <li>Decision to proceed to Review (or return to Build) is explicit</li>
+  </ul>
+
+</DocsLayout>

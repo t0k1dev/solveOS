@@ -1,0 +1,333 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Example: Building a Software Feature" currentPath="/docs/examples/feature/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Example</span>
+    <h1>Building a Software Feature</h1>
+    <p class="page-desc">A backend performance fix — from complaint to shipped improvement to post-ship measurement.</p>
+  </div>
+
+  <p><strong>Scenario:</strong> Users are complaining that the analytics dashboard in your web app takes 8–12 seconds to load. A few have churned. Your PM has escalated it. You need to fix it.</p>
+
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation ×2] → Build
+  → [Build Validation] → [Review pre-ship] → Ship
+  → [Review post-ship]</code></pre>
+  </div>
+
+  <div class="callout">
+    <p><strong>How to read this example</strong></p>
+    <p>Each step shows what was given to an agent as an instruction, what the agent returned as output, and what the human decided based on that output. The agent can be you, a collaborator, or an AI — the structure is the same either way. Gates are where the human reads the output and decides whether to proceed. That decision is never skipped.</p>
+  </div>
+
+  <h2>Step 1: Research gate</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>What is actually causing the analytics dashboard to load in 8–12 seconds? What is the scope of the problem? Spend no more than 30 minutes.</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ul>
+      <li>The dashboard makes 4 separate database queries on load, each running a full table scan over an <code>events</code> table (&gt;2M rows for some accounts)</li>
+      <li>No indexes on <code>account_id</code> + <code>created_at</code> columns — every query scans the full table</li>
+      <li>Queries are sequential, not concurrent — each waits for the previous to complete</li>
+      <li>The 8–12s range correlates to account size: small accounts (&lt; 10k events) load in ~1s; large accounts (&gt; 500k events) load in 10–14s</li>
+      <li>One query fetches a <code>raw_payload</code> column that is never displayed in the UI — leftover from an old feature</li>
+      <li>Root cause: missing indexes + sequential queries + an unused column being fetched</li>
+      <li>Adding indexes alone would likely cut load time 60–70% for large accounts</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The cause is understood. The fix is backend-only — no design or frontend work needed. Enough to write a Plan Brief. Proceed to Plan.</p>
+  </div>
+
+  <h2>Step 2: Plan phase</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Using the research findings, write a Plan Brief for fixing the analytics dashboard load time.</p>
+    <p><strong>Reference files:</strong> Research findings from Step 1</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+
+    <p><strong>Plan Brief</strong></p>
+
+    <p><strong>Problem</strong><br>
+    The analytics dashboard loads in 8–12 seconds for accounts with large event volumes (&gt; 100k events), causing user frustration and churn. Root cause: missing database indexes, sequential queries, and an unused column being fetched on every load.</p>
+
+    <p><strong>Audience</strong><br>
+    Internal engineering team (implementing the fix) and the ~200 accounts with &gt; 100k events experiencing the slowness.</p>
+
+    <p><strong>Goal</strong><br>
+    Fix the analytics dashboard load time to under 2 seconds for all account sizes.</p>
+
+    <p><strong>Appetite</strong><br>
+    One engineer, one week. If the fix can't be completed in that, scope it down — not extend the time.</p>
+
+    <p><strong>Constraints</strong></p>
+    <ul>
+      <li>Backend-only fix — no design or frontend changes in this cycle</li>
+      <li>Must not break existing dashboard functionality</li>
+      <li>Needs a database migration (indexes) — must be safe to run on production without downtime</li>
+      <li>Staged rollout: deploy to 10% of accounts first, monitor for 24 hours before full rollout</li>
+    </ul>
+
+    <p><strong>Success criteria</strong></p>
+    <ul>
+      <li>Dashboard loads in under 2 seconds for accounts with &gt; 100k events</li>
+      <li>Dashboard loads in under 1 second for accounts with &lt; 10k events</li>
+      <li>All four dashboard queries are covered by indexes</li>
+      <li>The unused <code>raw_payload</code> column is removed from the query</li>
+      <li>No existing dashboard tests break</li>
+    </ul>
+
+    <p><strong>Core assumption</strong><br>
+    The load time problem is caused by missing indexes and sequential queries — not by a fundamental architecture issue that would require a larger rewrite.</p>
+
+    <p><strong>Rabbit holes</strong><br>
+    Do not investigate why the legacy endpoint is slow — that is a separate system. Do not explore a caching layer — out of scope for this cycle.</p>
+
+    <p><strong>Out of scope</strong></p>
+    <ul>
+      <li>Caching layer (may be a future improvement)</li>
+      <li>Frontend loading states or skeleton screens</li>
+      <li>Dashboard redesign</li>
+      <li>Performance improvements to any other part of the app</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The brief is solid but "under 2 seconds" is vague — 2 seconds measured how? Under what load? The success criteria need percentiles. Also: there is no rollback plan mentioned for the migration. Take this to Plan Validation before building.</p>
+  </div>
+
+  <h2>Step 3: Plan Validation gate — Pass 1</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Review this Plan Brief. Is the problem correctly stated? Is the plan feasible? Is it specific enough to build from without asking clarifying questions?</p>
+    <p><strong>Reference files:</strong> Plan Brief from Step 2</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ul>
+      <li><strong>Is the problem correctly stated?</strong> Partially. The problem says "under 2 seconds" but that's vague — 2 seconds for who? On what hardware? Under what load? The success criteria need a percentile (e.g., P95 load time).</li>
+      <li><strong>Is the plan feasible?</strong> Yes, given the research findings. The changes are well-scoped and the cause is understood.</li>
+      <li><strong>Is it specific enough to build from?</strong> No. "Under 2 seconds" without a percentile is not measurable in a way that accounts for outliers. A single slow request could fail the criterion. Also: the migration rollback plan is not stated — it should be explicit.</li>
+    </ul>
+    <p><strong>Gaps identified:</strong></p>
+    <ul>
+      <li>Success criteria use absolute times without percentiles — not reliably measurable</li>
+      <li>No rollback plan for the database migration</li>
+      <li>No baseline stated — what is being compared against?</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The gaps are real and fixable. Update the Plan Brief and run a second pass — the migration involves production and the cost of a wrong assumption here is high.</p>
+    <p><strong>Changes made to Plan Brief:</strong></p>
+    <ul>
+      <li>Success criteria updated to P95: <em>"Dashboard loads in under 2 seconds (P95) for accounts with &gt; 100k events, measured in production"</em></li>
+      <li>Added: <em>"Migration includes a rollback script, tested in staging before production"</em></li>
+      <li>Added baseline: current P95 is 9.2s for large accounts, 1.0s for small accounts</li>
+    </ul>
+  </div>
+
+  <h2>Step 4: Plan Validation gate — Pass 2</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Read the updated Plan Brief. Tell me: what is being built, what does done look like, and what would you do first?</p>
+    <p><strong>Reference files:</strong> Updated Plan Brief from Step 3</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ul>
+      <li>"You're adding indexes to the events table on <code>account_id</code> and <code>created_at</code>, running the dashboard queries concurrently, and removing <code>raw_payload</code> from the select. Done means P95 load time under 2s for large accounts, confirmed in production."</li>
+      <li>"I'd add the indexes first, measure the improvement, then tackle the concurrent queries."</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The agent's understanding matches exactly. Two people (or agents) reading this brief would make the same first decision. Ready to Build.</p>
+  </div>
+
+  <h2>Step 5: Build phase</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Execute the Plan Brief. Build the fix in this order: (1) add indexes, (2) remove <code>raw_payload</code>, (3) refactor queries to run concurrently, (4) measure P95 in staging, (5) write and test rollback script.</p>
+    <p><strong>Reference files:</strong> Updated Plan Brief, <code>analytics/queries.js</code>, <code>db/schema.sql</code>, <code>tests/dashboard.test.js</code>, staging environment credentials</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ol>
+      <li>Migration added: <code>events(account_id, created_at)</code> index. Tested in staging with <code>EXPLAIN ANALYZE</code> — index scan confirmed. Staging load time dropped from ~9s to ~3.5s for large accounts.</li>
+      <li><code>raw_payload</code> removed from select — one-line change. Dropped load time another ~0.4s.</li>
+      <li>Dashboard queries refactored to run concurrently using <code>Promise.all</code>. Staging load time: ~1.1s for large accounts, ~0.4s for small accounts.</li>
+      <li>Staging P95 measurements: 1.1s for &gt; 100k events, 0.4s for &lt; 10k events. Both under target. Baseline was 9.2s and 1.0s respectively.</li>
+      <li>Rollback script written and tested — removes the indexes safely without data loss.</li>
+    </ol>
+    <p><strong>Blocker surfaced during Build:</strong> One of the four queries had a write dependency on the result of another — they were not truly independent. Concurrent execution caused a race condition in test. Restructure needed: run two queries concurrently, then a third sequentially, then the fourth.</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision — mid-build check</p>
+    <p>The race condition is real. The restructure is the right call — do not route around it. The result is still well within target (1.1s vs. the 2s goal). Update the Plan Brief to document this as a known limitation, not a failure.</p>
+    <p><strong>Plan Brief updated:</strong> Added to Out of scope: <em>"Query 2 and Query 3 have a sequential dependency — cannot be fully parallelized. Documented for future optimization."</em></p>
+    <p>Proceed to Build Validation.</p>
+  </div>
+
+  <h2>Step 6: Build Validation gate</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Check the output against every success criterion in the Plan Brief. Flag any that are not met.</p>
+    <p><strong>Reference files:</strong> Updated Plan Brief, staging P95 measurements, <code>EXPLAIN ANALYZE</code> output, test suite results</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Success criterion</th><th>Status</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P95 &lt; 2s for accounts &gt; 100k events</td><td>Pass</td><td>Staging P95: 1.1s. Tested against 5 large accounts.</td></tr>
+          <tr><td>P95 &lt; 1s for accounts &lt; 10k events</td><td>Pass</td><td>Staging P95: 0.4s.</td></tr>
+          <tr><td>All four queries covered by indexes</td><td>Pass</td><td>Confirmed via <code>EXPLAIN ANALYZE</code> — all use index scan</td></tr>
+          <tr><td><code>raw_payload</code> removed from query</td><td>Pass</td><td>Verified in code review</td></tr>
+          <tr><td>No existing dashboard tests break</td><td>Pass</td><td>Full test suite green</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>No criteria failed. Known limitation: queries 2 and 3 cannot be fully parallelized — documented in Plan Brief. Severity: low (target is met without it).</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>All criteria met. No regressions. Known limitation is documented and deferred. Proceed to pre-ship Review.</p>
+  </div>
+
+  <h2>Step 7: Review gate — pre-ship</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Does this result solve the problem stated in the Plan Brief? Would the affected users notice the improvement? What is the weakest part of this result?</p>
+    <p><strong>Reference files:</strong> Plan Brief, Build Validation results</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ul>
+      <li>The problem was 8–12s load time causing churn. The fix brings it to 1.1s P95 for the most affected accounts — an 8x improvement. The problem is solved.</li>
+      <li>Users experiencing 10s loads will experience 1s loads after rollout. The improvement is large enough to notice without prompting.</li>
+      <li>Weakest part: the staged rollout means large-account users will get the fix at different times. Someone who churned last week won't be automatically retained.</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The weakness is real but it is not a problem with the fix — it is a property of the staged rollout, which exists to reduce production risk. Accept. Ready to Ship.</p>
+  </div>
+
+  <h2>Step 8: Ship phase</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Deploy the migration to 10% of production accounts. Monitor error rates, query durations, and P95 load times for 24 hours. Report back.</p>
+    <p><strong>Reference files:</strong> Rollback script, deployment runbook, monitoring dashboard</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ul>
+      <li>Migration deployed to 10% of production accounts</li>
+      <li>Monitored for 24 hours: no errors, no regressions</li>
+      <li>Production P95 for large accounts: 0.9s (slightly better than staging)</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>Signal is clear. No regressions. Full rollout approved.</p>
+    <p>Full rollout deployed. Confirmed live: opened dashboard as a large-account user — loads in under 1 second. Internal update posted: <em>"Analytics dashboard performance fix shipped. P95 load time down from 9.2s to 0.9s for large accounts."</em></p>
+  </div>
+
+  <h2>Step 9: Review gate — post-ship</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>10 days after full rollout: measure actual production outcomes against every success criterion. What worked, what didn't, and what should feed into the next cycle?</p>
+    <p><strong>Reference files:</strong> Production monitoring data (10-day window), Plan Brief, notes from Build</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Success criterion</th><th>Result</th><th>Evidence</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P95 &lt; 2s for accounts &gt; 100k events</td><td>Met</td><td>Production P95: 0.9s (10-day average)</td></tr>
+          <tr><td>P95 &lt; 1s for accounts &lt; 10k events</td><td>Met</td><td>Production P95: 0.35s (10-day average)</td></tr>
+          <tr><td>All four queries covered by indexes</td><td>Met</td><td>Confirmed in production query explain plans</td></tr>
+          <tr><td><code>raw_payload</code> removed from query</td><td>Met</td><td>No <code>raw_payload</code> selects in production query logs</td></tr>
+          <tr><td>No existing dashboard tests break</td><td>Met</td><td>No new test failures or production errors in 10 days</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>What worked:</strong> Running Research before Plan redirected the entire approach — the obvious alternative (a caching layer) would have been more complex and wouldn't have addressed the root cause (missing indexes). The two-pass Plan Validation loop caught the "under 2 seconds" vagueness before it became ambiguous during Build.</p>
+    <p><strong>What didn't work:</strong> The query dependency (queries 2 and 3) was a surprise — Research didn't surface it. A deeper code review before planning would have caught it.</p>
+    <p><strong>Feed forward:</strong></p>
+    <ul>
+      <li>Queries 2 and 3 have a sequential dependency worth a dedicated investigation cycle</li>
+      <li>The 24-hour monitoring window felt long — signal was clear within 2 hours. Could reduce to 4–6 hours for non-data-destructive migrations</li>
+      <li>Two churned accounts reactivated after the fix, cited dashboard speed in support threads</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>Results are better than the target. The cycle is complete. Feed the query dependency and monitoring window findings into the next Plan.</p>
+  </div>
+
+  <h2>What this example demonstrates</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Principle</th><th>Where it showed up</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Clarity before action</td><td>Research identified root cause before planning. Plan Validation made success criteria measurable (P95, not "under 2 seconds").</td></tr>
+        <tr><td>Build to learn</td><td>The sequential dependency between queries 2 and 3 only surfaced during Build — handled and documented without derailing the cycle.</td></tr>
+        <tr><td>Reality is the only validator</td><td>Staging showed 1.1s. Production showed 0.9s. The plan predicted improvement; only shipping produced the real number.</td></tr>
+        <tr><td>Gates reduce cost, not momentum</td><td>Two passes of Plan Validation added ~2 hours. They prevented building against a vague target and ensured the migration had a rollback path.</td></tr>
+        <tr><td>The brief is your compass</td><td>When the query dependency was found, the Plan Brief was updated to document it — not silently accepted.</td></tr>
+        <tr><td>AI executes. Human decides.</td><td>At every gate, the human read the output and made the call — proceed, iterate, or cut. The race condition blocker was surfaced and decided on mid-build, not worked around.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The full cycle at a glance</h2>
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation ×2] → Build → [Build Validation] → [Review pre-ship] → Ship → [Review post-ship]</code></pre>
+  </div>
+  <p>Each arrow is a human decision: read the output, judge it, decide what comes next.</p>
+
+</DocsLayout>

@@ -1,0 +1,120 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Diverge and converge" currentPath="/docs/concepts/diverge-converge/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Concepts</span>
+    <h1>Diverge and converge</h1>
+    <p class="page-desc">The two thinking modes at the core of solveOS — why they can't happen simultaneously, and where each appears across the framework.</p>
+  </div>
+
+  <p>Every phase and gate in solveOS alternates between two modes of thinking: <strong>diverging</strong> and <strong>converging</strong>.</p>
+  <ul>
+    <li><strong>Diverging</strong> means opening up — exploring possibilities, surfacing options, expanding your understanding of the problem space. This is generative, exploratory thinking.</li>
+    <li><strong>Converging</strong> means narrowing down — making decisions, eliminating options, committing to a specific direction. This is evaluative, decisive thinking.</li>
+  </ul>
+  <p>The two modes cannot happen at the same time. Trying to evaluate while you're still exploring kills ideas before they're formed. Trying to explore while you're supposed to be deciding stalls progress indefinitely. solveOS makes the distinction explicit.</p>
+
+  <h2>The full mode map</h2>
+  <div class="code-wrap">
+    <pre><code>              diverge          converge
+                 │                │
+  Research ──────┤                │
+                 ↓                │
+  Plan ──────────────────────────→┤
+                                  │
+                          Plan Validation
+                                  │
+                 diverge          │         converge
+                    │             ↓            │
+  Build ────────────┤─────────────────────────→┤
+                                               │
+                                     Build Validation
+                                               │
+                                  converge      │
+                                     │          ↓
+                                  Review ───────┤ (pre-ship: is this ready?)
+                                               │
+                                             Ship
+                                               │
+                 diverge                       │         converge
+                    │                          ↓            │
+  Review (post-ship)┤─────────────────────────────────────→ Plan</code></pre>
+  </div>
+
+  <h2>Where each mode appears</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Phase / Gate</th><th>Mode</th><th>What it looks like</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="/docs/gates/research/">Research</a></td>
+          <td><span class="mode-diverge">Diverge</span></td>
+          <td>Explore the problem space widely before committing to a direction</td>
+        </tr>
+        <tr>
+          <td><a href="/docs/phases/plan/">Plan</a></td>
+          <td><span class="mode-diverge">Diverge</span> → <span class="mode-converge">Converge</span></td>
+          <td>Start by exploring the problem; end by committing to one specific goal and brief</td>
+        </tr>
+        <tr>
+          <td><a href="/docs/gates/plan-validation/">Plan Validation</a></td>
+          <td><span class="mode-converge">Converge</span></td>
+          <td>Eliminate ambiguity. Force specific answers. One clear plan exits the loop.</td>
+        </tr>
+        <tr>
+          <td><a href="/docs/phases/build/">Build</a></td>
+          <td><span class="mode-diverge">Diverge</span></td>
+          <td>Discover constraints, adapt approach, explore what works — within the bounds of the brief</td>
+        </tr>
+        <tr>
+          <td><a href="/docs/gates/build-validation/">Build Validation</a></td>
+          <td><span class="mode-converge">Converge</span></td>
+          <td>Check what was built against the criteria. Cut what doesn't fit.</td>
+        </tr>
+        <tr>
+          <td><a href="/docs/gates/review/">Review (pre-ship)</a></td>
+          <td><span class="mode-converge">Converge</span></td>
+          <td>One decision: ready to ship, or not.</td>
+        </tr>
+        <tr>
+          <td><a href="/docs/phases/ship/">Ship</a></td>
+          <td><span class="mode-converge">Converge</span></td>
+          <td>The act of committing — putting one specific thing in front of the world</td>
+        </tr>
+        <tr>
+          <td><a href="/docs/gates/review/">Review (post-ship)</a></td>
+          <td><span class="mode-diverge">Diverge</span> → <span class="mode-converge">Converge</span></td>
+          <td>Open up to what the data and feedback reveals; then converge on what to carry into the next Plan</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Why this matters</h2>
+  <p>The most common failure modes in building map directly to misaligned modes:</p>
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Diverging when you should be converging</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">Endless planning, scope creep, "one more thing" before shipping. The work never resolves because you keep opening new options instead of closing them.</p>
+    </div>
+    <div class="two-col-card">
+      <h4>Converging when you should be diverging</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">Locking in a solution before understanding the problem, skipping research, writing a plan for the first idea instead of the best one. The work moves fast toward the wrong destination.</p>
+    </div>
+  </div>
+  <p>Recognizing which mode you are in — and which mode you <em>should</em> be in — is one of the most practical thinking skills solveOS develops.</p>
+  <p>The gates exist partly to mark these transitions. Plan Validation is not just a quality check — it is a signal that the diverging phase of planning is over and it is time to converge. The post-ship Review is not just a retrospective — it is an invitation to diverge again, before the next convergence of Plan locks in a new direction.</p>
+
+  <h2>How to use this in practice</h2>
+  <ol>
+    <li>At any point in your work, ask: which mode should I be in right now?</li>
+    <li>If stuck: check whether you're diverging when you should be converging, or vice versa.</li>
+    <li>The gates are mode transition signals. Use them to mark the shift explicitly.</li>
+    <li>If you feel resistance at a gate, it may mean you haven't finished the previous mode yet — don't force the transition.</li>
+  </ol>
+
+</DocsLayout>

@@ -1,0 +1,302 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Gate: Review" currentPath="/docs/gates/review/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Gate</span>
+    <h1>Review</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Position</p>
+      <p class="gate-meta-value">Before Ship (pre-ship) and After Ship (post-ship)</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Purpose</p>
+      <p class="gate-meta-value">Before shipping — verify the result serves the original goal and is ready for the audience. After shipping — measure whether it actually worked and feed learnings into the next cycle.</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">When to use</p>
+      <p class="gate-meta-value">Pre-ship review before any significant release. Post-ship review after every Ship.</p>
+    </div>
+  </div>
+
+  <h2>Two modes, one gate</h2>
+  <p>Review appears at two points in the cycle:</p>
+
+  <div class="code-wrap">
+    <pre><code>Build → [Build Validation] → [Review (pre-ship)] → Ship → [Review (post-ship)] → Plan</code></pre>
+  </div>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Pre-ship Review</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">A holistic judgment check before the result goes live. Different from Build Validation, which checks technical correctness. Pre-ship Review checks intent: <em>is this actually what we set out to build? Does it serve the audience?</em></p>
+    </div>
+    <div class="two-col-card">
+      <h4>Post-ship Review</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">Outcome measurement after the result is live. Did it work in the real world? What does that tell us about the next cycle?</p>
+    </div>
+  </div>
+
+  <p>They serve different purposes and happen at different times, but they share the same underlying question: <strong>is this doing what it was meant to do?</strong></p>
+
+  <h2>Pre-ship Review</h2>
+  <div class="callout">
+    <p><em>"Does this serve the original goal and the audience? Are we ready to put this in front of real people?"</em></p>
+  </div>
+
+  <p>Pre-ship Review is not a technical check. Build Validation handles that. Pre-ship Review is a judgment call: does the full result — as a whole — fulfill the intent stated in the Plan Brief?</p>
+  <p>This is the moment to ask the questions that checklists don't catch.</p>
+
+  <h3>What pre-ship Review checks</h3>
+  <ul>
+    <li>Does the result actually solve the problem stated in the Plan Brief?</li>
+    <li>Would the audience named in the brief find this useful, readable, or usable?</li>
+    <li>Is there anything about this result that would embarrass you or mislead its audience?</li>
+    <li>Are you shipping this because it's ready, or because you're tired of working on it?</li>
+  </ul>
+  <p>The last question is the hardest and the most important.</p>
+
+  <h3>How to run a pre-ship Review</h3>
+  <p><strong>Read the Plan Brief. Then experience the result as if you are the audience.</strong></p>
+  <ul>
+    <li>If you built software: use it as the target user would use it, not as the developer who built it.</li>
+    <li>If you wrote an article: read it as someone who doesn't know the background.</li>
+    <li>If you built a design: evaluate it against the user's goal, not your aesthetic preferences.</li>
+  </ul>
+  <p>Then answer:</p>
+  <ul>
+    <li>What is the single weakest thing about this result?</li>
+    <li>Does that weakness block shipping, or is it acceptable for this cycle?</li>
+    <li>Is there anything that, if you were the audience, would make you trust this less?</li>
+  </ul>
+
+  <h3>Pre-ship Review output</h3>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Pre-ship Review
+
+**Reviewed by:** [Name or "Self"]
+**Date:** [Date]
+
+**Does this solve the problem stated in the Plan Brief?**
+[Yes / Partially / No — with explanation]
+
+**Would the named audience find this useful/usable/readable?**
+[Yes / Partially / No — with explanation]
+
+**Weakest part of this result:**
+[Be specific. One thing.]
+
+**Decision on that weakness:**
+- [ ] Fix before shipping
+- [ ] Accept for this cycle — defer to next
+- [ ] It's not actually a problem
+
+**Ship readiness:**
+- [ ] Ready to Ship
+- [ ] Not ready — return to Build</code></pre>
+  </div>
+
+  <h2>Post-ship Review</h2>
+  <div class="callout">
+    <p><em>"Did it actually work? What does that teach the next cycle?"</em></p>
+  </div>
+
+  <p>Shipping something live is not the same as knowing it worked. You need real-world signal — not the signal you predicted in the Plan Brief, but the signal the world returned.</p>
+  <p>Post-ship Review collects that signal, interprets it, and turns it into the starting point for the next Plan.</p>
+
+  <h3>The three post-ship Review questions</h3>
+  <ol>
+    <li style="margin-bottom:0.75rem;"><strong>Did it work?</strong> How does the real-world outcome compare to the success criteria?</li>
+    <li style="margin-bottom:0.75rem;"><strong>Why did it go the way it did?</strong> What decisions, assumptions, or events shaped the result?</li>
+    <li style="margin-bottom:0.75rem;"><strong>What should the next cycle do differently?</strong> What did this cycle teach?</li>
+  </ol>
+
+  <h3>When to run a post-ship Review</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>What you shipped</th><th>When to review</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Software feature</td><td>After 1–2 weeks of real usage</td></tr>
+        <tr><td>Article or post</td><td>After 3–7 days live</td></tr>
+        <tr><td>Strategy or decision</td><td>After the first observable outcomes</td></tr>
+        <tr><td>Internal tool</td><td>After the first real use by its intended users</td></tr>
+        <tr><td>Quick experiment</td><td>Within 24–48 hours</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Don't review immediately after shipping — you need real signal, not initial noise. Don't wait indefinitely — at some point signal plateaus and the next cycle is already waiting.</p>
+
+  <h3>How to run a post-ship Review</h3>
+
+  <div class="step-block">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Measure against the success criteria</h3>
+      <p>For each success criterion in the Plan Brief, answer: was it met, and how do you know?</p>
+      <p>Evidence must come from outside yourself: usage data, feedback from real users, observable behavior change, outcomes that happened or didn't. If a criterion cannot be measured with real evidence, note that — it means the criterion was too vague or the measurement method wasn't set up.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Reflect on the cycle</h3>
+      <p>Look at the full cycle — Plan, Build, and Ship — and ask:</p>
+      <ul>
+        <li>What worked as expected?</li>
+        <li>What didn't work as expected?</li>
+        <li>What single decision, made differently, would have changed the outcome most?</li>
+        <li>Was the Plan Brief accurate by the time you shipped? What changed?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Feed forward</h3>
+      <p>Identify inputs for the next cycle:</p>
+      <ul>
+        <li>What new problem or opportunity did this cycle reveal?</li>
+        <li>What was deferred to "out of scope" that should now be addressed?</li>
+        <li>What assumption turned out to be wrong that should inform the next Plan?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Post-ship Review output</h3>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Post-ship Review
+
+**What was shipped:** [Brief description]
+**Shipped on:** [Date]
+**Reviewed on:** [Date]
+
+**Measurement**
+| Success Criterion | Result | Evidence |
+|------------------|--------|---------|
+| [Criterion 1] | Met / Partial / Not met | [How you know] |
+| [Criterion 2] | Met / Partial / Not met | [How you know] |
+| [Criterion 3] | Met / Partial / Not met | [How you know] |
+
+**Overall: did it work?**
+[One or two sentences. Was the goal achieved? What does the real-world outcome say?]
+
+**What worked**
+- [Observation 1]
+- [Observation 2]
+
+**What didn't work**
+- [Observation 1]
+- [Observation 2]
+
+**The decision that mattered most**
+[What single decision during this cycle had the biggest impact — good or bad?]
+
+**Feed forward: inputs for the next cycle**
+- [New problem or opportunity]
+- [Deferred scope item to address]
+- [Wrong assumption to correct]</code></pre>
+  </div>
+
+  <h2>What if the result can't be measured yet?</h2>
+  <p>Some results take time to surface. Set a <strong>review date</strong> at the time of shipping, note what signal you're waiting for, and run a <strong>partial Review</strong> now (reflect on the cycle) with a <strong>full Review</strong> later when the signal is available.</p>
+  <p>The reflection and measurement parts are independent — don't skip reflection because measurement isn't ready.</p>
+
+  <h2>Using AI in the Review gate</h2>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Where AI helps</h4>
+      <ul>
+        <li>Summarizing feedback or data into patterns</li>
+        <li>Challenging your interpretation ("Is this signal or noise?")</li>
+        <li>Identifying what the next cycle's Plan Brief should address</li>
+        <li>Spotting assumptions that recurred across the cycle</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Where human judgment must lead</h4>
+      <ul>
+        <li>Deciding whether the outcome was actually good enough</li>
+        <li>Interpreting ambiguous signal</li>
+        <li>Choosing what to focus on in the next cycle</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>Here is my Plan Brief: [paste brief]
+Here is what I shipped: [describe output]
+Here is what happened after shipping: [describe outcomes, feedback, metrics]
+
+Did the outcome match the goal and the audience's needs?
+What does the gap between expected and actual tell me?
+What should I carry into the next cycle's Plan?</code></pre>
+  </div>
+
+  <h2>Review gate checklist</h2>
+  <p><strong>Pre-ship:</strong></p>
+  <ul class="checklist">
+    <li>Result experienced from the audience's perspective, not the builder's</li>
+    <li>Weakest part identified and a decision made on it</li>
+    <li>Shipping for the right reason — it's ready, not because you're tired of it</li>
+    <li>Ship readiness decision is explicit</li>
+  </ul>
+  <p><strong>Post-ship:</strong></p>
+  <ul class="checklist">
+    <li>Waited for real-world signal before reviewing</li>
+    <li>Each success criterion assessed against actual evidence</li>
+    <li>Overall outcome written in one or two sentences</li>
+    <li>What worked and what didn't documented separately</li>
+    <li>Most impactful decision of the cycle identified</li>
+    <li>Feed-forward inputs for the next Plan written down</li>
+  </ul>
+
+  <h2>The loop closes here</h2>
+  <div class="code-wrap">
+    <pre><code>Plan ←──── [Review (post-ship)] ←── Ship ←── [Review (pre-ship)] ←── [Build Validation] ←── Build
+  │
+  └──→ [Plan Validation] ──→ Plan (refined) ──→ Build ...</code></pre>
+  </div>
+  <p>The Review gate — in both modes — is what makes solveOS a cycle, not a line. Every cycle starts smarter than the last.</p>
+
+  <h2>Shipping is the beginning of building, not the end</h2>
+  <p>Most frameworks treat shipping as the finish line. solveOS treats it as a transition point.</p>
+  <p>When something ships, two things become true simultaneously:</p>
+  <ol>
+    <li>This cycle is complete.</li>
+    <li>The next cycle has new material to start from.</li>
+  </ol>
+  <p>The post-ship Review is the mechanism that turns the outcome of one cycle into the inputs for the next. Without it, cycles are disconnected — each one starting from scratch, repeating the same assumptions, making the same mistakes.</p>
+  <p><strong>The loop after Ship is what makes you a better builder over time, not just someone who ships things.</strong></p>
+
+  <h3>What "continue building" means</h3>
+  <p>Continuing to build does not mean adding more features indefinitely. It means using what you learned to make the next cycle more targeted, more effective, and more aligned with what actually matters.</p>
+  <p>After shipping, three things are usually true:</p>
+  <ol>
+    <li><strong>Some of what you built worked.</strong> Double down on it. The next cycle should build on the approaches that produced real results.</li>
+    <li><strong>Some of what you built didn't work.</strong> Fix it. The next cycle should address the gaps revealed by real-world use — not hypothetical improvements, but actual failures.</li>
+    <li><strong>You discovered something you didn't know when you planned.</strong> Act on it. Shipping always reveals what planning couldn't — user behaviors, edge cases, assumptions that were wrong. That knowledge is the most valuable input for the next plan.</li>
+  </ol>
+  <p>The post-ship Review captures all three. The next Plan Brief is written from what was captured.</p>
+
+  <h3>When to stop the loop</h3>
+  <p>The loop stops when one of these is true:</p>
+  <ul>
+    <li><strong>The problem is solved.</strong> The success criteria are fully met and the need no longer exists. This is rarer than most people think.</li>
+    <li><strong>The problem is no longer worth solving.</strong> The context changed — the audience moved on, the opportunity closed, the goal became irrelevant. Recognize this early and redirect.</li>
+    <li><strong>You're building from habit, not signal.</strong> If each Review cycle shows diminishing returns and the Feed Forward section is empty, the problem space may be exhausted. A new Plan on a new problem is better than incremental additions with no real impact.</li>
+  </ul>
+  <p>The default is to continue. Stop only when the signal says to.</p>
+
+</DocsLayout>

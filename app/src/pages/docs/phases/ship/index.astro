@@ -1,0 +1,148 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Phase 3: Ship" currentPath="/docs/phases/ship/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Phase 3</span>
+    <h1>Ship</h1>
+    <p class="page-desc">Put the result in the world — live, real, in front of people or systems. This is the definition of done.</p>
+  </div>
+
+  <h2>What is the Ship phase?</h2>
+  <p>Ship is not polish. Ship is not perfection. Ship is the act of making something <strong>real</strong> — taking it out of your local environment, your draft folder, your private repository, and placing it where it will be used, read, or experienced by others.</p>
+  <p>Shipping is how you validate that what you built actually works in the real world. Until something is shipped, you are operating on assumptions.</p>
+  <p>The Ship phase is done when something is <strong>live and accessible</strong> to its intended audience.</p>
+
+  <h2>What "shipped" means across different contexts</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Context</th><th>Shipped means</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Software feature</td><td>Deployed to production, accessible to real users</td></tr>
+        <tr><td>Article or post</td><td>Published and publicly accessible</td></tr>
+        <tr><td>Design</td><td>Shared with stakeholders or handed off to development</td></tr>
+        <tr><td>Strategy or decision</td><td>Communicated and acted on by the people responsible</td></tr>
+        <tr><td>Internal tool</td><td>Running and in use by the people it was built for</td></tr>
+        <tr><td>API or service</td><td>Live and returning real responses</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The common thread: <strong>someone or something that isn't you is now interacting with it.</strong></p>
+
+  <h2>How to run the Ship phase</h2>
+
+  <div class="step-block">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Do a final brief check</h3>
+      <p>Before shipping, re-read your Plan Brief one final time. Specifically check: do the success criteria match what you've built? Is what you're about to ship within the defined scope? Is the Plan Brief up to date?</p>
+      <p>This is not a gate — it is a 5-minute sanity check. It prevents shipping the wrong version of the right thing.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Ship the minimum that meets the criteria</h3>
+      <p>Ship the version that satisfies the success criteria from the plan — not the version that satisfies everything you thought of during Build. Future improvements belong to the next cycle.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Make it real</h3>
+      <p>Execute the actual shipping action: deploy, publish, send, release, present, hand off. Do not stop at "ready to ship." Ship.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Confirm it is live</h3>
+      <p>Verify the output is actually accessible. Check it from the perspective of the intended audience. This step is skipped more often than it should be.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h3>Capture what you learned</h3>
+      <p>After shipping, take 10 minutes to note: what worked as expected? What didn't? What would you do differently in the next cycle?</p>
+      <p>This is not a formal retrospective. It is a brief, informal capture that feeds the next cycle's Plan phase.</p>
+    </div>
+  </div>
+
+  <h2>The most common shipping failures</h2>
+  <div class="callout callout-warn">
+    <p><strong>Shipping the wrong thing.</strong> This happens when context was lost between Plan and Build — when what got built no longer serves the original goal. The final brief check exists to catch this.</p>
+    <p style="margin-top:0.5rem;"><strong>Not shipping at all.</strong> The second most common failure. The work is "done" but lives in draft, in staging, in a private repo. A result that isn't shipped is a result that produced no value. Ship the imperfect thing.</p>
+  </div>
+
+  <h2>Shipping is not the end</h2>
+  <p>Shipping ends the current cycle — it does not end the work. Use the <a href="/docs/gates/review/">Review gate</a> to measure whether what you shipped actually worked, reflect on the cycle, and feed what you learned into the next Plan.</p>
+  <p>After reviewing, one of three things will be true:</p>
+  <ol>
+    <li><strong>It worked</strong> — the goal was met, the success criteria are satisfied. The next problem can begin.</li>
+    <li><strong>It partially worked</strong> — some criteria are met, some aren't. The unmet criteria and what you learned become the Plan for the next cycle.</li>
+    <li><strong>It didn't work</strong> — the goal was wrong, the approach was wrong, or the execution was wrong. This is real signal. Use it. Start a new cycle with what you learned.</li>
+  </ol>
+  <p>In all three cases, the next step is a new <strong>Plan</strong> phase — informed by the Review.</p>
+
+  <div class="code-wrap">
+    <pre><code>Plan → Build → Ship → [Review] → Plan → ...</code></pre>
+  </div>
+
+  <p>The continuation loop is not optional for teams that want to improve. It is the mechanism that compounds. Each cycle informed by a thorough Review is better than a cycle started from scratch.</p>
+
+  <h2>Using AI in the Ship phase</h2>
+  <p>The Ship phase is where human judgment is most critical. AI cannot make the call of "is this ready."</p>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Where AI helps</h4>
+      <ul>
+        <li>Writing release notes, changelogs, or shipping announcements</li>
+        <li>Generating the checklist for a specific type of deployment</li>
+        <li>Reviewing the output one last time before it goes live</li>
+        <li>Drafting the "what we learned" capture after shipping</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Where human judgment must lead</h4>
+      <ul>
+        <li>Deciding whether this is actually ready to ship</li>
+        <li>Deciding who needs to know and how</li>
+        <li>Deciding what the next cycle should focus on</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>Here is my Plan Brief: [paste brief]
+Here is what I'm about to ship: [describe output]
+
+Does this satisfy the success criteria?
+Is there anything that would block me from shipping this today?
+What should I capture as a learning before I close this cycle?</code></pre>
+  </div>
+
+  <h2>Exit checklist</h2>
+  <ul class="checklist">
+    <li>The output is live and accessible to its intended audience</li>
+    <li>You have personally confirmed it is accessible (not just deployed)</li>
+    <li>Success criteria from the Plan Brief are met</li>
+    <li>Learnings from this cycle are captured (even briefly)</li>
+    <li>Next steps or next cycle inputs are noted</li>
+  </ul>
+
+  <div class="code-wrap" style="margin-top:2rem;">
+    <pre><code>Plan → Build → Ship ✓</code></pre>
+  </div>
+  <p>If you captured learnings and identified next steps, you have everything you need to start the next cycle stronger.</p>
+
+</DocsLayout>

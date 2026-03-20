@@ -1,0 +1,227 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Example: Writing a Technical Article" currentPath="/docs/examples/article/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Example</span>
+    <h1>Writing a Technical Article</h1>
+    <p class="page-desc">A full cycle from deciding on an angle to publishing.</p>
+  </div>
+
+  <p><strong>Scenario:</strong> You want to write an article titled <em>"How to use AI to write better code"</em> and publish it on your blog. You have opinions on the topic but you're not sure if the angle is actually useful or if the article already exists a hundred times.</p>
+
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation] → Build → Ship</code></pre>
+  </div>
+
+  <div class="callout">
+    <p><strong>How to read this example</strong></p>
+    <p>Each step shows what was given to an agent as an instruction, what the agent returned as output, and what the human decided based on that output. The agent can be you, a collaborator, or an AI — the structure is the same either way. Gates are where the human reads the output and decides whether to proceed. That decision is never skipped.</p>
+  </div>
+
+  <h2>Step 1: Research gate</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>What already exists on the topic "AI and writing better code"? Is there a specific angle or audience that is underserved? Spend no more than 45 minutes.</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ul>
+      <li>Most existing articles fall into two categories: (1) high-level hype pieces ("AI will replace developers"), or (2) tool-specific tutorials ("how to use Copilot")</li>
+      <li>Very few address the <em>mindset and workflow shift</em> — not just the tools</li>
+      <li>The audience most underserved: mid-level developers who already use AI tools but feel like they're not getting the full benefit</li>
+      <li>Common complaint found in forums: "I use Copilot but I feel like I'm just accepting code I don't understand"</li>
+      <li>Proposed angle: <em>using AI to write better code</em>, not <em>AI tools for coding</em> — the focus is on the developer getting better, not the tool being used</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The angle is real and underserved. The target reader has the tools — they need a mental model for using them intentionally. Proceed to Plan.</p>
+  </div>
+
+  <h2>Step 2: Plan phase</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Using the research findings, write a Plan Brief for this article.</p>
+    <p><strong>Reference files:</strong> Research findings from Step 1</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+
+    <p><strong>Plan Brief</strong></p>
+
+    <p><strong>Problem</strong><br>
+    Mid-level developers use AI coding tools but feel passive and dependent — they accept suggestions without fully understanding them, which erodes their own skills over time.</p>
+
+    <p><strong>Audience</strong><br>
+    Mid-level developers who already use AI coding tools but feel they're not getting the full benefit.</p>
+
+    <p><strong>Goal</strong><br>
+    Write a practical article that gives developers a mental model for using AI as a thinking partner, not a code generator.</p>
+
+    <p><strong>Appetite</strong><br>
+    One focused writing session (half day). If the article can't be done in that, scope it down — not extend the time.</p>
+
+    <p><strong>Constraints</strong></p>
+    <ul>
+      <li>Target length: 1,000–1,500 words (long enough to be useful, short enough to be read)</li>
+      <li>Must be practical, not theoretical — every point needs a concrete example</li>
+      <li>No paywalled content, no product promotion</li>
+      <li>Tool-agnostic: no specific AI tool named by name</li>
+    </ul>
+
+    <p><strong>Success criteria</strong></p>
+    <ul>
+      <li>The article has a clear, testable argument (not just tips)</li>
+      <li>Every section includes a concrete, copy-able example</li>
+      <li>A mid-level developer who reads it can apply the main idea the same day</li>
+      <li>No specific AI tool is mentioned by name</li>
+    </ul>
+
+    <p><strong>Core assumption</strong><br>
+    The developer already has AI tools. The problem is not adoption — it is knowing how to use them intentionally.</p>
+
+    <p><strong>Rabbit holes</strong><br>
+    Do not compare AI tools or benchmark outputs — that is a different article.</p>
+
+    <p><strong>Out of scope</strong></p>
+    <ul>
+      <li>AI tool comparisons or recommendations</li>
+      <li>Beginner intro to AI coding tools</li>
+      <li>Opinion on whether AI will replace developers</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The brief is solid but the goal sentence is vague ("mental model" is abstract). Proceed to Plan Validation before writing.</p>
+  </div>
+
+  <h2>Step 3: Plan Validation gate</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Read this Plan Brief. Tell me in your own words: what is this article about, what does it argue, and what would you cut if it had to be 20% shorter?</p>
+    <p><strong>Reference files:</strong> Plan Brief from Step 2</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <ul>
+      <li>"It's about using AI actively, not passively — like treating it as a pair programmer instead of autocomplete."</li>
+      <li>"The argument is: most people are using AI reactively (accept/reject). There's a better way: proactive use."</li>
+      <li>"I'd cut the constraint about not mentioning tools — it might make the examples feel vague."</li>
+    </ul>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>The agent's articulation of the argument ("reactive vs. proactive AI use") is sharper than what was in the Plan Brief. The tool-agnostic constraint stays — but it means examples need to be extra concrete to compensate. Update the brief before building.</p>
+    <p><strong>Changes made to Plan Brief:</strong></p>
+    <ul>
+      <li>Goal updated: <em>"Write a practical article that argues for proactive AI use over reactive AI use, and gives developers a concrete framework for the shift."</em></li>
+      <li>Added constraint: <em>"Examples must be code-level and specific, since no tool names will be used."</em></li>
+    </ul>
+    <p>Proceed to Build.</p>
+  </div>
+
+  <h2>Step 4: Build phase</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Write the article according to this Plan Brief. The argument is reactive vs. proactive AI use. Every section needs a concrete code example. Target 1,000–1,500 words. No tool names.</p>
+    <p><strong>Reference files:</strong> Updated Plan Brief from Step 3, Personal writing style guide</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <p>Draft produced with the following structure:</p>
+    <ol>
+      <li>Hook: the "accept/reject" trap — why most developers are using AI reactively</li>
+      <li>Section 1: What reactive AI use looks like (code example: accepting a function you don't understand)</li>
+      <li>Section 2: What proactive AI use looks like (code example: using AI to explain, then improve, then own)</li>
+      <li>Section 3: A 3-question framework to run before accepting any AI output</li>
+      <li>Closing: the shift from AI as a shortcut to AI as a thinking partner</li>
+    </ol>
+    <p>Draft came in at 1,650 words.</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision — mid-build check</p>
+    <p>The 3-question framework in Section 3 didn't exist in the Plan Brief — it emerged during writing. It serves the goal directly, so it stays. Plan Brief updated to reflect it as an addition to success criteria.</p>
+    <p>Cut 200 words from Section 2 (the "reactive" example was over-explained). Final word count: 1,440 — within range.</p>
+    <p><strong>Plan Brief updated:</strong> Added to success criteria: <em>"The article includes a 3-question framework the reader can use immediately."</em></p>
+    <p>Proceed to Ship.</p>
+  </div>
+
+  <h2>Step 5: Ship phase</h2>
+
+  <div class="decision-block">
+    <p class="decision-label">Instruction given to agent</p>
+    <p>Review the final draft against the Plan Brief. Confirm all success criteria are met. List anything that is not.</p>
+    <p><strong>Reference files:</strong> Final draft, Plan Brief (updated)</p>
+  </div>
+
+  <div class="agent-block">
+    <p class="agent-label">Output from agent</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Success criterion</th><th>Status</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Clear, testable argument</td><td>Met</td><td>Reactive vs. proactive AI use — stated in paragraph 1</td></tr>
+          <tr><td>Every section has a concrete example</td><td>Met</td><td>Two code examples, both copy-able</td></tr>
+          <tr><td>Applicable the same day</td><td>Met</td><td>3-question framework is immediately usable</td></tr>
+          <tr><td>No specific AI tool named</td><td>Met</td><td>Confirmed — no tool names in the draft</td></tr>
+          <tr><td>3-question framework included</td><td>Met</td><td>Section 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Word count: 1,440. All constraints met.</p>
+  </div>
+
+  <div class="decision-block">
+    <p class="decision-label">Human decision</p>
+    <p>All criteria met. This goes live. Published to personal blog, added to newsletter, shared in the developer community where the original problem surfaced during Research.</p>
+    <p>Confirmed live: opened the URL in an incognito window. Article loads. Code examples render correctly.</p>
+  </div>
+
+  <h2>Learnings (captured for next cycle)</h2>
+  <ul>
+    <li>The Plan Validation gate saved real time — the agent's reframing of the argument ("reactive vs. proactive") made the opening stronger before a word was written</li>
+    <li>"Tool-agnostic" was the right call but created a constraint that required more concrete examples to compensate — factor this in earlier next time</li>
+    <li>The 3-question framework emerged from the Build, not the Plan. This is normal (Build to learn). Updating the Plan Brief mid-build kept it honest</li>
+    <li>Next cycle idea: a follow-up article specifically on the 3-question framework</li>
+  </ul>
+
+  <h2>What this example demonstrates</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Principle</th><th>Where it showed up</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Clarity before action</td><td>Research gate prevented planning in the wrong direction</td></tr>
+        <tr><td>Build to learn</td><td>The 3-question framework emerged during writing, not planning</td></tr>
+        <tr><td>Reality is the only validator</td><td>Shipped at "good enough" — only publishing would show if the argument landed</td></tr>
+        <tr><td>Gates reduce cost, not momentum</td><td>Plan Validation caught a weak argument before hours of writing</td></tr>
+        <tr><td>The brief is your compass</td><td>Plan Brief was updated mid-build to stay honest</td></tr>
+        <tr><td>AI executes. Human decides.</td><td>At every gate, the human read the output and made the call — proceed, iterate, or cut</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The full cycle at a glance</h2>
+  <div class="code-wrap">
+    <pre><code>[Research] → Plan → [Plan Validation] → Build → Ship</code></pre>
+  </div>
+  <p>Each arrow is a human decision: read the output, judge it, decide what comes next.</p>
+
+</DocsLayout>

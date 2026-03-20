@@ -1,0 +1,161 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Gate: Plan Validation" currentPath="/docs/gates/plan-validation/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Gate</span>
+    <h1>Plan Validation</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Position</p>
+      <p class="gate-meta-value">After Plan, iteratively before Build</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Purpose</p>
+      <p class="gate-meta-value">Verify the plan is sound — and refine it until it is</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">When to use</p>
+      <p class="gate-meta-value">High-cost builds, multi-person work, unfamiliar problem spaces, any time the plan feels vague</p>
+    </div>
+  </div>
+
+  <h2>What is Plan Validation?</h2>
+  <p>Plan Validation is not a one-way checkpoint. It is a <strong>refining loop</strong> between the Plan phase and execution.</p>
+
+  <div class="code-wrap">
+    <pre><code>Plan ←──── refine based on findings
+  │                         ↑
+  └──→ Plan Validation ─────┘
+              │
+              ↓ (when plan is validated)
+           Build</code></pre>
+  </div>
+
+  <p>You validate the plan, find gaps or ambiguities, go back to Plan to sharpen it, and validate again. Each iteration makes the plan more specific. <strong>A more specific plan produces better outcomes</strong> — fewer surprises during Build, less scope drift, clearer decisions under pressure.</p>
+  <p>The loop stops when the plan can answer all three validation questions without hesitation.</p>
+
+  <h2>Why this loop exists</h2>
+  <p>Most plans feel complete when they're written. They aren't. The act of writing a plan makes the author feel clarity that often isn't there — because the author fills in the gaps automatically, from context they carry in their head that isn't in the document.</p>
+  <p>The Plan Validation loop exists to surface those gaps before they become expensive.</p>
+  <p><strong>A gap in the plan is cheap to fix at the Plan stage.</strong> The same gap discovered mid-Build means rework. Discovered post-Ship, it means a failed cycle.</p>
+  <p>Every pass through the loop answers a version of the same question: <em>could someone with no prior context on this problem pick up this plan and produce the right result?</em></p>
+
+  <h2>The three validation questions</h2>
+  <ol>
+    <li style="margin-bottom:0.75rem;"><strong>Is the problem correctly stated?</strong> Is this the actual problem, or a symptom of something deeper? Is the audience named specifically?</li>
+    <li style="margin-bottom:0.75rem;"><strong>Is the plan feasible?</strong> Can the goal be achieved within the stated constraints?</li>
+    <li style="margin-bottom:0.75rem;"><strong>Is the plan specific enough to build from?</strong> Could someone who didn't write this plan execute it and produce the same result?</li>
+  </ol>
+  <p>The third question is the one most plans fail. Vague plans produce inconsistent builds.</p>
+
+  <h2>How to run Plan Validation</h2>
+
+  <h3>Solo</h3>
+  <ul>
+    <li>Take a break from the plan (minimum a few hours — fresh eyes matter)</li>
+    <li>Answer the three validation questions in writing, not just in your head</li>
+    <li>For every "yes but..." answer, go back to Plan and sharpen that section</li>
+    <li>Repeat until all three are a clean "yes"</li>
+  </ul>
+
+  <h3>With another person</h3>
+  <ul>
+    <li>Share the Plan Brief without explaining it verbally</li>
+    <li>Ask them to answer: What problem is being solved, and for whom? What does done look like? What would they cut if scope had to be reduced by 50%?</li>
+    <li>Where their answers differ from yours, the plan is ambiguous — go back and fix it</li>
+    <li>This is not a review of their opinion. It is a test of plan clarity.</li>
+  </ul>
+
+  <h3>With AI</h3>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>Here is my Plan Brief: [paste brief]
+
+Act as a critical reviewer. Answer these questions honestly:
+1. Is the problem correctly stated, or is this a symptom of a deeper issue?
+2. Is the audience specific enough to make design decisions from?
+3. Is this plan feasible given the stated constraints?
+4. Which success criteria are ambiguous or unmeasurable?
+5. What would you cut if scope had to be reduced by 50%?
+6. What is the single biggest risk to this plan that is not currently acknowledged?</code></pre>
+  </div>
+
+  <h2>The refinement loop in practice</h2>
+  <p>The loop typically runs 1–3 times:</p>
+  <ul>
+    <li><strong>First pass</strong> — catches obvious gaps: vague goals, missing constraints, audience not named, success criteria not measurable.</li>
+    <li><strong>Second pass</strong> — catches structural issues: the goal is stated but not the right goal; the constraints conflict; the success criteria are measurable but don't actually test the goal.</li>
+    <li><strong>Third pass (if needed)</strong> — catches alignment gaps in multi-person work: two people reading the same plan would make different decisions. Forces explicit choices.</li>
+  </ul>
+  <p>After three passes, if the plan still has major gaps, consider whether the problem is understood well enough to plan at all — and use the <a href="/docs/gates/research/">Research gate</a> before continuing.</p>
+
+  <h3>How to know when the loop is done</h3>
+  <p>The loop exits when three things are true:</p>
+  <ol>
+    <li><strong>The plan is executable without clarifying questions.</strong> If an AI or a person handed this brief could start building immediately — without asking "what do you mean by X?" — the plan is ready.</li>
+    <li><strong>The success criteria are falsifiable.</strong> Each criterion has a clear pass/fail test. "It works well" is not falsifiable. "The page loads in under 2 seconds on a 4G connection" is.</li>
+    <li><strong>The audience is named, not implied.</strong> Not "users" or "developers" — the specific type of person this is built for, with the specific context that makes this matter to them.</li>
+  </ol>
+
+  <h3>What "refining" actually means</h3>
+  <p>Going back to Plan is not failure. It is the loop working as intended. Typical refinements:</p>
+  <ul>
+    <li>Replacing vague goals with specific, measurable ones</li>
+    <li>Naming the audience more precisely</li>
+    <li>Adding a constraint that was assumed but not written</li>
+    <li>Splitting a success criterion that was doing too much work into two separate, cleaner ones</li>
+    <li>Removing scope that the validation revealed as speculative</li>
+  </ul>
+  <p>Each refinement is a decision made explicitly — in writing — rather than implicitly during Build. That is the point.</p>
+
+  <h2>Plan Validation output</h2>
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>## Plan Validation Log
+
+**Pass:** [1 / 2 / 3]
+**Reviewed by:** [Name, "Self", or "AI-assisted"]
+**Date:** [Date]
+
+**Is the problem correctly stated?**
+[Yes / No / Partial — with explanation]
+
+**Is the audience specific?**
+[Yes / No / Partial — with explanation]
+
+**Is the plan feasible?**
+[Yes / No / Partial — with explanation]
+
+**Is the plan specific enough to build from?**
+[Yes / No / Partial — with explanation]
+
+**Gaps found:**
+- [Gap 1]
+- [Gap 2]
+
+**Changes made to Plan Brief:**
+- [Change 1]
+- [Change 2]
+
+**Decision:**
+- [ ] Ready to Build
+- [ ] Needs another validation pass</code></pre>
+  </div>
+
+  <h2>Plan Validation checklist</h2>
+  <ul class="checklist">
+    <li>Plan Brief reviewed after a break, not immediately after writing it</li>
+    <li>All three validation questions answered in writing</li>
+    <li>Audience is specific — not "users" or "everyone"</li>
+    <li>Success criteria are measurable and falsifiable</li>
+    <li>Plan has been handed to someone else (or AI) to test clarity</li>
+    <li>All gaps found have been addressed in the Plan Brief</li>
+    <li>Plan Brief is more specific after this pass than before it</li>
+    <li>Decision to proceed to Build (or run another pass) is explicit</li>
+  </ul>
+
+</DocsLayout>

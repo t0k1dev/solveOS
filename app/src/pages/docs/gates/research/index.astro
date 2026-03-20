@@ -1,0 +1,186 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Gate: Research" currentPath="/docs/gates/research/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Gate</span>
+    <h1>Research</h1>
+  </div>
+
+  <div class="gate-meta">
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Position</p>
+      <p class="gate-meta-value">Before or during Plan</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">Purpose</p>
+      <p class="gate-meta-value">Understand the problem space before committing to a direction</p>
+    </div>
+    <div class="gate-meta-item">
+      <p class="gate-meta-label">When to use</p>
+      <p class="gate-meta-value">When the problem is unfamiliar, the solution space is unclear, or assumptions need to be tested before planning</p>
+    </div>
+  </div>
+
+  <h2>What is the Research gate?</h2>
+  <p>Research is a pre-planning checkpoint. You use it when you don't have enough information to write a reliable Plan Brief — when you risk planning in the wrong direction because you don't yet understand the problem space.</p>
+  <p>Research is bounded and purposeful. It is not open-ended exploration. It has a defined question, a time limit, and a clear output.</p>
+  <p><strong>Research answers the question: "Do I understand enough to plan?"</strong></p>
+
+  <h2>When to use Research</h2>
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Use Research when</h4>
+      <ul>
+        <li>You are working in a domain you haven't worked in before</li>
+        <li>You need to understand what already exists before deciding what to build</li>
+        <li>Your problem statement is based on assumptions you haven't validated</li>
+        <li>The constraints are unknown and could significantly change the plan</li>
+        <li>You need to evaluate options before committing to an approach</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Do not use Research when</h4>
+      <ul>
+        <li>You are procrastinating under the guise of needing more information</li>
+        <li>You already know enough to write a Plan Brief</li>
+        <li>The cost of being slightly wrong is low and correctable mid-build</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>How to run a Research gate</h2>
+
+  <div class="step-block">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Define the research question</h3>
+      <p>Before researching anything, write down exactly what you need to know. Vague research produces vague answers.</p>
+      <p><strong>Good research questions:</strong></p>
+      <ul>
+        <li>"What are the existing solutions to this problem and what are their limitations?"</li>
+        <li>"What are the technical constraints of building X in Y environment?"</li>
+        <li>"Has someone solved this before? What approach did they take?"</li>
+        <li>"What does the user actually need here, versus what I assume they need?"</li>
+      </ul>
+      <p><strong>Bad research questions:</strong></p>
+      <ul>
+        <li>"Learn more about this topic"</li>
+        <li>"See what's out there"</li>
+        <li>"Get a better understanding"</li>
+      </ul>
+
+      <h3>1a. Use Five Whys to find the real problem</h3>
+      <p>If your research question is about diagnosing a problem (not evaluating options), use Five Whys before you start researching broadly. It stops you from researching the wrong thing.</p>
+      <div class="code-wrap">
+        <pre><code>Symptom: The dashboard loads slowly.
+Why? → The queries take too long.
+Why? → The table has no indexes.
+Why? → Nobody added them when the feature was built.
+Why? → The feature was built as a prototype and never hardened.
+Why? → There was no definition of "production-ready" for that feature.
+
+Root cause: Missing engineering standards for promoting prototypes to production.</code></pre>
+      </div>
+      <p>Stop when you reach a cause that is actionable and specific. The point is to not research the symptom. Research the root cause.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Set a time limit</h3>
+      <p>Research without a time limit becomes avoidance. Set a specific limit before you start:</p>
+      <ul>
+        <li>For small decisions: 30–60 minutes</li>
+        <li>For medium decisions: 2–4 hours</li>
+        <li>For large decisions: 1–2 days maximum</li>
+      </ul>
+      <p>If you haven't found what you need within the time limit, you either need to reframe the question or accept uncertainty and proceed to Plan with stated assumptions.</p>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Document what you find</h3>
+      <p>Capture findings in a format that can feed directly into the Plan Brief. Don't just take notes — write conclusions.</p>
+      <div class="code-wrap">
+        <button class="copy-btn">Copy</button>
+        <pre><code>## Research Summary
+
+**Question:** [The specific question you were answering]
+
+**Time spent:** [e.g. 2 hours]
+
+**Key findings:**
+- [Finding 1]
+- [Finding 2]
+- [Finding 3]
+
+**Conclusions:**
+- [What this means for the Plan]
+
+**Open questions / remaining unknowns:**
+- [What you still don't know, and whether it blocks planning]
+
+**Decision:**
+- [ ] I have enough information to write the Plan Brief
+- [ ] I need more research: [what specifically, and why]</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Exit Research</h3>
+      <p>Once you've answered your question or hit your time limit, stop. Move to the Plan phase using your findings as input.</p>
+    </div>
+  </div>
+
+  <h2>Using AI in the Research gate</h2>
+  <p>AI is particularly effective in the Research phase when used as a thinking partner and information accelerator.</p>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Where AI helps</h4>
+      <ul>
+        <li>Rapid summarization of existing solutions and their trade-offs</li>
+        <li>Surfacing edge cases and prior art you might not have thought to look for</li>
+        <li>Challenging the framing of your research question</li>
+        <li>Generating a structured breakdown of an unfamiliar domain</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Where human judgment must lead</h4>
+      <ul>
+        <li>Evaluating the reliability and relevance of information found</li>
+        <li>Deciding when you know enough to move forward</li>
+        <li>Interpreting findings in the context of your specific situation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <button class="copy-btn">Copy</button>
+    <pre><code>I'm about to plan [describe the problem or project].
+Before I write the plan, I need to understand [your research question].
+
+What do I need to know?
+What are the common approaches and their trade-offs?
+What assumptions am I likely making that I should validate first?</code></pre>
+  </div>
+
+  <h2>Research gate checklist</h2>
+  <ul class="checklist">
+    <li>Research question is specific and written down before starting</li>
+    <li>Time limit is set before starting</li>
+    <li>Findings are documented in the Research Summary format</li>
+    <li>Conclusions are written (not just raw notes)</li>
+    <li>Open questions are listed and assessed</li>
+    <li>A clear decision to proceed to Plan (or do more targeted research) is made</li>
+  </ul>
+
+</DocsLayout>

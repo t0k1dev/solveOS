@@ -1,0 +1,107 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="The two feedback loops" currentPath="/docs/concepts/feedback-loops/">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Concepts</span>
+    <h1>The two feedback loops</h1>
+    <p class="page-desc">solveOS is a cycle, not a line. Two distinct feedback loops make the framework perpetual — and explain why it works.</p>
+  </div>
+
+  <p>solveOS contains two distinct feedback loops that make the framework a cycle — not a one-time process.</p>
+  <p>Both loops exist to do one thing: <strong>reduce the cost of being wrong.</strong></p>
+
+  <h2>Loop 1 — Plan → Validate Plan → Plan (refine)</h2>
+  <div class="code-wrap">
+    <pre><code>      ┌──────────────────────────────┐
+      ↓                              │
+    Plan ──→ [Plan Validation] ──────┘
+                    │
+                    ↓ (when plan is ready)
+                  Build</code></pre>
+  </div>
+
+  <p>Before you build anything, the plan must be good enough to build from. The <a href="/docs/gates/plan-validation/">Plan Validation gate</a> runs a structured check and, if gaps are found, sends you back to Plan to sharpen it. This loop runs until the plan can be executed without guesswork — typically 1–3 passes.</p>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Why it exists</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">Vague plans produce vague builds. Fixing ambiguity before execution is 10x cheaper than fixing it after. Every pass through this loop produces a more specific, more executable plan.</p>
+    </div>
+    <div class="two-col-card">
+      <h4>When it exits</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">The plan answers all validation questions without hesitation — the problem is correctly stated, the audience is specific, the goal is feasible, and someone else could execute it and produce the same result.</p>
+    </div>
+  </div>
+
+  <p>Typical runs: <strong>1–3 passes.</strong></p>
+  <p><a href="/docs/gates/plan-validation/">See full Plan Validation gate documentation →</a></p>
+
+  <h2>Loop 2 — Ship → Review → Plan (continue building)</h2>
+  <div class="code-wrap">
+    <pre><code>    Plan → Build → Ship
+                    │
+                    ↓
+                 [Review]
+                    │
+                    ↓
+    Plan → Build → Ship
+                    │
+                    ↓
+                  ...</code></pre>
+  </div>
+
+  <p>Shipping something is not the end of the work — it is the beginning of knowing. The <a href="/docs/gates/review/">Review gate</a> measures what happened after shipping, reflects on the cycle, and produces the inputs for the next Plan. This is what makes solveOS a continuous building process, not a one-time delivery.</p>
+
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Why it exists</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">The real world tells you things your plan couldn't predict. User behavior, unexpected failures, assumptions that turned out wrong — all of this surfaces only after shipping. Without a review loop, the same mistakes repeat.</p>
+    </div>
+    <div class="two-col-card">
+      <h4>When it exits</h4>
+      <p style="font-size:0.875rem;color:var(--text);margin:0;">Never — the loop is perpetual. It stops only when the problem is no longer worth solving. After reviewing, you always start a new Plan — informed by what the previous cycle taught.</p>
+    </div>
+  </div>
+
+  <p><a href="/docs/gates/review/">See full Review gate documentation →</a></p>
+
+  <h2>The full picture</h2>
+  <div class="code-wrap">
+    <pre><code>   ┌──────────────────────────────────────────────────────────────┐
+   ↓                                                              │
+ Plan ←──── refine ←── [Plan Validation] ←── Plan (loop 1)       │
+   │                           │                                  │
+   │                      (ready to build)                        │
+   ↓                           ↓                                  │
+ Plan ──→ Build ──→ [Build Validation] ──→ Ship ──→ [Review] ─────┘
+                                                      (loop 2)</code></pre>
+  </div>
+
+  <p>Loop 1 runs <strong>before execution begins</strong> — it protects the build.<br />
+  Loop 2 runs <strong>after the result is live</strong> — it informs the next cycle.</p>
+
+  <h2>What these loops prevent</h2>
+  <div class="two-col">
+    <div class="two-col-card">
+      <h4>Loop 1 prevents</h4>
+      <ul>
+        <li>Building the wrong thing</li>
+        <li>Wasted execution effort</li>
+        <li>Expensive mid-build corrections</li>
+        <li>Ambiguous success criteria discovered during Build</li>
+      </ul>
+    </div>
+    <div class="two-col-card">
+      <h4>Loop 2 prevents</h4>
+      <ul>
+        <li>Repeating the same mistakes</li>
+        <li>Disconnected cycles</li>
+        <li>Assumptions never tested against reality</li>
+        <li>Building more of the wrong thing</li>
+      </ul>
+    </div>
+  </div>
+
+</DocsLayout>
