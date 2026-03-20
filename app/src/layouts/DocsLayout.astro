@@ -105,6 +105,19 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
     <meta property="og:site_name" content="solveOS" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@tokidev_" />
+    <script is:inline>
+      // Apply theme before paint to avoid flash
+      (function() {
+        const stored = localStorage.getItem('docs-theme');
+        if (stored) {
+          document.documentElement.setAttribute('data-theme', stored);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
 
@@ -124,6 +137,10 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
             <input type="text" id="search-input" class="search-input" placeholder="Search docs…" autocomplete="off" spellcheck="false" />
             <div id="search-results" class="search-results" hidden></div>
           </div>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
           <a href="/" class="back-link">← solveOS</a>
         </div>
       </div>
@@ -194,6 +211,14 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
       function closeNav() { docsNav?.classList.remove('open'); overlay?.classList.remove('visible'); }
       hamburger?.addEventListener('click', () => docsNav?.classList.contains('open') ? closeNav() : openNav());
       overlay?.addEventListener('click', closeNav);
+
+      // Theme toggle
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('docs-theme', next);
+      });
 
       // Copy buttons — read plain text before colorizer mutates innerHTML
       document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -277,10 +302,8 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
   :root {
     --bg:          #ffffff;
     --bg-alt:      #f8f9fa;
-    --bg-hero:     #0a0a0a;
     --text:        #0f172a;
     --text-muted:  #64748b;
-    --text-inv:    #f1f5f9;
     --border:      #e2e8f0;
     --accent:      #2563eb;
     --accent-light:#dbeafe;
@@ -304,15 +327,64 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
     --docs-warn-border:   #fca5a5;
     --docs-code-bg:       #0d1117;
     --docs-code-text:     #c9d1d9;
-    /* code token colors (GitHub Dark palette) */
-    --ct-gate:        #79c0ff;   /* blue  — gates     */
-    --ct-phase:       #7ee787;   /* green — phases     */
-    --ct-arrow:       #ff7b72;   /* red   — arrows     */
-    --ct-diagram:     #8b949e;   /* gray  — box chars  */
-    --ct-heading:     #d2a8ff;   /* purple— ## headers */
-    --ct-key:         #ffa657;   /* orange— keys       */
-    --ct-placeholder: #56d364;   /* green — placeholders */
-    --ct-check:       #7ee787;   /* green — checkmarks */
+    /* decision / agent blocks */
+    --decision-bg: #f0f7ff;
+    /* code token colors */
+    --ct-gate:        #79c0ff;
+    --ct-phase:       #7ee787;
+    --ct-arrow:       #ff7b72;
+    --ct-diagram:     #8b949e;
+    --ct-heading:     #d2a8ff;
+    --ct-key:         #ffa657;
+    --ct-placeholder: #56d364;
+    --ct-check:       #7ee787;
+  }
+
+  /* ── Dark mode ───────────────────── */
+  [data-theme="dark"] {
+    --bg:          #0f1117;
+    --bg-alt:      #161b22;
+    --text:        #e6edf3;
+    --text-muted:  #8b949e;
+    --border:      #30363d;
+    --accent:      #58a6ff;
+    --accent-light:#1f3a5f;
+    --phase-color: #58a6ff;
+    --gate-color:  #8b949e;
+    --warn-color:  #f85149;
+    --shadow:      0 1px 3px rgba(0,0,0,.3);
+    --docs-nav-bg:        #161b22;
+    --docs-nav-active-bg: #1f3a5f;
+    --docs-nav-active:    #58a6ff;
+    --docs-callout-bg:    #161f2e;
+    --docs-callout-border:#388bfd;
+    --docs-warn-bg:       #2a1215;
+    --docs-warn-border:   #f85149;
+    --decision-bg: #161f2e;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:          #0f1117;
+      --bg-alt:      #161b22;
+      --text:        #e6edf3;
+      --text-muted:  #8b949e;
+      --border:      #30363d;
+      --accent:      #58a6ff;
+      --accent-light:#1f3a5f;
+      --phase-color: #58a6ff;
+      --gate-color:  #8b949e;
+      --warn-color:  #f85149;
+      --shadow:      0 1px 3px rgba(0,0,0,.3);
+      --docs-nav-bg:        #161b22;
+      --docs-nav-active-bg: #1f3a5f;
+      --docs-nav-active:    #58a6ff;
+      --docs-callout-bg:    #161f2e;
+      --docs-callout-border:#388bfd;
+      --docs-warn-bg:       #2a1215;
+      --docs-warn-border:   #f85149;
+      --decision-bg: #161f2e;
+    }
   }
 
   html { font-size: 16px; scroll-behavior: smooth; }
@@ -341,6 +413,13 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
   .back-link:hover { color: var(--accent); }
   .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; }
+  .theme-toggle { background: none; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; padding: 0.3rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: color 0.15s, border-color 0.15s; flex-shrink: 0; }
+  .theme-toggle:hover { color: var(--text); border-color: var(--text-muted); }
+  /* light mode: show moon (click to go dark). dark mode: show sun (click to go light) */
+  [data-theme="light"] .icon-sun  { display: none;  }
+  [data-theme="light"] .icon-moon { display: block; }
+  [data-theme="dark"]  .icon-sun  { display: block; }
+  [data-theme="dark"]  .icon-moon { display: none;  }
 
   /* ── Layout ─────────────────────── */
   .docs-layout {
@@ -492,14 +571,14 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
   .step-body h3 { margin-top: 0; }
 
   /* ── Decision block (examples) ───── */
-  .decision-block { border-left: 3px solid var(--phase-color); background: #f0f7ff; border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin: 1rem 0; }
+  .decision-block { border-left: 3px solid var(--phase-color); background: var(--decision-bg); border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin: 1rem 0; }
   .decision-block .decision-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--phase-color); margin-bottom: 0.4rem; }
   .agent-block { border-left: 3px solid var(--border); background: var(--bg-alt); border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin: 1rem 0; }
   .agent-block .agent-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
 
   /* ── Mode badge ─────────────────── */
-  .mode-diverge { display: inline-block; background: #eff6ff; color: #1d4ed8; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid #bfdbfe; }
-  .mode-converge { display: inline-block; background: #f0fdf4; color: #15803d; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid #bbf7d0; }
+  .mode-diverge { display: inline-block; background: var(--accent-light); color: var(--accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid var(--accent-light); }
+  .mode-converge { display: inline-block; background: var(--bg-alt); color: var(--text-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid var(--border); }
 
   /* ── Principle block ────────────── */
   .principle-block { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1rem 0; }
