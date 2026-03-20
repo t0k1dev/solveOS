@@ -195,19 +195,78 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
       hamburger?.addEventListener('click', () => docsNav?.classList.contains('open') ? closeNav() : openNav());
       overlay?.addEventListener('click', closeNav);
 
-      // Copy buttons
+      // Copy buttons — read plain text before colorizer mutates innerHTML
       document.querySelectorAll('.copy-btn').forEach(btn => {
+        const wrap = btn.closest('.code-wrap');
+        const plain = wrap?.querySelector('code')?.textContent ?? '';
         btn.addEventListener('click', () => {
           const target = btn.getAttribute('data-target');
-          const code = target ? document.getElementById(target)?.textContent : btn.closest('.code-wrap')?.querySelector('code')?.textContent;
-          if (code) {
-            navigator.clipboard.writeText(code.trim()).then(() => {
+          const text = target ? (document.getElementById(target)?.textContent ?? '') : plain;
+          if (text) {
+            navigator.clipboard.writeText(text.trim()).then(() => {
               btn.textContent = 'Copied!';
               setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
             });
           }
         });
       });
+
+      // Code colorizer — tokenizes plain-text code blocks
+      (function colorizeCode() {
+        function escHtml(s) {
+          return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
+        // Token rules: order matters — more specific first
+        const rules = [
+          // Gates: [Anything] — brackets included
+          { re: /(\[[^\]]+\])/g, cls: 'ct-gate' },
+          // Phases
+          { re: /\b(Plan|Build|Ship)\b/g, cls: 'ct-phase' },
+          // Arrows
+          { re: /(←+─*|─*→+|→|←)/g, cls: 'ct-arrow' },
+          // Box-drawing (diagrams)
+          { re: /([\u2500-\u257F\u250C\u2510\u2514\u2518\u251C\u2524\u252C\u2534\u253C\u2502\u2500]+)/g, cls: 'ct-diagram' },
+          // Section headers: ## Word
+          { re: /(##\s+[^\n]+)/g, cls: 'ct-heading' },
+          // Template keys: word followed by colon at line start
+          { re: /^(\w[\w\s\/\-]*:)/gm, cls: 'ct-key' },
+          // Template placeholders: [paste …] or [describe …]
+          { re: /(\[[a-z][^\]]*\])/g, cls: 'ct-placeholder' },
+          // Checkmarks
+          { re: /(✓|✗|×\d*)/g, cls: 'ct-check' },
+        ];
+
+        document.querySelectorAll('.code-wrap pre code').forEach(el => {
+          const raw = el.textContent;
+          // Build a list of non-overlapping matches with class
+          const matches = [];
+          rules.forEach(({ re, cls }) => {
+            re.lastIndex = 0;
+            let m;
+            while ((m = re.exec(raw)) !== null) {
+              matches.push({ start: m.index, end: m.index + m[0].length, cls, text: m[0] });
+            }
+          });
+          // Sort by start; remove overlaps (first match wins)
+          matches.sort((a, b) => a.start - b.start || b.end - b.start - (a.end - a.start));
+          const kept = [];
+          let cursor = 0;
+          for (const m of matches) {
+            if (m.start >= cursor) { kept.push(m); cursor = m.end; }
+          }
+          // Build output
+          let html = '';
+          let pos = 0;
+          for (const m of kept) {
+            if (m.start > pos) html += escHtml(raw.slice(pos, m.start));
+            html += `<span class="${m.cls}">${escHtml(m.text)}</span>`;
+            pos = m.end;
+          }
+          if (pos < raw.length) html += escHtml(raw.slice(pos));
+          el.innerHTML = html;
+        });
+      })();
     </script>
   </body>
 </html>
@@ -243,8 +302,17 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
     --docs-callout-border:#3b82f6;
     --docs-warn-bg:       #fef2f2;
     --docs-warn-border:   #fca5a5;
-    --docs-code-bg:       #0f172a;
-    --docs-code-text:     #e2e8f0;
+    --docs-code-bg:       #0d1117;
+    --docs-code-text:     #c9d1d9;
+    /* code token colors (GitHub Dark palette) */
+    --ct-gate:        #79c0ff;   /* blue  — gates     */
+    --ct-phase:       #7ee787;   /* green — phases     */
+    --ct-arrow:       #ff7b72;   /* red   — arrows     */
+    --ct-diagram:     #8b949e;   /* gray  — box chars  */
+    --ct-heading:     #d2a8ff;   /* purple— ## headers */
+    --ct-key:         #ffa657;   /* orange— keys       */
+    --ct-placeholder: #56d364;   /* green — placeholders */
+    --ct-check:       #7ee787;   /* green — checkmarks */
   }
 
   html { font-size: 16px; scroll-behavior: smooth; }
@@ -350,6 +418,16 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
     cursor: pointer; transition: background 0.15s;
   }
   .copy-btn:hover { background: rgba(255,255,255,.2); }
+
+  /* ── Code token colors ──────────── */
+  .ct-gate        { color: var(--ct-gate);        }
+  .ct-phase       { color: var(--ct-phase);       font-weight: 600; }
+  .ct-arrow       { color: var(--ct-arrow);       }
+  .ct-diagram     { color: var(--ct-diagram);     }
+  .ct-heading     { color: var(--ct-heading);     font-weight: 700; }
+  .ct-key         { color: var(--ct-key);         }
+  .ct-placeholder { color: var(--ct-placeholder); font-style: italic; }
+  .ct-check       { color: var(--ct-check);       }
 
   /* ── Callout ────────────────────── */
   .callout {

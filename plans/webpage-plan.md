@@ -2,6 +2,22 @@
 
 > This document is the source of truth for the solveOS landing page. It describes what the page contains, why each section exists, and what the design constraints are. The landing page (`app/src/pages/index.astro`) must always stay in sync with this document.
 
+## Sync hierarchy
+
+```
+docs/   ←  source of truth for all content. Never modified.
+  ↓
+plans/docs-plan.md   ←  synced with docs/.
+  ↓
+plans/webpage-plan.md  ←  this file. Synced with plans/docs-plan.md for shared content.
+  ↓
+app/src/pages/index.astro  ←  must stay in sync with this file.
+```
+
+**Change rules:**
+- Web-only change (copy, layout, sections) → update this file, then `app/src/pages/index.astro`. Do not touch `docs/` or `plans/docs-plan.md`.
+- If `docs/` changes and affects landing page content → `plans/docs-plan.md` is updated first, then this file, then `app/src/pages/index.astro`.
+
 ---
 
 ## Problem

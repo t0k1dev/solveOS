@@ -4,6 +4,24 @@
 >
 > **Rule:** All content is sourced exclusively from `docs/`. Never modify files in `docs/` during web tasks. The documentation site renders `docs/` — it does not replace or override it.
 
+## Sync hierarchy
+
+```
+docs/   ←  source of truth for all content. Never modified during web or plan tasks.
+  ↓
+plans/docs-plan.md   ←  must stay in sync with docs/. Updated whenever docs/ changes.
+  ↓
+app/src/pages/docs/  ←  must stay in sync with plans/docs-plan.md.
+plans/webpage-plan.md  ←  must stay in sync with plans/docs-plan.md for any shared content.
+  ↓
+app/src/pages/index.astro  ←  must stay in sync with plans/webpage-plan.md.
+```
+
+**Change rules:**
+- `docs/` changes → update `plans/docs-plan.md`, then `app/src/pages/docs/`, then `plans/webpage-plan.md` if affected, then `app/src/pages/index.astro` if affected.
+- Web-only change (landing page copy, layout, sections) → update `plans/webpage-plan.md` only, then `app/src/pages/index.astro`. Do not touch `docs/` or `plans/docs-plan.md`.
+- Docs site change (layout, nav, new page) → update `plans/docs-plan.md`, then `app/src/pages/docs/`. Do not touch `docs/`.
+
 ---
 
 ## Problem
