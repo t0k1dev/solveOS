@@ -151,6 +151,10 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
             <input type="text" id="search-input" class="search-input" placeholder="Search docs…" autocomplete="off" spellcheck="false" />
             <div id="search-results" class="search-results" hidden></div>
           </div>
+          <!-- Mobile search icon (visible only on small screens) -->
+          <button class="search-icon-btn" id="search-icon-btn" aria-label="Search docs">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
             <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -243,6 +247,19 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
       </main>
     </div>
 
+    <!-- Mobile search modal -->
+    <div class="search-modal-overlay" id="search-modal-overlay" aria-hidden="true">
+      <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search docs">
+        <div class="search-modal-header">
+          <input type="text" id="search-input-mobile" class="search-input-mobile" placeholder="Search docs…" autocomplete="off" spellcheck="false" />
+          <button class="search-modal-close" id="search-modal-close" aria-label="Close search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="search-results-mobile" class="search-results-mobile"></div>
+      </div>
+    </div>
+
     <script src="/search.js" defer></script>
     <script>
       // Hamburger
@@ -268,6 +285,38 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
         const next = current === 'es' ? 'en' : 'es';
         document.documentElement.setAttribute('data-lang', next);
         localStorage.setItem('docs-lang', next);
+      });
+
+      // Mobile search modal
+      const searchIconBtn = document.getElementById('search-icon-btn');
+      const searchModalOverlay = document.getElementById('search-modal-overlay');
+      const searchModalClose = document.getElementById('search-modal-close');
+      const searchInputMobile = document.getElementById('search-input-mobile') as HTMLInputElement | null;
+
+      function openSearchModal() {
+        searchModalOverlay?.removeAttribute('aria-hidden');
+        searchModalOverlay?.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => searchInputMobile?.focus(), 50);
+      }
+      function closeSearchModal() {
+        searchModalOverlay?.setAttribute('aria-hidden', 'true');
+        searchModalOverlay?.classList.remove('open');
+        document.body.style.overflow = '';
+        if (searchInputMobile) {
+          searchInputMobile.value = '';
+          const mobileResults = document.getElementById('search-results-mobile');
+          if (mobileResults) { mobileResults.innerHTML = ''; mobileResults.hidden = true; }
+        }
+      }
+
+      searchIconBtn?.addEventListener('click', openSearchModal);
+      searchModalClose?.addEventListener('click', closeSearchModal);
+      searchModalOverlay?.addEventListener('click', (e) => {
+        if (e.target === searchModalOverlay) closeSearchModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && searchModalOverlay?.classList.contains('open')) closeSearchModal();
       });
 
       // Copy buttons — read plain text before colorizer mutates innerHTML
@@ -674,6 +723,82 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
   .search-result-excerpt { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .search-empty { padding: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
 
+  /* Mobile search icon button (hidden on desktop) */
+  .search-icon-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .search-icon-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  /* Mobile search modal */
+  .search-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 300;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 3.5rem;
+  }
+  .search-modal-overlay.open { display: flex; }
+  .search-modal {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    width: calc(100% - 2rem);
+    max-width: 480px;
+    box-shadow: 0 16px 48px rgba(0,0,0,.2);
+    overflow: hidden;
+  }
+  .search-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-input-mobile {
+    flex: 1;
+    font-size: 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    outline: none;
+    font-family: var(--font-sans);
+    min-width: 0;
+  }
+  .search-input-mobile::placeholder { color: var(--text-muted); opacity: 0.7; }
+  .search-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius);
+    flex-shrink: 0;
+    transition: color 0.15s;
+  }
+  .search-modal-close:hover { color: var(--text); }
+  .search-results-mobile {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  .search-results-mobile:empty { display: none; }
+
   /* ── Responsive ─────────────────── */
   @media (max-width: 900px) {
     .hamburger { display: flex; }
@@ -693,6 +818,8 @@ const nextPath = idx < readingOrder.length - 1 ? readingOrder[idx + 1] : null;
     .back-link { display: none; }
   }
   @media (max-width: 600px) {
+    .search-wrap { display: none; }
+    .search-icon-btn { display: flex; }
     .prevnext-inner { flex-direction: column; }
     .prevnext-link { max-width: 100%; }
     .prevnext-next { align-items: flex-start; text-align: left; margin-left: 0; }
