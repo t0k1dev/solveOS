@@ -1,88 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const phases = [
-  {
-    name: 'Plan',
-    description: 'Define the problem, audience, goal, and success criteria before you build anything.',
-    detail: 'The output is a Plan Brief — a short written document that answers: what are we solving, who is it for, what does done look like, and what are we not doing. When AI is building, the Plan Brief is its primary instruction. Every ambiguity in it becomes a guess in the output.',
-    link: '../docs/phases/plan.md',
-  },
-  {
-    name: 'Build',
-    description: 'Execute against the plan. Stay anchored. Update the brief when the build teaches you something.',
-    detail: 'Build is structured discovery, not just execution. You will learn things during the build that planning could not reveal. The Build phase ends when the success criteria are met — not when the work feels complete.',
-    link: '../docs/phases/build.md',
-  },
-  {
-    name: 'Ship',
-    description: 'Put it in the world. In front of real people. Not "ready to ship" — shipped.',
-    detail: 'Ship is the act of making something real — taking it out of your draft folder, your private repo, your local environment, and placing it where it will be used, read, or experienced. Until something is shipped, you are operating on assumptions.',
-    link: '../docs/phases/ship.md',
-  },
-];
-
-const gates = [
-  {
-    name: 'Research',
-    when: 'Before Plan',
-    description: 'Understand the problem space before committing to a direction. Define a specific question, set a time limit, produce conclusions — not just notes.',
-    link: '../docs/gates/research.md',
-  },
-  {
-    name: 'Plan Validation',
-    when: 'After Plan, before Build',
-    description: 'Verify the plan is sound. Runs as a loop — find gaps, sharpen the brief, validate again — until someone who did not write the plan can execute it and produce the same result.',
-    link: '../docs/gates/validate-plan.md',
-  },
-  {
-    name: 'Build Validation',
-    when: 'After Build, before Ship',
-    description: 'Verify the output works and matches the success criteria from the Plan Brief. A functional check — distinct from Review, which is a holistic judgment call.',
-    link: '../docs/gates/validate-build.md',
-  },
-  {
-    name: 'Review',
-    when: 'Before and after Ship',
-    description: 'Pre-ship: is this actually ready? Post-ship: did it work? Feed what you learned into the next Plan. This is what makes solveOS a cycle, not a line.',
-    link: '../docs/gates/review.md',
-  },
-];
-
-const principles = [
-  {
-    name: 'Clarity before action',
-    body: 'Before execution begins, you must be able to state the problem, who it is for, and what success looks like — in writing. Not perfect clarity. Enough clarity to make the first decision without guessing. The Plan phase creates this foundation. Without it, every subsequent decision is unanchored.',
-  },
-  {
-    name: 'Build to learn',
-    body: 'Planning can only take you so far. The act of building reveals constraints, edge cases, and insights that no amount of thinking can surface. Don\'t treat the Build phase as pure execution — treat it as structured discovery.',
-  },
-  {
-    name: 'Reality is the only validator',
-    body: 'No plan, build, or opinion tells you if something works. Only putting it in the world does. Shipping is not the end of the process — it is the beginning of knowing. An imperfect thing that is live produces more real information than a perfect thing that isn\'t.',
-  },
-  {
-    name: 'Gates reduce cost, not momentum',
-    body: 'Optional gates exist to catch expensive mistakes early, not to create bureaucracy. If a gate is slowing you down more than it\'s protecting you, skip it. Gates should serve the work, not the other way around.',
-  },
-  {
-    name: 'The brief is your compass',
-    body: 'The clarity established in Plan doesn\'t maintain itself. Every decision made during Build is an opportunity to drift from the original goal. The Plan Brief is not a starting artifact — it is an active reference. When what you\'re building no longer matches the brief, you either update the brief in writing or course correct. Silent drift is how projects fail.',
-  },
-];
-
-const aiRows = [
-  { phase: 'Plan',     ai: 'Challenge the problem statement, sharpen constraints, rewrite vague goals', human: 'Own the goal, decide what success means, commit to the plan' },
-  { phase: 'Research', ai: 'Surface findings, synthesize information, identify gaps', human: 'Decide what question to answer, judge whether findings are sufficient' },
-  { phase: 'Build',    ai: 'Produce the output — code, text, designs — given the Plan Brief and reference files', human: 'Decide which approach to take, recognize when output doesn\'t match the goal, update the brief' },
-  { phase: 'Validate', ai: 'Check output against criteria, flag gaps', human: 'Decide whether to ship, iterate, or cut scope' },
-  { phase: 'Ship',     ai: '—', human: 'Decide that this goes in front of real people — and that it is the right thing to ship' },
-  { phase: 'Review',   ai: 'Measure, summarize, surface patterns', human: 'Decide what to learn and what to change in the next cycle' },
-];
 ---
 
-<Layout title="solveOS — A problem-solving framework for builders and makers">
+<Layout title="solveOS — The first framework for humans and AI agents to solve problems together">
 
   <!-- ── Nav ──────────────────────────────────────────── -->
   <nav>
@@ -95,18 +15,15 @@ const aiRows = [
   <!-- ── Section 1: Hero ──────────────────────────────── -->
   <section id="hero" class="hero">
     <div class="container hero-inner">
-      <p class="hero-eyebrow">A framework for builders and makers</p>
-      <h1 class="hero-title">Plan. Build. Ship.<br />Repeat.</h1>
+      <p class="hero-eyebrow">Problem-solving framework</p>
+      <h1 class="hero-title">The first framework for humans and AI agents to solve problems together.</h1>
       <p class="hero-sub">
-        A repeatable structure for solving anything — designed from the ground up for AI-first execution.
+        Plan. Build. Ship. A repeatable structure that tells you what to do, in what order, and who is responsible for each decision — whether you're working alone, with a team, or with AI doing most of the execution.
       </p>
 
       <div class="loop-diagram">
-        <div class="loop-row">
-          <span class="loop-top-line"></span>
-        </div>
         <div class="loop-main">
-          <span class="loop-arrow-left">↓</span>
+          <span class="loop-arrow-left">↻</span>
           <div class="loop-steps">
             <span class="lph">Plan</span>
             <span class="lar">→</span>
@@ -115,29 +32,25 @@ const aiRows = [
             <span class="lph">Ship</span>
             <span class="lar">→</span>
             <span class="lgt">[Review]</span>
+            <span class="lar">→</span>
+            <span class="lph">Plan</span>
+            <span class="lar">···</span>
           </div>
-          <span class="loop-arrow-right">↩</span>
-        </div>
-        <div class="loop-phase-labels">
-          <div class="lpl"><strong>Plan</strong><span>Define the problem, goal, and success criteria before touching anything</span></div>
-          <div class="lpl"><strong>Build</strong><span>Execute against the plan; update the brief when the build teaches you something</span></div>
-          <div class="lpl"><strong>Ship</strong><span>Put it in the world, in front of real people — not "ready to ship", shipped</span></div>
-          <div class="lpl"><strong>Review</strong><span>Measure whether it worked; feed what you learned into the next cycle</span></div>
         </div>
       </div>
 
       <div class="hero-ctas">
-        <a href="#examples" class="btn btn-primary">See it in action</a>
-        <span class="btn btn-ghost btn-disabled">Read the docs <span class="cs-badge">coming soon</span></span>
+        <span class="btn btn-primary btn-disabled">Read the docs <span class="cs-badge cs-badge-inv">coming soon</span></span>
+        <span class="btn btn-ghost btn-disabled">See examples <span class="cs-badge cs-badge-inv">coming soon</span></span>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 2: Why solveOS ───────────────────────── -->
+  <!-- ── Section 2: The problem ───────────────────────── -->
   <section id="why" class="alt">
     <div class="container">
       <span class="label">Why solveOS</span>
-      <h2 class="section-title">Most people fail at solving things for the same reasons.</h2>
+      <h2 class="section-title">Most people fail at solving things for the same four reasons.</h2>
       <p class="section-sub">You have probably experienced at least one of these.</p>
 
       <div class="grid-2 failure-grid">
@@ -164,279 +77,137 @@ const aiRows = [
       </div>
 
       <p class="why-close">
-        solveOS prevents all four — through structure, optional validation, a bias toward shipping, and a review loop that closes the cycle.
+        solveOS prevents all four — through structure, optional validation gates, a bias toward shipping, and a review loop that closes the cycle.
       </p>
     </div>
   </section>
 
-  <!-- ── Section 3: Examples ──────────────────────────── -->
-  <section id="examples">
-    <div class="container">
-      <span class="label">Worked examples</span>
-      <h2 class="section-title">See it working end-to-end.</h2>
-      <p class="section-sub">The fastest way to understand solveOS is to watch a full cycle from problem to shipped result.</p>
-
-      <div class="grid-2">
-
-        <div class="example-card card">
-          <div class="card-label">Content</div>
-          <h3>Writing a Technical Article</h3>
-          <div class="cycle">
-            <span class="gt">[Research]</span><span class="ar">→</span>
-            <span class="ph">Plan</span><span class="ar">→</span>
-            <span class="gt">[Plan Validation]</span><span class="ar">→</span>
-            <span class="ph">Build</span><span class="ar">→</span>
-            <span class="ph">Ship</span>
-          </div>
-          <p>A developer has a topic idea but isn't sure if the angle is useful. Research validates it, the plan is sharpened in one validation pass, and the article ships as a specific, actionable piece — not a vague tips list.</p>
-          <blockquote class="key-moment">
-            Plan Validation caught a weak argument before hours of writing.
-          </blockquote>
-          <span class="card-link card-link-disabled">Read the full example <span class="cs-badge">coming soon</span></span>
-        </div>
-
-        <div class="example-card card">
-          <div class="card-label">Engineering</div>
-          <h3>Building a Software Feature</h3>
-          <div class="cycle">
-            <span class="gt">[Research]</span><span class="ar">→</span>
-            <span class="ph">Plan</span><span class="ar">→</span>
-            <span class="gt">[Validation ×2]</span><span class="ar">→</span>
-            <span class="ph">Build</span><span class="ar">→</span>
-            <span class="gt">[Build Validation]</span><span class="ar">→</span>
-            <span class="gt">[Review]</span><span class="ar">→</span>
-            <span class="ph">Ship</span>
-          </div>
-          <p>The analytics dashboard loads in 8–12 seconds. Research identifies the root cause in 30 minutes. Two validation passes catch a vague success criterion. The fix ships — P95 load time drops from 9.2s to 0.9s.</p>
-          <blockquote class="key-moment">
-            Research redirected the entire approach — the obvious fix would have solved the wrong problem.
-          </blockquote>
-          <span class="card-link card-link-disabled">Read the full example <span class="cs-badge">coming soon</span></span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Section 4: Three Phases ──────────────────────── -->
-  <section id="phases" class="alt">
+  <!-- ── Section 3: How it works ──────────────────────── -->
+  <section id="phases">
     <div class="container">
       <span class="label">The framework</span>
       <h2 class="section-title">Three phases. Always in this order.</h2>
       <p class="section-sub">You plan before you build. You build before you ship. The loop closes when you review.</p>
 
       <div class="grid-3">
-        {phases.map((phase, i) => (
-          <div class="phase-card card">
-            <div class="phase-number">{String(i + 1).padStart(2, '0')}</div>
-            <h3>{phase.name}</h3>
-            <p class="phase-desc">{phase.description}</p>
-            <p class="phase-detail">{phase.detail}</p>
-            <span class="card-link card-link-disabled">{phase.name} <span class="cs-badge">coming soon</span></span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <!-- ── Section 5: Optional Gates ────────────────────── -->
-  <section id="gates">
-    <div class="container">
-      <span class="label">Optional gates</span>
-      <h2 class="section-title">Checkpoints between phases.</h2>
-      <p class="section-sub">
-        Gates are lightweight checkpoints you can insert between phases. Not mandatory — but skipping them has a cost. Use them when the stakes are high, the problem is ambiguous, or the build is complex.
-      </p>
-
-      <div class="full-cycle-wrap">
-        <div class="full-cycle">
-          <span class="gt">[Research]</span><span class="ar">→</span>
-          <span class="ph">Plan</span><span class="ar">→</span>
-          <span class="gt">[Plan Validation]</span><span class="ar">→</span>
-          <span class="ph">Build</span><span class="ar">→</span>
-          <span class="gt">[Build Validation]</span><span class="ar">→</span>
-          <span class="gt">[Review]</span><span class="ar">→</span>
-          <span class="ph">Ship</span><span class="ar">→</span>
-          <span class="gt">[Review post-ship]</span>
+        <div class="phase-card card">
+          <div class="phase-number">01</div>
+          <h3>Plan</h3>
+          <p class="phase-desc">Define the problem, audience, goal, and success criteria before you build anything.</p>
+          <p class="phase-note">Output: a Plan Brief — the instruction set for the Build phase and the primary input for AI execution.</p>
+          <span class="card-link card-link-disabled">Plan phase <span class="cs-badge">coming soon</span></span>
         </div>
+
+        <div class="phase-card card">
+          <div class="phase-number">02</div>
+          <h3>Build</h3>
+          <p class="phase-desc">Execute against the plan. Stay anchored. Update the brief when the build teaches you something.</p>
+          <p class="phase-note">Build is structured discovery. You will learn things that planning couldn't reveal — the brief is your anchor when you do.</p>
+          <span class="card-link card-link-disabled">Build phase <span class="cs-badge">coming soon</span></span>
+        </div>
+
+        <div class="phase-card card">
+          <div class="phase-number">03</div>
+          <h3>Ship</h3>
+          <p class="phase-desc">Put it in the world. In front of real people. Not "ready to ship" — shipped.</p>
+          <p class="phase-note">Until something ships, you are operating on assumptions. Reality is the only validator. Ship, then review.</p>
+          <span class="card-link card-link-disabled">Ship phase <span class="cs-badge">coming soon</span></span>
+        </div>
+
       </div>
 
-      <div class="grid-2 gate-grid">
-        {gates.map(gate => (
-          <div class="card gate-card">
-            <div class="gate-when">{gate.when}</div>
-            <h3>[{gate.name}]</h3>
-            <p>{gate.description}</p>
-            <span class="card-link card-link-disabled">Read more <span class="cs-badge">coming soon</span></span>
-          </div>
-        ))}
+      <div class="gates-note">
+        Optional gates — [Research], [Plan Validation], [Build Validation], [Review] — sit between phases. Use them when the cost of being wrong is high. Skip them when it isn't.
+        <span class="card-link card-link-disabled">Gates overview <span class="cs-badge">coming soon</span></span>
       </div>
-
-      <p class="gates-close">Gates serve the work. Skip them when the cost of being wrong is low. Use them when it isn't.</p>
     </div>
   </section>
 
-  <!-- ── Section 6: solveOS and AI ────────────────────── -->
+  <!-- ── Section 4: Built for AI ──────────────────────── -->
   <section id="ai" class="alt">
-    <div class="container">
-      <span class="label">AI-first design</span>
-      <h2 class="section-title">solveOS is the first problem-solving framework designed around AI as primary executor.</h2>
-
-      <div class="ai-lead">
-        <p class="ai-tagline">AI executes. The human decides.</p>
-        <p>
-          Most frameworks were designed before AI could do meaningful work. They treat AI as an accelerator at best.
-          solveOS is built from the ground up assuming AI can own the Build phase — and structures the collaboration
-          so the work still gets done right.
+    <div class="container ai-outer">
+      <div class="ai-text">
+        <span class="label">AI-first design</span>
+        <h2 class="section-title">AI executes. The human decides.</h2>
+        <p class="ai-body">
+          Most frameworks were designed before AI could do meaningful work. solveOS is built from the ground up assuming AI can own the Build phase.
         </p>
-        <p>
-          At every gate, the human reads the output and makes the call: proceed, iterate, or cut.
-          AI does not decide what gets shipped. AI does not decide when the plan is correct.
-          AI does not decide what success means. Those calls belong to the human at every step.
+        <p class="ai-body">
+          The Plan Brief is the human's primary output — a written document specific enough that an AI agent can execute it without clarifying questions. At every gate, the human reads the output and makes the call: proceed, iterate, or cut. AI does not decide what gets shipped. That call belongs to the human at every step.
         </p>
-      </div>
-
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Phase / Gate</th>
-              <th>AI can…</th>
-              <th>Human must…</th>
-            </tr>
-          </thead>
-          <tbody>
-            {aiRows.map(row => (
-              <tr>
-                <td>{row.phase}</td>
-                <td>{row.ai}</td>
-                <td>{row.human}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="ref-files-note">
-        <strong>Reference files.</strong> When AI builds, it needs two inputs: the Plan Brief (what to build)
-        and reference files (the environment to build within — existing code, style guides, API specs, design files).
-        A strong brief with no reference files produces well-intentioned but uninformed work.
-        Reference files without a brief produce directionless work. Both are required.
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Section 7: CLI ───────────────────────────────── -->
-  <section id="cli">
-    <div class="container cli-inner">
-      <div class="cli-text">
-        <span class="label">Tooling</span>
-        <h2 class="section-title">A CLI for running solveOS end-to-end.</h2>
-        <p class="cli-body">
-          The framework works today with any editor and any AI tool.
-          The CLI will make it faster — scaffolding Plan Briefs, managing reference files,
-          running validation gates, and keeping the loop moving without switching contexts.
+        <p class="ai-body">
+          AI also has no memory between sessions. solveOS treats context as a first-class artifact. Every phase transition requires carrying forward what was learned — in writing — so the next session doesn't start from zero.
         </p>
-        <ul class="cli-features">
-          <li><span class="cli-feat-name">solveos init</span> — scaffold a new Plan Brief for any problem</li>
-          <li><span class="cli-feat-name">solveos build</span> — run the Build phase with your AI of choice</li>
-          <li><span class="cli-feat-name">solveos validate</span> — run a gate against the current output</li>
-          <li><span class="cli-feat-name">solveos review</span> — close the loop after Ship</li>
-        </ul>
-        <span class="cs-pill">Coming soon</span>
+        <span class="btn btn-outline btn-disabled">How AI fits into solveOS <span class="cs-badge">coming soon</span></span>
       </div>
-      <div class="cli-preview">
-        <div class="cli-window">
-          <div class="cli-window-bar">
-            <span class="cli-dot"></span><span class="cli-dot"></span><span class="cli-dot"></span>
-          </div>
-          <div class="cli-body-code">
-            <span class="cli-prompt">$</span> <span class="cli-cmd">solveos init</span><br/>
-            <span class="cli-out">? What problem are you solving?</span><br/>
-            <span class="cli-out">? Who is it for?</span><br/>
-            <span class="cli-out">? What does success look like?</span><br/>
-            <span class="cli-out cli-dim">→ plan-brief.md created</span><br/><br/>
-            <span class="cli-prompt">$</span> <span class="cli-cmd">solveos validate --gate plan</span><br/>
-            <span class="cli-out cli-dim">→ Checking brief against criteria...</span><br/>
-            <span class="cli-out cli-warn">⚠ Core assumption not stated</span><br/>
-            <span class="cli-out cli-warn">⚠ Success criteria is vague</span><br/>
-            <span class="cli-out cli-dim">→ 2 issues found. Refine and re-run.</span>
-          </div>
+      <div class="ai-summary">
+        <div class="ai-row">
+          <div class="ai-role-label">AI can</div>
+          <ul class="ai-list">
+            <li>Challenge the problem statement and sharpen the plan</li>
+            <li>Produce code, text, designs, and other output given a clear brief</li>
+            <li>Check output against criteria and flag gaps</li>
+            <li>Summarize, measure, and surface patterns after Ship</li>
+          </ul>
+        </div>
+        <div class="ai-divider"></div>
+        <div class="ai-row">
+          <div class="ai-role-label ai-role-human">Human must</div>
+          <ul class="ai-list">
+            <li>Own the goal and decide what success means</li>
+            <li>Commit to the plan — in writing</li>
+            <li>Recognize when output doesn't match the goal</li>
+            <li>Decide that this goes in front of real people</li>
+            <li>Decide what to learn and what to change next cycle</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 8: The Plan Brief ────────────────────── -->
-  <section id="brief">
+  <!-- ── Section 5: The cycle ─────────────────────────── -->
+  <section id="cycle">
     <div class="container">
-      <span class="label">The central artifact</span>
-      <h2 class="section-title">The Plan Brief — the instruction set for everything.</h2>
+      <span class="label">The loop</span>
+      <h2 class="section-title">It's a cycle, not a line.</h2>
       <p class="section-sub">
-        The Plan Brief is the output of the Plan phase and the input to every other phase.
-        When AI is building, the Plan Brief is its primary instruction.
-        Every ambiguity in it becomes a guess in the output.
-        Write it so that someone — or something — who didn't write it could execute it and produce the same result.
+        Two built-in feedback loops prevent the most common failure modes.
       </p>
 
-      <div class="code-block">Problem          — What is broken, missing, or needed? Be specific.
-Audience         — Who experiences this? Who will use what you build?
-Goal             — What does success look like? One sentence, starts with a verb.
-Appetite         — How much are you willing to invest? Scope fits inside this — not the other way around.
-Constraints      — What are the non-negotiables beyond appetite?
-Success criteria — How will you know this is done, objectively?
-Core assumption  — What must be true for this plan to work? If this is false, the plan fails.
-Rabbit holes     — What unknowns are you explicitly choosing not to explore in this cycle?
-Out of scope     — What are you NOT solving?</div>
-
-      <span class="btn btn-outline brief-link btn-disabled">Full template and guidance <span class="cs-badge">coming soon</span></span>
-    </div>
-  </section>
-
-  <!-- ── Section 8: Five Principles ───────────────────── -->
-  <section id="principles" class="alt">
-    <div class="container">
-      <span class="label">Philosophy</span>
-      <h2 class="section-title">Five principles that govern how solveOS is applied.</h2>
-      <p class="section-sub">Not rules. Lenses. When you feel stuck or off-track, return to them.</p>
-
-      <div class="principles-list">
-        {principles.map((p, i) => (
-          <div class="principle-item">
-            <div class="principle-num">{String(i + 1).padStart(2, '0')}</div>
-            <div class="principle-body">
-              <h3>{p.name}</h3>
-              <p>{p.body}</p>
-            </div>
+      <div class="grid-2 cycle-grid">
+        <div class="cycle-item card">
+          <div class="cycle-num">Loop 1</div>
+          <h3>Refine before you build.</h3>
+          <div class="cycle-flow">
+            <span class="lph-sm">Plan</span>
+            <span class="lar-sm">→</span>
+            <span class="lgt-sm">[Plan Validation]</span>
+            <span class="lar-sm">→ gaps found →</span>
+            <span class="lph-sm">Plan</span>
+            <span class="lar-sm">···</span>
           </div>
-        ))}
+          <p>Plan Validation checks the plan before any build work begins. If gaps exist, you go back to Plan to sharpen it. The loop runs until the plan can be executed without guesswork — typically 1–3 passes. Fixing ambiguity before execution is cheaper than fixing it after.</p>
+        </div>
+        <div class="cycle-item card">
+          <div class="cycle-num">Loop 2</div>
+          <h3>Keep building after you ship.</h3>
+          <div class="cycle-flow">
+            <span class="lph-sm">Ship</span>
+            <span class="lar-sm">→</span>
+            <span class="lgt-sm">[Review]</span>
+            <span class="lar-sm">→</span>
+            <span class="lph-sm">Plan</span>
+            <span class="lar-sm">→</span>
+            <span class="lph-sm">···</span>
+          </div>
+          <p>Shipping is the beginning of knowing, not the end of the work. Review captures what worked, what didn't, and what you discovered — and feeds that directly into the next Plan. Every cycle starts smarter than the last.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 9: Get Started ────────────────────────── -->
-  <section id="start">
-    <div class="container start-inner">
-      <span class="label">Start here</span>
-      <h2 class="section-title">Start using solveOS.</h2>
-      <p class="start-sub">
-        Open plan.md. Fill out the template for the problem you're working on right now. That's the starting point.
-      </p>
-      <span class="btn btn-primary btn-lg btn-disabled">Write your first Plan Brief <span class="cs-badge cs-badge-inv">coming soon</span></span>
-
-      <div class="start-links">
-        <span class="start-link-disabled">Framework overview <span class="cs-badge">coming soon</span></span>
-        <span class="dot">·</span>
-        <span class="start-link-disabled">Article example <span class="cs-badge">coming soon</span></span>
-        <span class="dot">·</span>
-        <span class="start-link-disabled">Engineering example <span class="cs-badge">coming soon</span></span>
-      </div>
-
-      <p class="start-close">The framework isn't complete until something is live.</p>
-    </div>
-  </section>
-
-  <!-- ── Section 10: Email sign-up ─────────────────────── -->
+  <!-- ── Section 6: Notify ─────────────────────────────── -->
   <section id="notify" class="alt">
     <div class="container notify-inner">
       <h2 class="notify-title">Get notified when docs and tools launch.</h2>
@@ -492,9 +263,8 @@ Out of scope     — What are you NOT solving?</div>
   .nav-link {
     font-size: 0.85rem;
     color: rgba(255,255,255,.55);
-    transition: color 0.15s;
   }
-  .nav-link:hover { color: #fff; text-decoration: none; }
+  .nav-coming-soon { cursor: default; }
 
   /* ── Hero ───────────────────────────── */
   .hero {
@@ -503,7 +273,7 @@ Out of scope     — What are you NOT solving?</div>
     padding: 6rem 0 5rem;
   }
   .hero-inner {
-    max-width: 820px;
+    max-width: 780px;
   }
   .hero-eyebrow {
     font-size: 0.78rem;
@@ -514,7 +284,7 @@ Out of scope     — What are you NOT solving?</div>
     margin-bottom: 1.25rem;
   }
   .hero-title {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.03em;
@@ -522,17 +292,15 @@ Out of scope     — What are you NOT solving?</div>
     margin-bottom: 1.25rem;
   }
   .hero-sub {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--text-inv-muted);
-    max-width: 560px;
-    line-height: 1.7;
+    max-width: 600px;
+    line-height: 1.75;
     margin-bottom: 2.5rem;
   }
-
-  /* Loop diagram */
   .loop-diagram {
     margin-bottom: 2.5rem;
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
     border-top: 1px solid rgba(255,255,255,.1);
     border-bottom: 1px solid rgba(255,255,255,.1);
   }
@@ -540,7 +308,6 @@ Out of scope     — What are you NOT solving?</div>
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 1.5rem;
     flex-wrap: wrap;
   }
   .loop-steps {
@@ -551,30 +318,10 @@ Out of scope     — What are you NOT solving?</div>
     font-family: var(--font-mono);
     font-size: 1rem;
   }
-  .lph { color: #60a5fa; font-weight: 700; }
-  .lgt { color: #94a3b8; }
-  .lar { color: rgba(255,255,255,.25); }
-  .loop-arrow-left  { font-size: 1.2rem; color: rgba(255,255,255,.3); }
-  .loop-arrow-right { font-size: 1.2rem; color: rgba(255,255,255,.3); }
-
-  .loop-phase-labels {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-  .lpl strong {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.25rem;
-  }
-  .lpl span {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,.45);
-    line-height: 1.5;
-  }
-
+  .lph  { color: #60a5fa; font-weight: 700; }
+  .lgt  { color: #94a3b8; }
+  .lar  { color: rgba(255,255,255,.25); }
+  .loop-arrow-left { font-size: 1.2rem; color: rgba(255,255,255,.35); }
   .hero-ctas {
     display: flex;
     gap: 0.75rem;
@@ -617,33 +364,6 @@ Out of scope     — What are you NOT solving?</div>
     padding-top: 0.5rem;
   }
 
-  /* ── Example cards ──────────────────── */
-  .example-card {
-    display: flex;
-    flex-direction: column;
-  }
-  .example-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-  }
-  .example-card > p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    flex: 1;
-  }
-  .key-moment {
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    border-left: 2px solid var(--accent);
-    background: var(--accent-light);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    font-size: 0.85rem;
-    color: #1e40af;
-    font-style: italic;
-    line-height: 1.5;
-  }
-
   /* ── Phase cards ────────────────────── */
   .phase-card {
     display: flex;
@@ -666,253 +386,129 @@ Out of scope     — What are you NOT solving?</div>
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
     line-height: 1.5;
   }
-  .phase-detail {
-    font-size: 0.875rem;
+  .phase-note {
+    font-size: 0.85rem;
     color: var(--text-muted);
     line-height: 1.65;
     flex: 1;
+    margin-bottom: 0.5rem;
   }
-
-  /* ── Gates section ──────────────────── */
-  .full-cycle-wrap {
-    overflow-x: auto;
-    margin-bottom: 2.5rem;
-    padding: 1rem 1.25rem;
+  .gates-note {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
     background: var(--bg-alt);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-  }
-  .full-cycle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
     display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: nowrap;
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
+    align-items: baseline;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .gates-note .card-link-disabled {
+    margin-top: 0;
+    padding-top: 0;
     white-space: nowrap;
-  }
-  .full-cycle .ph { color: var(--phase-color); font-weight: 700; }
-  .full-cycle .gt { color: var(--gate-color); }
-  .full-cycle .ar { color: var(--border); }
-
-  .gate-grid { margin-bottom: 2rem; }
-  .gate-card h3 {
-    font-size: 1rem;
-    color: var(--gate-color);
-    font-family: var(--font-mono);
-    margin-bottom: 0.4rem;
-  }
-  .gate-when {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.4rem;
-  }
-  .gates-close {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    font-style: italic;
   }
 
   /* ── AI section ─────────────────────── */
-  .ai-lead {
-    max-width: 720px;
-    margin-bottom: 2rem;
-  }
-  .ai-tagline {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-  .ai-lead p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 0.75rem;
-  }
-  .ref-files-note {
-    margin-top: 1.5rem;
-    padding: 1rem 1.25rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    max-width: 760px;
-  }
-  .ref-files-note strong {
-    color: var(--text);
-  }
-
-  /* ── Plan Brief section ─────────────── */
-  .brief-link {
-    display: inline-block;
-    margin-top: 1.5rem;
-  }
-
-  /* ── Principles ─────────────────────── */
-  .principles-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .principle-item {
-    display: flex;
-    gap: 2rem;
-    padding: 1.75rem 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
-  }
-  .principle-item:last-child { border-bottom: none; }
-  .principle-num {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    min-width: 2rem;
-    padding-top: 0.2rem;
-    letter-spacing: 0.05em;
-  }
-  .principle-body h3 {
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
-    color: var(--text);
-  }
-  .principle-body p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    max-width: 700px;
-  }
-
-  /* ── Get Started ────────────────────── */
-  .start-inner {
-    max-width: 680px;
-    text-align: center;
-    margin: 0 auto;
-  }
-  .start-sub {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .btn-lg {
-    padding: 0.9rem 2rem;
-    font-size: 1rem;
-  }
-  .start-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-    font-size: 0.875rem;
-    flex-wrap: wrap;
-  }
-  .start-links a { color: var(--text-muted); }
-  .start-links a:hover { color: var(--accent); }
-  .dot { color: var(--border); }
-  .start-close {
-    margin-top: 2.5rem;
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  /* ── CLI section ─────────────────────── */
-  .cli-inner {
+  .ai-outer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: center;
+    align-items: start;
   }
-  .cli-body {
+  .ai-body {
     font-size: 0.95rem;
     color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
   }
-  .cli-features {
+  .ai-summary {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .ai-row { padding: 0.5rem 0; }
+  .ai-role-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gate-color);
+    margin-bottom: 0.75rem;
+  }
+  .ai-role-human { color: var(--phase-color); }
+  .ai-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1rem 0;
+  }
+  .ai-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 1.75rem;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.5rem;
   }
-  .cli-features li {
+  .ai-list li {
     font-size: 0.875rem;
     color: var(--text-muted);
-    line-height: 1.5;
+    line-height: 1.55;
+    padding-left: 1rem;
+    position: relative;
   }
-  .cli-feat-name {
-    font-family: var(--font-mono);
-    font-size: 0.825rem;
+  .ai-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+  }
+
+  /* ── Cycle cards ────────────────────── */
+  .cycle-grid { align-items: start; }
+  .cycle-item { padding: 1.75rem; }
+  .cycle-num {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .cycle-item h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
     color: var(--text);
+  }
+  .cycle-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    margin-bottom: 1rem;
+    padding: 0.6rem 0.75rem;
     background: var(--bg-alt);
     border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.1em 0.4em;
-    margin-right: 0.4em;
+    border-radius: var(--radius);
   }
-  .cs-pill {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: var(--accent-light);
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 99px;
-    padding: 0.25em 0.85em;
-  }
-  .cli-window {
-    background: #0d1117;
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-  }
-  .cli-window-bar {
-    display: flex;
-    gap: 0.4rem;
-    padding: 0.65rem 0.9rem;
-    background: rgba(255,255,255,.04);
-    border-bottom: 1px solid rgba(255,255,255,.07);
-  }
-  .cli-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.15);
-    display: inline-block;
-  }
-  .cli-body-code {
-    padding: 1.25rem 1.5rem;
-    line-height: 1.8;
-    color: #e2e8f0;
-  }
-  .cli-prompt { color: #94a3b8; user-select: none; }
-  .cli-cmd    { color: #60a5fa; }
-  .cli-out    { color: #94a3b8; }
-  .cli-dim    { color: #475569; }
-  .cli-warn   { color: #f59e0b; }
-
-  @media (max-width: 900px) {
-    .cli-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .lph-sm { color: var(--phase-color); font-weight: 700; }
+  .lgt-sm { color: var(--gate-color); }
+  .lar-sm { color: var(--border); }
+  .cycle-item > p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
   }
 
   /* ── Coming Soon ─────────────────────── */
@@ -946,9 +542,6 @@ Out of scope     — What are you NOT solving?</div>
     cursor: default;
     pointer-events: none;
   }
-  .nav-coming-soon {
-    cursor: default;
-  }
   .card-link-disabled {
     display: inline-block;
     margin-top: auto;
@@ -956,17 +549,6 @@ Out of scope     — What are you NOT solving?</div>
     font-size: 0.875rem;
     color: var(--text-muted);
     opacity: 0.6;
-    cursor: default;
-  }
-  .start-link-disabled {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    opacity: 0.6;
-    cursor: default;
-  }
-  .footer-link-disabled {
-    font-size: 0.825rem;
-    color: rgba(255,255,255,.25);
     cursor: default;
   }
 
@@ -1007,20 +589,10 @@ Out of scope     — What are you NOT solving?</div>
     outline: none;
     transition: border-color 0.15s;
   }
-  .notify-input:focus {
-    border-color: var(--accent);
-  }
-  .notify-input:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-  }
-  .notify-input::placeholder {
-    color: var(--text-muted);
-    opacity: 0.6;
-  }
-  .notify-btn {
-    white-space: nowrap;
-  }
+  .notify-input:focus { border-color: var(--accent); }
+  .notify-input:disabled { opacity: 0.45; cursor: not-allowed; }
+  .notify-input::placeholder { color: var(--text-muted); opacity: 0.6; }
+  .notify-btn { white-space: nowrap; }
   .notify-note {
     margin-top: 1rem;
     font-size: 0.8rem;
@@ -1050,22 +622,20 @@ Out of scope     — What are you NOT solving?</div>
     color: rgba(255,255,255,.4);
     flex: 1;
   }
-  .footer-link {
+  .footer-link-disabled {
     font-size: 0.825rem;
-    color: rgba(255,255,255,.45);
+    color: rgba(255,255,255,.25);
+    cursor: default;
   }
-  .footer-link:hover { color: #fff; text-decoration: none; }
 
-  /* ── Responsive overrides ───────────── */
+  /* ── Responsive ─────────────────────── */
+  @media (max-width: 900px) {
+    .ai-outer { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
   @media (max-width: 768px) {
-    .loop-phase-labels { grid-template-columns: 1fr 1fr; }
     .hero { padding: 4rem 0 3.5rem; }
   }
-  @media (max-width: 520px) {
-    .loop-phase-labels { grid-template-columns: 1fr; }
-    .loop-main { flex-direction: column; align-items: flex-start; }
-    .principle-item { flex-direction: column; gap: 0.5rem; }
-    .start-inner { text-align: left; }
-    .start-links { justify-content: flex-start; }
+  @media (max-width: 600px) {
+    .gates-note { flex-direction: column; gap: 0.75rem; }
   }
 </style>
