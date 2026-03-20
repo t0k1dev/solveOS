@@ -75,6 +75,7 @@ A skeptical reader will continue reading if the first screen names something rea
 - Eyebrow: `Problem-solving framework`
 - Headline: `The first framework for humans and AI agents to solve problems together.`
 - Sub: `Plan. Build. Ship. A repeatable structure that tells you what to do, in what order, and who is responsible for each decision — whether you're working alone, with a team, or with AI doing most of the execution.`
+- Agnostic line (smaller, muted): `Works with any AI model. Applies to any type of problem — software, content, product, research, or anything else you build and ship.`
 - Loop diagram: `↻ Plan → Build → Ship → [Review] → Plan ···` — styled inline component, phases in blue, gate muted, return arrow visible
 - CTAs (both disabled):
   - Primary: `Read the docs` → coming soon
@@ -182,8 +183,15 @@ Each card links to its phase doc (disabled, coming soon).
 
 - Logo: `solveOS`
 - Tagline: `A living framework. It improves through use.`
+- Creator credit: `Built with ♥ by @tokidev_` — plain text, no link required
+- GitHub link: `GitHub` with GitHub icon → `https://github.com/t0k1dev/solveOS/tree/main` — opens in new tab
 - Link: `Full documentation` (disabled, coming soon)
 - Dark background (`--bg-hero`)
+
+### Nav
+
+- Logo: `solveOS` → links to `/`
+- Right side: `Docs` (disabled, coming soon) + GitHub icon → `https://github.com/t0k1dev/solveOS/tree/main` — opens in new tab
 
 ---
 

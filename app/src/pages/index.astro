@@ -8,7 +8,12 @@ import Layout from '../layouts/Layout.astro';
   <nav>
     <div class="container nav-inner">
       <a href="/" class="nav-logo">solveOS</a>
-      <span class="nav-link nav-coming-soon">Docs <span class="cs-badge">coming soon</span></span>
+      <div class="nav-right">
+        <span class="nav-link nav-coming-soon">Docs <span class="cs-badge">coming soon</span></span>
+        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub repository">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -19,6 +24,9 @@ import Layout from '../layouts/Layout.astro';
       <h1 class="hero-title">The first framework for humans and AI agents to solve problems together.</h1>
       <p class="hero-sub">
         Plan. Build. Ship. A repeatable structure that tells you what to do, in what order, and who is responsible for each decision — whether you're working alone, with a team, or with AI doing most of the execution.
+      </p>
+      <p class="hero-agnostic">
+        Works with any AI model. Applies to any type of problem — software, content, product, research, or anything else you build and ship.
       </p>
 
       <div class="loop-diagram">
@@ -37,11 +45,17 @@ import Layout from '../layouts/Layout.astro';
             <span class="lar">···</span>
           </div>
         </div>
+        <div class="loop-labels">
+          <div class="loop-label"><span class="ll-name">Plan</span><span class="ll-desc">Define the problem and write the brief before touching anything</span></div>
+          <div class="loop-label"><span class="ll-name">Build</span><span class="ll-desc">Execute against the brief; update it when the build teaches you something</span></div>
+          <div class="loop-label"><span class="ll-name">Ship</span><span class="ll-desc">Put it in front of real people — not "ready to ship", shipped</span></div>
+          <div class="loop-label"><span class="ll-name ll-gate">[Review]</span><span class="ll-desc">Measure what happened; feed what you learned into the next cycle</span></div>
+        </div>
       </div>
 
       <div class="hero-ctas">
         <span class="btn btn-primary btn-disabled">Read the docs <span class="cs-badge cs-badge-inv">coming soon</span></span>
-        <span class="btn btn-ghost btn-disabled">See examples <span class="cs-badge cs-badge-inv">coming soon</span></span>
+        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="btn btn-ghost" target="_blank" rel="noopener">View on GitHub</a>
       </div>
     </div>
   </section>
@@ -77,7 +91,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <p class="why-close">
-        solveOS prevents all four — through structure, optional validation gates, a bias toward shipping, and a review loop that closes the cycle.
+        Here's how the framework is structured.
       </p>
     </div>
   </section>
@@ -125,7 +139,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- ── Section 4: Built for AI ──────────────────────── -->
-  <section id="ai" class="alt">
+  <section id="ai" class="ai-dark">
     <div class="container ai-outer">
       <div class="ai-text">
         <span class="label">AI-first design</span>
@@ -172,7 +186,7 @@ import Layout from '../layouts/Layout.astro';
       <span class="label">The loop</span>
       <h2 class="section-title">It's a cycle, not a line.</h2>
       <p class="section-sub">
-        Two built-in feedback loops prevent the most common failure modes.
+        Without a loop before Build, you build the wrong thing. Without a loop after Ship, you repeat the same mistakes. These two loops close both gaps.
       </p>
 
       <div class="grid-2 cycle-grid">
@@ -211,7 +225,7 @@ import Layout from '../layouts/Layout.astro';
   <section id="notify" class="alt">
     <div class="container notify-inner">
       <h2 class="notify-title">Get notified when docs and tools launch.</h2>
-      <p class="notify-sub">No newsletter. One email when it's ready.</p>
+      <p class="notify-sub">Docs, worked examples, Plan Brief templates, and the CLI — one email when they're ready.</p>
       <form class="notify-form" onsubmit="return false;">
         <input
           type="email"
@@ -231,6 +245,11 @@ import Layout from '../layouts/Layout.astro';
     <div class="container footer-inner">
       <span class="footer-logo">solveOS</span>
       <span class="footer-tagline">A living framework. It improves through use.</span>
+      <span class="footer-credit">Built with ♥ by @tokidev_</span>
+      <a href="https://github.com/t0k1dev/solveOS/tree/main" class="footer-github" target="_blank" rel="noopener" aria-label="GitHub repository">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
       <span class="footer-link footer-link-disabled">Full documentation <span class="cs-badge cs-badge-dark">coming soon</span></span>
     </div>
   </footer>
@@ -260,11 +279,23 @@ import Layout from '../layouts/Layout.astro';
     letter-spacing: -0.01em;
   }
   .nav-logo:hover { text-decoration: none; opacity: 0.8; }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
   .nav-link {
     font-size: 0.85rem;
     color: rgba(255,255,255,.55);
   }
   .nav-coming-soon { cursor: default; }
+  .nav-github {
+    display: flex;
+    align-items: center;
+    color: rgba(255,255,255,.55);
+    transition: color 0.15s;
+  }
+  .nav-github:hover { color: #fff; text-decoration: none; }
 
   /* ── Hero ───────────────────────────── */
   .hero {
@@ -296,6 +327,13 @@ import Layout from '../layouts/Layout.astro';
     color: var(--text-inv-muted);
     max-width: 600px;
     line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .hero-agnostic {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,.4);
+    max-width: 560px;
+    line-height: 1.65;
     margin-bottom: 2.5rem;
   }
   .loop-diagram {
@@ -321,8 +359,27 @@ import Layout from '../layouts/Layout.astro';
   .lph  { color: #60a5fa; font-weight: 700; }
   .lgt  { color: #94a3b8; }
   .lar  { color: rgba(255,255,255,.25); }
-  .loop-arrow-left { font-size: 1.2rem; color: rgba(255,255,255,.35); }
-  .hero-ctas {
+  .loop-labels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .loop-label { display: flex; flex-direction: column; gap: 0.3rem; }
+  .ll-name {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #60a5fa;
+  }
+  .ll-gate { color: #94a3b8; }
+  .ll-desc {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,.38);
+    line-height: 1.5;
+  }
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
@@ -417,6 +474,12 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* ── AI section ─────────────────────── */
+  .ai-dark {
+    background: #0f172a;
+    color: var(--text-inv);
+  }
+  .ai-dark .section-title { color: #fff; }
+  .ai-dark .label { color: #60a5fa; }
   .ai-outer {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -425,16 +488,15 @@ import Layout from '../layouts/Layout.astro';
   }
   .ai-body {
     font-size: 0.95rem;
-    color: var(--text-muted);
+    color: rgba(255,255,255,.6);
     line-height: 1.75;
     margin-bottom: 1rem;
   }
   .ai-summary {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
-    box-shadow: var(--shadow);
   }
   .ai-row { padding: 0.5rem 0; }
   .ai-role-label {
@@ -442,13 +504,20 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gate-color);
+    color: #94a3b8;
     margin-bottom: 0.75rem;
+    padding: 0.2em 0.6em;
+    background: rgba(148,163,184,.12);
+    border-radius: 3px;
+    display: inline-block;
   }
-  .ai-role-human { color: var(--phase-color); }
+  .ai-role-human {
+    color: #60a5fa;
+    background: rgba(96,165,250,.12);
+  }
   .ai-divider {
     height: 1px;
-    background: var(--border);
+    background: rgba(255,255,255,.1);
     margin: 1rem 0;
   }
   .ai-list {
@@ -461,7 +530,7 @@ import Layout from '../layouts/Layout.astro';
   }
   .ai-list li {
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: rgba(255,255,255,.5);
     line-height: 1.55;
     padding-left: 1rem;
     position: relative;
@@ -470,7 +539,11 @@ import Layout from '../layouts/Layout.astro';
     content: '–';
     position: absolute;
     left: 0;
-    color: var(--border);
+    color: rgba(255,255,255,.2);
+  }
+  .ai-dark .btn-outline {
+    color: #60a5fa;
+    border-color: rgba(96,165,250,.4);
   }
 
   /* ── Cycle cards ────────────────────── */
@@ -622,6 +695,19 @@ import Layout from '../layouts/Layout.astro';
     color: rgba(255,255,255,.4);
     flex: 1;
   }
+  .footer-credit {
+    font-size: 0.825rem;
+    color: rgba(255,255,255,.35);
+  }
+  .footer-github {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.825rem;
+    color: rgba(255,255,255,.45);
+    transition: color 0.15s;
+  }
+  .footer-github:hover { color: #fff; text-decoration: none; }
   .footer-link-disabled {
     font-size: 0.825rem;
     color: rgba(255,255,255,.25);
@@ -631,11 +717,18 @@ import Layout from '../layouts/Layout.astro';
   /* ── Responsive ─────────────────────── */
   @media (max-width: 900px) {
     .ai-outer { grid-template-columns: 1fr; gap: 2.5rem; }
+    .loop-labels { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
     .hero { padding: 4rem 0 3.5rem; }
   }
   @media (max-width: 600px) {
     .gates-note { flex-direction: column; gap: 0.75rem; }
+    .loop-labels { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .footer-tagline { display: none; }
+    .footer-inner { gap: 1rem; }
+  }
+  @media (max-width: 400px) {
+    .loop-labels { grid-template-columns: 1fr; }
   }
 </style>
