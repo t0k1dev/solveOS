@@ -69,7 +69,7 @@ A skeptical reader will continue reading if the first screen names something rea
 - Context handoff table → docs
 - AI division table → docs
 - Worked examples → docs
-- CLI → docs
+- CLI detail beyond the landing section → /docs/cli/
 - Six principles → docs
 - Get Started section (folded into Hero CTAs)
 
@@ -77,9 +77,9 @@ A skeptical reader will continue reading if the first screen names something rea
 
 ## Page structure
 
-**6 sections** in scroll order. Order is fixed.
+**7 sections** in scroll order. Order is fixed.
 
-**Persuasion arc: Hook → Problem → Framework → AI differentiator → Cycle → Notify**
+**Persuasion arc: Hook → Problem → Framework → AI differentiator → Cycle → CLI → Notify**
 
 ---
 
@@ -181,17 +181,32 @@ Each card links to its phase doc (disabled, coming soon).
 
 ---
 
-### Section 6 — Notify
+### Section 6 — CLI
 
-**Purpose:** Capture email for users who aren't ready to start but want to come back.
+**Purpose:** Give the reader an immediate, zero-friction entry point into the framework. The CLI is live — this section converts interest into action.
 
-**Header:** `Get notified when docs and tools launch.`
+**Header:** `Start your first cycle in 30 seconds.`
 
-**Subheader:** `No newsletter. One email when it's ready.`
+**Content:**
+- Sub: "The solveOS CLI walks you through the Plan phase field by field and outputs a complete Plan Brief — ready to use, ready to hand to an AI agent."
+- Terminal-style block: `$ npx solveos-cli@latest` with a working Copy button
+- Two links: "How it works →" → /docs/cli/ and "GitHub →" → https://github.com/t0k1dev/solveos-cli
+
+**Alt background (`--bg-alt`)**
+
+---
+
+### Section 7 — Notify
+
+**Purpose:** Capture email for users who want updates on future examples, templates, and tools.
+
+**Header:** `Stay in the loop.`
+
+**Subheader:** `Get notified when new examples, templates, and tools land.`
 
 **Content:** Email input + Notify me button (disabled, coming soon). Note: `Nothing ships until it's ready. That's the whole point.`
 
-**Alt background (`--bg-alt`)**
+**Plain background (`--bg`)**
 
 ---
 

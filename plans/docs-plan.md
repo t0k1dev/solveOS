@@ -108,6 +108,7 @@ Readers arrive knowing the landing page's one-line description of solveOS. They 
 /docs/examples/                     → Examples hub — introduces both examples and how to read them
 /docs/examples/article/             → Example: Write an article (from docs/examples/write-an-article.md)
 /docs/examples/feature/             → Example: Build a feature (from docs/examples/build-a-feature.md)
+/docs/cli/                          → CLI — install, what it does, GitHub repo (npx solveos-cli@latest)
 ```
 
 ### Left navbar structure
@@ -140,6 +141,9 @@ Gates
 Examples
   Write an article
   Build a feature
+
+Tooling
+  CLI
 ─────────────────────
 ← Back to solveOS
 ```
@@ -650,7 +654,7 @@ A new layout file: `app/src/layouts/DocsLayout.astro`
 
 **Prev / Next navigation:**
 - Each page has a "Previous" and "Next" link at the bottom, following the logical reading order:
-  Introduction → Why solveOS → How to start → Diverge and converge → Feedback loops → Keeping context → Plan → Build → Ship → Research → Plan Validation → Build Validation → Review → Examples → Write an article → Build a feature
+  Introduction → Why solveOS → How to start → Diverge and converge → Feedback loops → Keeping context → Plan → Build → Ship → Research → Plan Validation → Build Validation → Review → Examples → Write an article → Build a feature → CLI
 
 ---
 
@@ -736,6 +740,7 @@ app/src/pages/docs/gates/review/index.astro
 app/src/pages/docs/examples/index.astro
 app/src/pages/docs/examples/article/index.astro
 app/src/pages/docs/examples/feature/index.astro
+app/src/pages/docs/cli/index.astro
 app/src/scripts/search.js
 app/src/pages/search-index.json.js   (Astro API endpoint that generates the search index at build time)
 ```
@@ -746,6 +751,24 @@ app/src/pages/search-index.json.js   (Astro API endpoint that generates the sear
 - `docs/` — any file inside, ever, during web tasks
 - `app/src/layouts/Layout.astro` — unless adding CSS tokens for the docs theme (minimal, intentional changes only)
 - `app/src/pages/index.astro` — the landing page is separate
+
+---
+
+### /docs/cli/ — CLI
+
+**Source:** Not from `docs/` — CLI is external tooling. Content is maintained directly in the `.astro` page.
+
+**Purpose:** Tell the reader the CLI exists, how to run it (`npx solveos-cli@latest`), what it does, and where the source is.
+
+**Content to render:**
+- Install command: `npx solveos-cli@latest` — copy-able code block
+- What it does: guides you through the Plan phase field by field, outputs a complete Plan Brief
+- Source: link to https://github.com/t0k1dev/solveos-cli
+- When to use it: at the start of any cycle, before opening an editor or prompting an AI agent
+
+**Visual treatment:**
+- Install command: prominent copy-able code block near the top of the page
+- GitHub link: callout box
 
 ---
 

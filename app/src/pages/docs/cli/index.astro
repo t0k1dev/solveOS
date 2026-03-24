@@ -1,0 +1,566 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="CLI" currentPath="/docs/cli/">
+
+  <div class="lang-en">
+
+    <div class="page-header">
+      <span class="page-eyebrow">Tooling</span>
+      <h1>CLI</h1>
+      <p class="page-desc">solveos-cli installs the solveOS framework — slash commands, agents, and hooks — directly into your AI coding assistant. It adds structure on top of your existing tool without replacing it.</p>
+    </div>
+
+    <h2>What it does</h2>
+    <p>solveos-cli brings the full Plan → Build → Ship cycle to your AI coding assistant:</p>
+    <ul>
+      <li><strong>14 slash commands</strong> for every step of the cycle</li>
+      <li><strong>7 specialized agents</strong> — planner, researcher, executor, validators, reviewer, debugger</li>
+      <li><strong>Optional quality gates</strong> — research, plan validation, build validation, review</li>
+      <li><strong>Wave-based parallel execution</strong> for complex builds</li>
+      <li><strong>Markdown-based state</strong> — all artifacts live in <code>.solveos/</code>, no databases or cloud accounts</li>
+    </ul>
+
+    <h2>Supported runtimes</h2>
+    <table>
+      <thead><tr><th>Runtime</th><th>Priority</th><th>Command prefix</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a></td><td>P0</td><td><code>/solveos-new</code></td></tr>
+        <tr><td><a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">Claude Code</a></td><td>P1</td><td><code>/solveos-new</code></td></tr>
+        <tr><td><a href="https://cursor.com" target="_blank" rel="noopener">Cursor</a></td><td>P2</td><td><code>/solveos-new</code></td></tr>
+        <tr><td><a href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">Gemini CLI</a></td><td>P3</td><td><code>/solveos:new</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Install</h2>
+    <p><strong>Prerequisites:</strong> Node.js &gt;= 20.0.0 and one of the supported runtimes installed.</p>
+    <p>Install globally:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>npm i solveos-cli@latest</code></pre>
+    </div>
+    <p>Or run without installing:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>npx solveos-cli@latest</code></pre>
+    </div>
+    <p>The installer auto-detects your runtime and copies commands, agents, and templates into the correct directories. Pass <code>--runtime &lt;name&gt;</code> to override.</p>
+
+    <h3>Runtime-specific paths</h3>
+    <table>
+      <thead><tr><th>Runtime</th><th>Commands</th><th>Agents</th></tr></thead>
+      <tbody>
+        <tr><td>OpenCode</td><td><code>.opencode/commands/solveos-*.md</code></td><td><code>.opencode/agents/solveos-*.md</code></td></tr>
+        <tr><td>Claude Code</td><td><code>.claude/skills/solveos-*/SKILL.md</code></td><td><code>.claude/agents/solveos-*.md</code></td></tr>
+        <tr><td>Cursor</td><td><code>.cursor/skills/solveos-*/SKILL.md</code></td><td><code>.cursor/agents/solveos-*.md</code></td></tr>
+        <tr><td>Gemini CLI</td><td><code>.gemini/commands/solveos/*.toml</code></td><td><code>.gemini/agents/solveos-*.md</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Verify installation</h3>
+    <p>After installing, run <code>/solveos-status</code> in your assistant. It should show:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>Cycle 1 | State: INIT | No brief yet</code></pre>
+    </div>
+
+    <h2>Quick start</h2>
+
+    <p><strong>1. Initialize</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-new</code></pre>
+    </div>
+    <p>Creates the <code>.solveos/</code> directory structure. If it already exists, preserves your existing config and state.</p>
+
+    <p><strong>2. Plan</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-plan</code></pre>
+    </div>
+    <p>The planner agent walks you through 8 Plan Brief questions: Problem, Audience, Goal, Appetite, Constraints, Success Criteria, Core Assumption, and Rabbit Holes. Output saved to <code>.solveos/BRIEF.md</code>.</p>
+
+    <p><strong>3. Build</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-build</code></pre>
+    </div>
+    <p>The executor agent reads the Plan Brief and breaks work into waves — groups of tasks that can run in parallel. Checks off success criteria as each piece completes.</p>
+
+    <p><strong>4. Ship</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-ship</code></pre>
+    </div>
+    <p>Confirms the cycle is complete, archives artifacts to <code>.solveos/history/cycle-N/</code>, resets state for the next cycle.</p>
+
+    <h2>The cycle</h2>
+    <p>The full cycle has 11 states:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>INIT -> RESEARCHING -> PLANNING -> VALIDATING_PLAN -> BUILDING ->
+  VALIDATING_BUILD -> REVIEWING_PRE -> READY_TO_SHIP -> SHIPPED ->
+  REVIEWING_POST -> CYCLE_COMPLETE</code></pre>
+    </div>
+    <p>The minimal path (no gates):</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>INIT -> PLANNING -> BUILDING -> READY_TO_SHIP -> SHIPPED -> CYCLE_COMPLETE</code></pre>
+    </div>
+    <p>Use <code>/solveos-next</code> at any state to see what's available and get a recommendation. Use <code>/solveos-status</code> to see where you are.</p>
+
+    <h2>Gates</h2>
+    <p>Gates are optional quality checkpoints. Each one can be enabled or disabled in <code>.solveos/config.json</code>.</p>
+
+    <h3>Research gate</h3>
+    <p>Use when the problem domain is unfamiliar or you need to investigate options before committing to a plan.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-research "What authentication libraries work with our stack?"</code></pre>
+    </div>
+    <p>Produces a research summary in <code>.solveos/research/</code>. The researcher agent conducts bounded investigation — it has a defined question and stops when it has an answer.</p>
+
+    <h3>Plan Validation gate</h3>
+    <p>Use for high-stakes plans, plans with many unknowns, or when alignment is needed.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-validate-plan</code></pre>
+    </div>
+    <p>Checks three core questions: Does the plan solve the stated problem? Is it feasible within the appetite? Are the success criteria specific and falsifiable? If gaps are found, refine and validate again (up to <code>plan_validation_max_passes</code> times, default 3).</p>
+
+    <h3>Build Validation gate</h3>
+    <p>Use before shipping anything non-trivial.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-validate-build</code></pre>
+    </div>
+    <p>Checks each success criterion against the actual build output. Reports pass/fail per criterion, scope drift, and known issues.</p>
+
+    <h3>Review gate</h3>
+    <p>Pre-ship: holistic "should we ship this?" judgment. Post-ship: outcome measurement and feed-forward.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-review</code></pre>
+    </div>
+    <p>The command detects whether you're pre-ship or post-ship based on the current state. Post-ship review generates <strong>feed-forward items</strong> — new problems discovered, deferred scope, wrong assumptions — that feed into <code>/solveos-new-cycle</code>.</p>
+
+    <h2>Rigor scaling</h2>
+    <table>
+      <thead><tr><th>Mode</th><th>Commands</th><th>Gates</th><th>Use when</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Full</strong></td><td>All 14</td><td>All enabled</td><td>Multi-day features, high-stakes changes</td></tr>
+        <tr><td><strong>Quick</strong></td><td><code>/solveos-quick</code></td><td>None</td><td>Small features, well-understood problems</td></tr>
+        <tr><td><strong>Fast</strong></td><td><code>/solveos-fast</code></td><td>None</td><td>Bug fixes, one-liners, trivial changes</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Command reference</h2>
+    <table>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>/solveos-new</code></td><td>Start a new project or cycle</td></tr>
+        <tr><td><code>/solveos-research</code></td><td>Conduct bounded research on a specific question</td></tr>
+        <tr><td><code>/solveos-plan</code></td><td>Create a Plan Brief via the planner agent</td></tr>
+        <tr><td><code>/solveos-validate-plan</code></td><td>Validate the Plan Brief (catches ambiguity early)</td></tr>
+        <tr><td><code>/solveos-build</code></td><td>Execute the Build phase against the Plan Brief</td></tr>
+        <tr><td><code>/solveos-validate-build</code></td><td>Validate build output against success criteria</td></tr>
+        <tr><td><code>/solveos-review</code></td><td>Pre-ship or post-ship review</td></tr>
+        <tr><td><code>/solveos-ship</code></td><td>Ship the current cycle</td></tr>
+        <tr><td><code>/solveos-status</code></td><td>Show current cycle status</td></tr>
+        <tr><td><code>/solveos-next</code></td><td>Suggest or execute the next step</td></tr>
+        <tr><td><code>/solveos-new-cycle</code></td><td>Start a new cycle with feed-forward from review</td></tr>
+        <tr><td><code>/solveos-quick</code></td><td>Lightweight workflow: minimal plan + immediate build</td></tr>
+        <tr><td><code>/solveos-fast</code></td><td>Zero-overhead inline execution, no artifacts</td></tr>
+        <tr><td><code>/solveos-archive</code></td><td>Manually archive or abandon the current cycle</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Agents</h2>
+    <table>
+      <thead><tr><th>Agent</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><code>solveos-planner</code></td><td>Guides Plan Brief creation through interactive questioning</td></tr>
+        <tr><td><code>solveos-researcher</code></td><td>Conducts bounded research to inform planning</td></tr>
+        <tr><td><code>solveos-executor</code></td><td>Executes work using wave-based parallel execution</td></tr>
+        <tr><td><code>solveos-plan-validator</code></td><td>Validates Plan Brief against 3 core questions</td></tr>
+        <tr><td><code>solveos-build-validator</code></td><td>Validates build output against success criteria</td></tr>
+        <tr><td><code>solveos-reviewer</code></td><td>Runs pre-ship judgment or post-ship outcome measurement</td></tr>
+        <tr><td><code>solveos-debugger</code></td><td>Diagnoses issues found during validation gates</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Configuration</h2>
+    <p>Configuration lives in <code>.solveos/config.json</code>:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>{`{
+  "mode": "interactive",
+  "gates": {
+    "research": true,
+    "plan_validation": true,
+    "build_validation": true,
+    "review_pre_ship": true,
+    "review_post_ship": true
+  },
+  "plan_validation_max_passes": 3,
+  "granularity": "standard",
+  "domain": "software",
+  "runtime": "auto",
+  "hooks": {
+    "context_monitor": true,
+    "context_monitor_threshold": 60,
+    "brief_anchor": true,
+    "brief_anchor_interval": 10
+  }
+}`}</code></pre>
+    </div>
+    <table>
+      <thead><tr><th>Option</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>mode</code></td><td><code>interactive</code>, <code>auto</code></td><td><code>interactive</code></td><td>Whether gates require human confirmation</td></tr>
+        <tr><td><code>gates.*</code></td><td><code>true</code>, <code>false</code></td><td><code>true</code></td><td>Enable or disable individual quality gates</td></tr>
+        <tr><td><code>plan_validation_max_passes</code></td><td>1–10</td><td><code>3</code></td><td>Max validate-refine loops before escalation</td></tr>
+        <tr><td><code>granularity</code></td><td><code>coarse</code>, <code>standard</code>, <code>fine</code></td><td><code>standard</code></td><td>Wave execution unit size</td></tr>
+        <tr><td><code>domain</code></td><td><code>software</code>, <code>content</code>, <code>research</code>, <code>strategy</code>, <code>general</code></td><td><code>software</code></td><td>Domain-specific agent prompt variants</td></tr>
+        <tr><td><code>runtime</code></td><td><code>opencode</code>, <code>claude-code</code>, <code>cursor</code>, <code>gemini</code>, <code>auto</code></td><td><code>auto</code></td><td>Target runtime (auto-detected if <code>auto</code>)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Hooks</h3>
+    <ul>
+      <li><strong>Context monitor</strong> — Warns when conversation length approaches the context window limit (at 60% and 80%). Suggests spawning sub-agents.</li>
+      <li><strong>Brief anchor</strong> — Periodically re-surfaces the Plan Brief's success criteria and out-of-scope items to prevent drift. Triggers every N tool calls (default: 10).</li>
+    </ul>
+
+    <h2>Project structure</h2>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>.solveos/
+  config.json          # Configuration
+  STATE.md             # Current cycle state (human-readable)
+  BRIEF.md             # Plan Brief for current cycle
+  research/            # Research summaries
+  validations/         # Plan and build validation logs
+  reviews/             # Pre-ship and post-ship reviews
+  history/             # Archived cycles
+  notes/               # Freeform notes</code></pre>
+    </div>
+    <p>The entire <code>.solveos/</code> directory is designed to be committed to version control — it gives your team visibility into the planning and review process.</p>
+
+    <h2>Tips for effective Plan Briefs</h2>
+    <ol>
+      <li><strong>Be specific in Success Criteria.</strong> "The feature works" is not falsifiable. "Users can create, edit, and delete items via the API" is.</li>
+      <li><strong>Set a realistic Appetite.</strong> The appetite shapes the solution. If you write "2 hours" but the plan requires a database migration, you'll hit friction.</li>
+      <li><strong>Name your Rabbit Holes.</strong> Acknowledging unknowns up front means you won't be surprised when you hit them.</li>
+      <li><strong>Use Out of Scope aggressively.</strong> The most common failure mode is scope creep. Write down what you're NOT doing.</li>
+      <li><strong>One Core Assumption per plan.</strong> If you have multiple risky assumptions, consider researching them first.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+    <p><strong>Can I use solveos-cli without an AI coding assistant?</strong><br/>
+    No. solveos-cli installs slash commands and agents that run inside an AI coding assistant. It doesn't have its own CLI runtime.</p>
+
+    <p><strong>Does it work with multiple runtimes at once?</strong><br/>
+    Yes. Run <code>npx solveos-cli@latest --runtime &lt;name&gt;</code> for each one. The <code>.solveos/</code> state directory is shared.</p>
+
+    <p><strong>Where does state live?</strong><br/>
+    Everything is in <code>.solveos/</code> as markdown and JSON files. No databases, no cloud accounts, no telemetry.</p>
+
+    <p><strong>How do I reset a stuck cycle?</strong><br/>
+    Use <code>/solveos-archive</code> to archive or abandon the current cycle, then <code>/solveos-new</code> to start fresh.</p>
+
+    <p><strong>What happens if I skip all gates?</strong><br/>
+    The cycle still works. Skipped gates are tracked in <code>.solveos/STATE.md</code> so you can see what was skipped.</p>
+
+    <p><strong>Can I add custom commands or agents?</strong><br/>
+    Yes. Add markdown files to your runtime's command/agent directory. solveos-cli won't overwrite files it didn't create.</p>
+
+    <h2>Source</h2>
+    <p>Open source under the MIT license.</p>
+    <div class="callout">
+      <p><strong>Repository:</strong> <a href="https://github.com/t0k1dev/solveos-cli" target="_blank" rel="noopener">github.com/t0k1dev/solveos-cli</a></p>
+    </div>
+
+  </div>
+
+  <div class="lang-es">
+
+    <div class="page-header">
+      <span class="page-eyebrow">Herramientas</span>
+      <h1>CLI</h1>
+      <p class="page-desc">solveos-cli instala el framework solveOS — slash commands, agentes y hooks — directamente en tu asistente de código con IA. Agrega estructura sobre tu herramienta existente sin reemplazarla.</p>
+    </div>
+
+    <h2>Qué hace</h2>
+    <p>solveos-cli lleva el ciclo completo Plan → Build → Ship a tu asistente de código con IA:</p>
+    <ul>
+      <li><strong>14 slash commands</strong> para cada paso del ciclo</li>
+      <li><strong>7 agentes especializados</strong> — planner, researcher, executor, validators, reviewer, debugger</li>
+      <li><strong>Gates de calidad opcionales</strong> — investigación, validación de plan, validación de build, revisión</li>
+      <li><strong>Ejecución paralela por waves</strong> para builds complejos</li>
+      <li><strong>Estado en Markdown</strong> — todos los artefactos viven en <code>.solveos/</code>, sin bases de datos ni cuentas en la nube</li>
+    </ul>
+
+    <h2>Runtimes compatibles</h2>
+    <table>
+      <thead><tr><th>Runtime</th><th>Prioridad</th><th>Prefijo de comando</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a></td><td>P0</td><td><code>/solveos-new</code></td></tr>
+        <tr><td><a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">Claude Code</a></td><td>P1</td><td><code>/solveos-new</code></td></tr>
+        <tr><td><a href="https://cursor.com" target="_blank" rel="noopener">Cursor</a></td><td>P2</td><td><code>/solveos-new</code></td></tr>
+        <tr><td><a href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">Gemini CLI</a></td><td>P3</td><td><code>/solveos:new</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Instalación</h2>
+    <p><strong>Requisitos previos:</strong> Node.js &gt;= 20.0.0 y uno de los runtimes compatibles instalado.</p>
+    <p>Instalar globalmente:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>npm i solveos-cli@latest</code></pre>
+    </div>
+    <p>O ejecutar sin instalar:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>npx solveos-cli@latest</code></pre>
+    </div>
+    <p>El instalador detecta automáticamente tu runtime. Usa <code>--runtime &lt;nombre&gt;</code> para forzar uno específico.</p>
+
+    <h3>Rutas por runtime</h3>
+    <table>
+      <thead><tr><th>Runtime</th><th>Comandos</th><th>Agentes</th></tr></thead>
+      <tbody>
+        <tr><td>OpenCode</td><td><code>.opencode/commands/solveos-*.md</code></td><td><code>.opencode/agents/solveos-*.md</code></td></tr>
+        <tr><td>Claude Code</td><td><code>.claude/skills/solveos-*/SKILL.md</code></td><td><code>.claude/agents/solveos-*.md</code></td></tr>
+        <tr><td>Cursor</td><td><code>.cursor/skills/solveos-*/SKILL.md</code></td><td><code>.cursor/agents/solveos-*.md</code></td></tr>
+        <tr><td>Gemini CLI</td><td><code>.gemini/commands/solveos/*.toml</code></td><td><code>.gemini/agents/solveos-*.md</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Verificar instalación</h3>
+    <p>Después de instalar, ejecuta <code>/solveos-status</code> en tu asistente. Debería mostrar:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>Cycle 1 | State: INIT | No brief yet</code></pre>
+    </div>
+
+    <h2>Inicio rápido</h2>
+
+    <p><strong>1. Inicializar</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-new</code></pre>
+    </div>
+    <p>Crea el directorio <code>.solveos/</code>. Si ya existe, conserva tu configuración y estado actuales.</p>
+
+    <p><strong>2. Planificar</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-plan</code></pre>
+    </div>
+    <p>El agente planner te guía por 8 preguntas del Plan Brief: Problema, Audiencia, Objetivo, Apetito, Restricciones, Criterios de éxito, Hipótesis central y Agujeros de conejo. Guardado en <code>.solveos/BRIEF.md</code>.</p>
+
+    <p><strong>3. Construir</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-build</code></pre>
+    </div>
+    <p>El agente executor lee el Plan Brief y divide el trabajo en waves — grupos de tareas que pueden ejecutarse en paralelo.</p>
+
+    <p><strong>4. Lanzar</strong></p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-ship</code></pre>
+    </div>
+    <p>Confirma el cierre del ciclo y archiva los artefactos en <code>.solveos/history/cycle-N/</code>.</p>
+
+    <h2>El ciclo</h2>
+    <p>El ciclo completo tiene 11 estados:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>INIT -> RESEARCHING -> PLANNING -> VALIDATING_PLAN -> BUILDING ->
+  VALIDATING_BUILD -> REVIEWING_PRE -> READY_TO_SHIP -> SHIPPED ->
+  REVIEWING_POST -> CYCLE_COMPLETE</code></pre>
+    </div>
+    <p>La ruta mínima (sin gates):</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>INIT -> PLANNING -> BUILDING -> READY_TO_SHIP -> SHIPPED -> CYCLE_COMPLETE</code></pre>
+    </div>
+    <p>Usa <code>/solveos-next</code> en cualquier estado para ver qué está disponible. Usa <code>/solveos-status</code> para ver dónde estás.</p>
+
+    <h2>Gates</h2>
+    <p>Los gates son checkpoints de calidad opcionales. Cada uno puede activarse o desactivarse en <code>.solveos/config.json</code>.</p>
+
+    <h3>Gate de investigación</h3>
+    <p>Úsalo cuando el dominio es poco familiar o necesitas explorar opciones antes de comprometerte con un plan.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-research "¿Qué librerías de autenticación funcionan con nuestro stack?"</code></pre>
+    </div>
+    <p>Genera un resumen de investigación en <code>.solveos/research/</code>. El agente researcher realiza investigación acotada — tiene una pregunta definida y se detiene cuando la responde.</p>
+
+    <h3>Gate de validación del plan</h3>
+    <p>Úsalo para planes de alto impacto, con muchas incógnitas, o cuando se necesita alineación.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-validate-plan</code></pre>
+    </div>
+    <p>Verifica tres preguntas clave: ¿El plan resuelve el problema declarado? ¿Es factible dentro del apetito? ¿Los criterios de éxito son específicos y falsificables? Si hay brechas, refina y valida de nuevo (hasta <code>plan_validation_max_passes</code> veces, por defecto 3).</p>
+
+    <h3>Gate de validación del build</h3>
+    <p>Úsalo antes de lanzar cualquier cosa no trivial.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-validate-build</code></pre>
+    </div>
+    <p>Verifica cada criterio de éxito contra el output real del build. Reporta aprobado/reprobado por criterio, desviación de alcance y problemas conocidos.</p>
+
+    <h3>Gate de revisión</h3>
+    <p>Pre-ship: juicio holístico "¿deberíamos lanzar esto?". Post-ship: medición de resultados y feed-forward.</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/solveos-review</code></pre>
+    </div>
+    <p>El comando detecta si estás pre-ship o post-ship según el estado actual. La revisión post-ship genera <strong>feed-forward items</strong> — nuevos problemas, alcance diferido, hipótesis incorrectas — que alimentan <code>/solveos-new-cycle</code>.</p>
+
+    <h2>Escalado de rigor</h2>
+    <table>
+      <thead><tr><th>Modo</th><th>Comandos</th><th>Gates</th><th>Usar cuando</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Full</strong></td><td>Los 14</td><td>Todos activos</td><td>Features de varios días, cambios de alto riesgo</td></tr>
+        <tr><td><strong>Quick</strong></td><td><code>/solveos-quick</code></td><td>Ninguno</td><td>Features pequeñas, problemas bien entendidos</td></tr>
+        <tr><td><strong>Fast</strong></td><td><code>/solveos-fast</code></td><td>Ninguno</td><td>Bug fixes, cambios triviales de una línea</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Referencia de comandos</h2>
+    <table>
+      <thead><tr><th>Comando</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td><code>/solveos-new</code></td><td>Iniciar un nuevo proyecto o ciclo</td></tr>
+        <tr><td><code>/solveos-research</code></td><td>Realizar investigación acotada sobre una pregunta específica</td></tr>
+        <tr><td><code>/solveos-plan</code></td><td>Crear un Plan Brief con el agente planner</td></tr>
+        <tr><td><code>/solveos-validate-plan</code></td><td>Validar el Plan Brief (detecta ambigüedades temprano)</td></tr>
+        <tr><td><code>/solveos-build</code></td><td>Ejecutar la fase Build según el Plan Brief</td></tr>
+        <tr><td><code>/solveos-validate-build</code></td><td>Validar el output del build contra los criterios de éxito</td></tr>
+        <tr><td><code>/solveos-review</code></td><td>Revisión pre-ship o post-ship</td></tr>
+        <tr><td><code>/solveos-ship</code></td><td>Lanzar el ciclo actual</td></tr>
+        <tr><td><code>/solveos-status</code></td><td>Ver el estado del ciclo actual</td></tr>
+        <tr><td><code>/solveos-next</code></td><td>Sugerir o ejecutar el siguiente paso</td></tr>
+        <tr><td><code>/solveos-new-cycle</code></td><td>Iniciar un nuevo ciclo con aprendizajes del anterior</td></tr>
+        <tr><td><code>/solveos-quick</code></td><td>Flujo ligero: plan mínimo + build inmediato</td></tr>
+        <tr><td><code>/solveos-fast</code></td><td>Ejecución inline sin overhead ni artefactos</td></tr>
+        <tr><td><code>/solveos-archive</code></td><td>Archivar o abandonar el ciclo actual</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Agentes</h2>
+    <table>
+      <thead><tr><th>Agente</th><th>Rol</th></tr></thead>
+      <tbody>
+        <tr><td><code>solveos-planner</code></td><td>Guía la creación del Plan Brief mediante preguntas interactivas</td></tr>
+        <tr><td><code>solveos-researcher</code></td><td>Realiza investigación acotada para informar la planificación</td></tr>
+        <tr><td><code>solveos-executor</code></td><td>Ejecuta el trabajo usando ejecución paralela por waves</td></tr>
+        <tr><td><code>solveos-plan-validator</code></td><td>Valida el Plan Brief contra 3 preguntas clave</td></tr>
+        <tr><td><code>solveos-build-validator</code></td><td>Valida el output del build contra los criterios de éxito</td></tr>
+        <tr><td><code>solveos-reviewer</code></td><td>Ejecuta juicio pre-ship o medición de resultados post-ship</td></tr>
+        <tr><td><code>solveos-debugger</code></td><td>Diagnostica problemas encontrados durante los gates de validación</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Configuración</h2>
+    <p>La configuración vive en <code>.solveos/config.json</code>:</p>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>{`{
+  "mode": "interactive",
+  "gates": {
+    "research": true,
+    "plan_validation": true,
+    "build_validation": true,
+    "review_pre_ship": true,
+    "review_post_ship": true
+  },
+  "plan_validation_max_passes": 3,
+  "granularity": "standard",
+  "domain": "software",
+  "runtime": "auto",
+  "hooks": {
+    "context_monitor": true,
+    "context_monitor_threshold": 60,
+    "brief_anchor": true,
+    "brief_anchor_interval": 10
+  }
+}`}</code></pre>
+    </div>
+    <table>
+      <thead><tr><th>Opción</th><th>Valores</th><th>Por defecto</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td><code>mode</code></td><td><code>interactive</code>, <code>auto</code></td><td><code>interactive</code></td><td>Si los gates requieren confirmación humana</td></tr>
+        <tr><td><code>gates.*</code></td><td><code>true</code>, <code>false</code></td><td><code>true</code></td><td>Activar o desactivar gates individuales</td></tr>
+        <tr><td><code>plan_validation_max_passes</code></td><td>1–10</td><td><code>3</code></td><td>Máximo de ciclos validar-refinar antes de escalar</td></tr>
+        <tr><td><code>granularity</code></td><td><code>coarse</code>, <code>standard</code>, <code>fine</code></td><td><code>standard</code></td><td>Tamaño de unidad de ejecución por waves</td></tr>
+        <tr><td><code>domain</code></td><td><code>software</code>, <code>content</code>, <code>research</code>, <code>strategy</code>, <code>general</code></td><td><code>software</code></td><td>Variantes de prompt por dominio</td></tr>
+        <tr><td><code>runtime</code></td><td><code>opencode</code>, <code>claude-code</code>, <code>cursor</code>, <code>gemini</code>, <code>auto</code></td><td><code>auto</code></td><td>Runtime objetivo (auto-detectado si es <code>auto</code>)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Hooks</h3>
+    <ul>
+      <li><strong>Context monitor</strong> — Avisa cuando la longitud de la conversación se acerca al límite del contexto (al 60% y 80%). Sugiere lanzar sub-agentes.</li>
+      <li><strong>Brief anchor</strong> — Vuelve a mostrar periódicamente los criterios de éxito y los elementos fuera de alcance del Plan Brief para prevenir la desviación. Se activa cada N llamadas a herramientas (por defecto: 10).</li>
+    </ul>
+
+    <h2>Estructura del proyecto</h2>
+    <div class="code-wrap">
+      <button class="copy-btn">Copy</button>
+      <pre><code>.solveos/
+  config.json          # Configuración
+  STATE.md             # Estado del ciclo actual (legible por humanos)
+  BRIEF.md             # Plan Brief del ciclo actual
+  research/            # Resúmenes de investigación
+  validations/         # Logs de validación de plan y build
+  reviews/             # Revisiones pre-ship y post-ship
+  history/             # Ciclos archivados
+  notes/               # Notas libres</code></pre>
+    </div>
+    <p>El directorio <code>.solveos/</code> está diseñado para incluirse en el control de versiones — da visibilidad al equipo sobre el proceso de planificación y revisión.</p>
+
+    <h2>Tips para Plan Briefs efectivos</h2>
+    <ol>
+      <li><strong>Sé específico en los Criterios de éxito.</strong> "La feature funciona" no es falsificable. "Los usuarios pueden crear, editar y eliminar ítems vía la API" sí lo es.</li>
+      <li><strong>Define un Apetito realista.</strong> El apetito da forma a la solución. Si escribes "2 horas" pero el plan requiere una migración de base de datos, habrá fricción.</li>
+      <li><strong>Nombra tus Agujeros de conejo.</strong> Reconocer las incógnitas de antemano significa que no te sorprenderán cuando aparezcan.</li>
+      <li><strong>Usa Fuera de alcance de forma agresiva.</strong> El modo de falla más común es la expansión del alcance. Escribe lo que NO estás haciendo.</li>
+      <li><strong>Una Hipótesis central por plan.</strong> Si tienes múltiples hipótesis riesgosas, considera investigarlas primero.</li>
+    </ol>
+
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Puedo usar solveos-cli sin un asistente de código con IA?</strong><br/>
+    No. solveos-cli instala slash commands y agentes que se ejecutan dentro de un asistente de código con IA. No tiene su propio runtime de CLI.</p>
+
+    <p><strong>¿Funciona con múltiples runtimes a la vez?</strong><br/>
+    Sí. Ejecuta <code>npx solveos-cli@latest --runtime &lt;nombre&gt;</code> para cada uno. El directorio de estado <code>.solveos/</code> es compartido.</p>
+
+    <p><strong>¿Dónde vive el estado?</strong><br/>
+    Todo está en <code>.solveos/</code> como archivos markdown y JSON. Sin bases de datos, sin cuentas en la nube, sin telemetría.</p>
+
+    <p><strong>¿Cómo reseteo un ciclo atascado?</strong><br/>
+    Usa <code>/solveos-archive</code> para archivar o abandonar el ciclo actual, luego <code>/solveos-new</code> para empezar de nuevo.</p>
+
+    <p><strong>¿Qué pasa si salto todos los gates?</strong><br/>
+    El ciclo sigue funcionando. Los gates saltados quedan registrados en <code>.solveos/STATE.md</code> para que puedas ver qué se omitió.</p>
+
+    <p><strong>¿Puedo agregar comandos o agentes personalizados?</strong><br/>
+    Sí. Agrega archivos markdown al directorio de comandos/agentes de tu runtime. solveos-cli no sobreescribirá archivos que no haya creado.</p>
+
+    <h2>Código fuente</h2>
+    <p>Open source bajo licencia MIT.</p>
+    <div class="callout">
+      <p><strong>Repositorio:</strong> <a href="https://github.com/t0k1dev/solveos-cli" target="_blank" rel="noopener">github.com/t0k1dev/solveos-cli</a></p>
+    </div>
+
+  </div>
+
+</DocsLayout>

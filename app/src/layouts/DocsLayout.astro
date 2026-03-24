@@ -16,6 +16,12 @@ const nav = [
     ],
   },
   {
+    groupEn: 'Tooling', groupEs: 'Herramientas',
+    items: [
+      { labelEn: 'CLI', labelEs: 'CLI', href: '/docs/cli/' },
+    ],
+  },
+  {
     groupEn: 'Concepts', groupEs: 'Conceptos',
     items: [
       { labelEn: 'Diverge and converge', labelEs: 'Divergir y converger', href: '/docs/concepts/diverge-converge/' },
@@ -54,6 +60,7 @@ const readingOrder = [
   '/docs/',
   '/docs/guide/',
   '/docs/guide/how-to-start/',
+  '/docs/cli/',
   '/docs/concepts/diverge-converge/',
   '/docs/concepts/feedback-loops/',
   '/docs/concepts/context/',
@@ -86,6 +93,7 @@ const pageLabels: Record<string, { en: string; es: string }> = {
   '/docs/examples/':                  { en: 'Examples',           es: 'Ejemplos' },
   '/docs/examples/article/':          { en: 'Write an article',   es: 'Escribir un artículo' },
   '/docs/examples/feature/':          { en: 'Build a feature',    es: 'Construir una función' },
+  '/docs/cli/':                       { en: 'CLI',                es: 'CLI' },
 };
 
 const idx = readingOrder.indexOf(currentPath);

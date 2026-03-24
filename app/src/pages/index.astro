@@ -14,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
           <span class="lang-label-en">ES</span>
           <span class="lang-label-es">EN</span>
         </button>
-        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub repository">
+        <a href="https://github.com/t0k1dev/solveos-cli" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub repository">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
         </a>
       </div>
@@ -65,26 +65,31 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="loop-labels">
           <div class="loop-label">
-            <span class="ll-name lang-en">🗺️ Plan</span>
-            <span class="ll-name lang-es">🗺️ Planifica</span>
+            <span class="ll-name">
+              <svg class="ll-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+              <span class="lang-en">Plan</span><span class="lang-es">Planifica</span>
+            </span>
             <span class="ll-desc lang-en">Define the problem and write the brief before touching anything</span>
             <span class="ll-desc lang-es">Define el problema y escribe el brief antes de tocar nada</span>
           </div>
           <div class="loop-label">
-            <span class="ll-name lang-en">🔨 Build</span>
-            <span class="ll-name lang-es">🔨 Construye</span>
+            <span class="ll-name">
+              <svg class="ll-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <span class="lang-en">Build</span><span class="lang-es">Construye</span>
+            </span>
             <span class="ll-desc lang-en">Execute against the brief; update it when the build teaches you something</span>
             <span class="ll-desc lang-es">Ejecuta según el brief; actualízalo cuando la construcción te enseñe algo</span>
           </div>
           <div class="loop-label">
-            <span class="ll-name lang-en">🚀 Ship</span>
-            <span class="ll-name lang-es">🚀 Lanza</span>
+            <span class="ll-name">
+              <svg class="ll-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span class="lang-en">Ship</span><span class="lang-es">Lanza</span>
+            </span>
             <span class="ll-desc lang-en">Put it in front of real people — not "ready to ship", shipped</span>
             <span class="ll-desc lang-es">Ponlo frente a personas reales — no "listo para lanzar", lanzado</span>
           </div>
           <div class="loop-label">
-            <span class="ll-name ll-gate lang-en">[Review]</span>
-            <span class="ll-name ll-gate lang-es">[Revisión]</span>
+            <span class="ll-name ll-gate">[<span class="lang-en">Review</span><span class="lang-es">Revisión</span>]</span>
             <span class="ll-desc lang-en">Measure what happened; feed what you learned into the next cycle</span>
             <span class="ll-desc lang-es">Mide lo que ocurrió; alimenta lo aprendido en el siguiente ciclo</span>
           </div>
@@ -94,11 +99,11 @@ import Layout from '../layouts/Layout.astro';
       <div class="hero-ctas">
         <a href="/docs/" class="btn btn-primary lang-en">Read the docs</a>
         <a href="/docs/" class="btn btn-primary lang-es">Leer la documentación</a>
-        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="btn btn-ghost lang-en" target="_blank" rel="noopener">
+        <a href="https://github.com/t0k1dev/solveos-cli" class="btn btn-ghost lang-en" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:0.4em"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           View on GitHub
         </a>
-        <a href="https://github.com/t0k1dev/solveOS/tree/main" class="btn btn-ghost lang-es" target="_blank" rel="noopener">
+        <a href="https://github.com/t0k1dev/solveos-cli" class="btn btn-ghost lang-es" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:0.4em"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           Ver en GitHub
         </a>
@@ -107,7 +112,70 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- ── Section 2: The problem ───────────────────────── -->
+  <!-- ── Section 2: CLI ───────────────────────────────── -->
+  <section id="cli">
+    <div class="container cli-inner">
+
+      <div class="lang-en">
+        <span class="label">CLI</span>
+        <h2 class="section-title">Start your first cycle in 30 seconds.</h2>
+        <p class="section-sub">The solveOS CLI walks you through the Plan phase field by field and outputs a complete Plan Brief — ready to use, ready to hand to an AI agent.</p>
+        <div class="cli-commands">
+          <div class="cli-row">
+            <span class="cli-row-label">Install</span>
+            <div class="cli-block">
+              <span class="cli-prompt">$</span>
+              <code class="cli-cmd">npm i solveos-cli@latest</code>
+              <button class="cli-copy" data-copy="npm i solveos-cli@latest" aria-label="Copy install command">Copy</button>
+            </div>
+          </div>
+          <div class="cli-row">
+            <span class="cli-row-label">Run</span>
+            <div class="cli-block">
+              <span class="cli-prompt">$</span>
+              <code class="cli-cmd">npx solveos-cli@latest</code>
+              <button class="cli-copy" data-copy="npx solveos-cli@latest" aria-label="Copy run command">Copy</button>
+            </div>
+          </div>
+        </div>
+        <div class="cli-links">
+          <a href="/docs/cli/" class="card-link">How it works →</a>
+          <a href="https://github.com/t0k1dev/solveos-cli" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="lang-es">
+        <span class="label">CLI</span>
+        <h2 class="section-title">Inicia tu primer ciclo en 30 segundos.</h2>
+        <p class="section-sub">El CLI de solveOS te guía por la fase Plan campo por campo y genera un Plan Brief completo — listo para usar, listo para entregarle a un agente de IA.</p>
+        <div class="cli-commands">
+          <div class="cli-row">
+            <span class="cli-row-label">Instalar</span>
+            <div class="cli-block">
+              <span class="cli-prompt">$</span>
+              <code class="cli-cmd">npm i solveos-cli@latest</code>
+              <button class="cli-copy" data-copy="npm i solveos-cli@latest" aria-label="Copiar comando de instalación">Copiar</button>
+            </div>
+          </div>
+          <div class="cli-row">
+            <span class="cli-row-label">Ejecutar</span>
+            <div class="cli-block">
+              <span class="cli-prompt">$</span>
+              <code class="cli-cmd">npx solveos-cli@latest</code>
+              <button class="cli-copy" data-copy="npx solveos-cli@latest" aria-label="Copiar comando">Copiar</button>
+            </div>
+          </div>
+        </div>
+        <div class="cli-links">
+          <a href="/docs/cli/" class="card-link">Cómo funciona →</a>
+          <a href="https://github.com/t0k1dev/solveos-cli" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Section 3: The problem ──────────────────────── -->
   <section id="why" class="alt">
     <div class="container">
 
@@ -180,7 +248,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- ── Section 3: How it works ──────────────────────── -->
+  <!-- ── Section 4: How it works ──────────────────────── -->
   <section id="phases">
     <div class="container">
 
@@ -192,24 +260,24 @@ import Layout from '../layouts/Layout.astro';
         <div class="grid-3">
           <div class="phase-card card">
             <div class="phase-number">01</div>
-            <h3>🗺️ Plan</h3>
+            <h3><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg> Plan</h3>
             <p class="phase-desc">Define the problem, audience, goal, and success criteria before you build anything.</p>
             <p class="phase-note">Output: a Plan Brief — the instruction set for the Build phase and the primary input for AI execution.</p>
-            <span class="card-link card-link-disabled">Plan phase <span class="cs-badge">coming soon</span></span>
+            <a href="/docs/phases/plan/" class="card-link">Plan phase →</a>
           </div>
           <div class="phase-card card">
             <div class="phase-number">02</div>
-            <h3>🔨 Build</h3>
+            <h3><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Build</h3>
             <p class="phase-desc">Execute against the plan. Stay anchored. Update the brief when the build teaches you something.</p>
             <p class="phase-note">Build is structured discovery. You will learn things that planning couldn't reveal — the brief is your anchor when you do.</p>
-            <span class="card-link card-link-disabled">Build phase <span class="cs-badge">coming soon</span></span>
+            <a href="/docs/phases/build/" class="card-link">Build phase →</a>
           </div>
           <div class="phase-card card">
             <div class="phase-number">03</div>
-            <h3>🚀 Ship</h3>
+            <h3><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Ship</h3>
             <p class="phase-desc">Put it in the world. In front of real people. Not "ready to ship" — shipped.</p>
             <p class="phase-note">Until something ships, you are operating on assumptions. Reality is the only validator. Ship, then review.</p>
-            <span class="card-link card-link-disabled">Ship phase <span class="cs-badge">coming soon</span></span>
+            <a href="/docs/phases/ship/" class="card-link">Ship phase →</a>
           </div>
         </div>
 
@@ -227,24 +295,24 @@ import Layout from '../layouts/Layout.astro';
         <div class="grid-3">
           <div class="phase-card card">
             <div class="phase-number">01</div>
-            <h3>🗺️ Planifica</h3>
+            <h3><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg> Planifica</h3>
             <p class="phase-desc">Define el problema, la audiencia, el objetivo y los criterios de éxito antes de construir nada.</p>
             <p class="phase-note">Resultado: un Plan Brief — el conjunto de instrucciones para la fase de construcción y la entrada principal para la ejecución con IA.</p>
-            <span class="card-link card-link-disabled">Fase Plan <span class="cs-badge">próximamente</span></span>
+            <a href="/docs/phases/plan/" class="card-link">Fase Plan →</a>
           </div>
           <div class="phase-card card">
             <div class="phase-number">02</div>
-            <h3>🔨 Construye</h3>
+            <h3><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Construye</h3>
             <p class="phase-desc">Ejecuta según el plan. Mantente enfocado. Actualiza el brief cuando la construcción te enseñe algo.</p>
             <p class="phase-note">Construir es descubrimiento estructurado. Aprenderás cosas que la planificación no pudo revelar — el brief es tu ancla cuando eso ocurre.</p>
-            <span class="card-link card-link-disabled">Fase Build <span class="cs-badge">próximamente</span></span>
+            <a href="/docs/phases/build/" class="card-link">Fase Build →</a>
           </div>
           <div class="phase-card card">
             <div class="phase-number">03</div>
-            <h3>🚀 Lanza</h3>
+            <h3><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Lanza</h3>
             <p class="phase-desc">Ponlo en el mundo. Frente a personas reales. No "listo para lanzar" — lanzado.</p>
             <p class="phase-note">Hasta que algo se lanza, operas sobre suposiciones. La realidad es el único validador. Lanza, luego revisa.</p>
-            <span class="card-link card-link-disabled">Fase Ship <span class="cs-badge">próximamente</span></span>
+            <a href="/docs/phases/ship/" class="card-link">Fase Ship →</a>
           </div>
         </div>
 
@@ -257,7 +325,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- ── Section 4: Built for AI ──────────────────────── -->
+  <!-- ── Section 5: Built for AI ──────────────────────── -->
   <section id="ai" class="ai-dark">
     <div class="container ai-outer">
       <div class="ai-text">
@@ -274,7 +342,7 @@ import Layout from '../layouts/Layout.astro';
         <p class="ai-body">
           AI also has no memory between sessions. solveOS treats context as a first-class artifact. Every phase transition requires carrying forward what was learned — in writing — so the next session doesn't start from zero.
         </p>
-        <span class="btn btn-outline btn-disabled">How AI fits into solveOS <span class="cs-badge">coming soon</span></span>
+        <!-- <span class="btn btn-outline btn-disabled">How AI fits into solveOS <span class="cs-badge">coming soon</span></span> -->
       </div>
 
       <div class="lang-es">
@@ -289,7 +357,7 @@ import Layout from '../layouts/Layout.astro';
         <p class="ai-body">
           La IA tampoco tiene memoria entre sesiones. solveOS trata el contexto como un artefacto de primera clase. Cada transición de fase requiere llevar hacia adelante lo aprendido — por escrito — para que la siguiente sesión no empiece desde cero.
         </p>
-        <span class="btn btn-outline btn-disabled">Cómo encaja la IA en solveOS <span class="cs-badge">próximamente</span></span>
+        <!-- <span class="btn btn-outline btn-disabled">Cómo encaja la IA en solveOS <span class="cs-badge">próximamente</span></span> -->
       </div>
 
       </div> <!-- /.ai-text -->
@@ -320,13 +388,13 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- ── Section 5: The cycle ─────────────────────────── -->
+  <!-- ── Section 6: The cycle ─────────────────────────── -->
   <section id="cycle">
     <div class="container">
 
       <div class="lang-en">
         <span class="label">The loop</span>
-        <h2 class="section-title">🔄 It's a cycle, not a line.</h2>
+        <h2 class="section-title">It's a cycle, not a line.</h2>
         <p class="section-sub">
           Without a loop before Build, you build the wrong thing. Without a loop after Ship, you repeat the same mistakes. These two loops close both gaps.
         </p>
@@ -364,7 +432,7 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="lang-es">
         <span class="label">El ciclo</span>
-        <h2 class="section-title">🔄 Es un ciclo, no una línea.</h2>
+        <h2 class="section-title">Es un ciclo, no una línea.</h2>
         <p class="section-sub">
           Sin un ciclo antes de construir, construyes lo equivocado. Sin un ciclo después de lanzar, repites los mismos errores. Estos dos ciclos cierran ambas brechas.
         </p>
@@ -403,16 +471,16 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- ── Section 6: Notify ─────────────────────────────── -->
-  <section id="notify" class="alt">
+  <!-- ── Section 7: Notify ─────────────────────────────── -->
+  <section id="notify">
     <div class="container notify-inner">
       <h2 class="notify-title">
-        <span class="lang-en">Get notified when docs and tools launch. 🚀</span>
-        <span class="lang-es">Recibe una notificación cuando lancen los docs y las herramientas. 🚀</span>
+        <span class="lang-en">Stay in the loop. 🚀</span>
+        <span class="lang-es">Mantente al tanto. 🚀</span>
       </h2>
       <p class="notify-sub">
-        <span class="lang-en">Docs, worked examples, Plan Brief templates, and the CLI — one email when they're ready.</span>
-        <span class="lang-es">Docs, ejemplos trabajados, plantillas de Plan Brief y el CLI — un solo email cuando estén listos.</span>
+        <span class="lang-en">Get notified when new examples, templates, and tools land.</span>
+        <span class="lang-es">Recibe una notificación cuando lleguen nuevos ejemplos, plantillas y herramientas.</span>
       </p>
       <form class="notify-form" onsubmit="return false;">
         <input
@@ -447,7 +515,7 @@ import Layout from '../layouts/Layout.astro';
         <span class="lang-es">Un framework vivo. Mejora con el uso.</span>
       </span>
       <span class="footer-credit">Built with ♥ by @tokidev_</span>
-      <a href="https://github.com/t0k1dev/solveOS/tree/main" class="footer-github" target="_blank" rel="noopener" aria-label="GitHub repository">
+      <a href="https://github.com/t0k1dev/solveos-cli" class="footer-github" target="_blank" rel="noopener" aria-label="GitHub repository">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
         GitHub
       </a>
@@ -466,6 +534,21 @@ import Layout from '../layouts/Layout.astro';
     var next = current === 'es' ? 'en' : 'es';
     document.documentElement.setAttribute('data-lang', next);
     localStorage.setItem('docs-lang', next);
+  });
+
+  document.querySelectorAll('.cli-copy').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var text = btn.getAttribute('data-copy');
+      navigator.clipboard.writeText(text).then(function() {
+        var orig = btn.textContent;
+        btn.textContent = '✓ Copied';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = orig;
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    });
   });
 </script>
 
@@ -549,6 +632,26 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.65;
     margin-bottom: 2.5rem;
   }
+  .cli-commands {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1.5rem 0 1rem;
+  }
+  .cli-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .cli-row-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    width: 4.5rem;
+    flex-shrink: 0;
+  }
   .loop-diagram {
     margin-bottom: 2.5rem;
     padding: 1.25rem 0;
@@ -582,9 +685,19 @@ import Layout from '../layouts/Layout.astro';
   }
   .loop-label { display: flex; flex-direction: column; gap: 0.3rem; }
   .ll-name {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 700;
+    color: #60a5fa;
+  }
+  .ll-icon {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    vertical-align: middle;
     color: #60a5fa;
   }
   .ll-gate { color: #94a3b8; }
@@ -648,9 +761,18 @@ import Layout from '../layouts/Layout.astro';
     letter-spacing: 0.05em;
   }
   .phase-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
     font-size: 1.2rem;
     color: var(--phase-color);
     margin-bottom: 0.4rem;
+  }
+  .ph-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--phase-color);
   }
   .phase-desc {
     font-size: 0.875rem;
@@ -836,6 +958,51 @@ import Layout from '../layouts/Layout.astro';
     color: var(--text-muted);
     opacity: 0.6;
     cursor: default;
+  }
+
+  /* ── CLI section ────────────────────── */
+  .cli-inner {
+    max-width: 640px;
+  }
+  .cli-block {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--bg-hero);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0 1rem;
+    font-family: var(--font-mono);
+  }
+  .cli-prompt {
+    color: var(--accent);
+    font-size: 1rem;
+    user-select: none;
+  }
+  .cli-cmd {
+    flex: 1;
+    font-size: 1rem;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+  .cli-copy {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.7);
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .cli-copy:hover { background: rgba(255,255,255,.18); color: #fff; }
+  .cli-copy.copied { background: #166534; border-color: #166534; color: #fff; }
+  .cli-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
   }
 
   /* ── Email notify ────────────────────── */
